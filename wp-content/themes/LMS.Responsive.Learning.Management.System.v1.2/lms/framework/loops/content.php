@@ -5,18 +5,27 @@
     <div class="blog-entry-inner">
 
         <div class="entry-thumb">
-            <?php $format = get_post_format(  get_the_id() ); ?>
+            <?php 
+			$format = get_post_format(  get_the_id() );
+			$pholder = dttheme_option('general', 'disable-placeholder-images');
+			?>
             <?php if( $format === "image" || empty($format) ): ?>
                     <a href="<?php the_permalink();?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>">
                     <?php if( has_post_thumbnail() ):
-                            the_post_thumbnail("full");
-                          else:?>
-                            <img src="http://placehold.it/1170x822&text=Image" alt="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" />
+							$attachment_id = get_post_thumbnail_id(get_the_id());
+							$img_attributes = wp_get_attachment_image_src($attachment_id, $post_thumbnail);
+							echo "<img src='".$img_attributes[0]."' width='".$img_attributes[1]."' height='".$img_attributes[2]."' />";
+                          elseif($pholder != 'on'):?>
+                            <img src="http://placehold.it/1170x822&text=<?php echo the_title(); ?>" alt="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" />
                     <?php endif;?>
                     </a>
             <?php elseif( $format === "gallery" && array_key_exists("items", $post_meta) ):
                         echo "<ul class='entry-gallery-post-slider'>";
-                        foreach ( $post_meta['items'] as $item ) { echo "<li><img src='{$item}' alt='' /></li>";   }
+                        foreach ( $post_meta['items'] as $item ) { 
+							$attachment_id = dt_get_attachment_id_from_url($item);
+							$img_attributes = wp_get_attachment_image_src($attachment_id, $post_thumbnail);
+							echo "<li><img src='".$img_attributes[0]."' width='".$img_attributes[1]."' height='".$img_attributes[2]."' /></li>";
+						}
                         echo "</ul>";
                   elseif( $format === "video" && (array_key_exists('oembed-url', $post_meta) || array_key_exists('self-hosted-url', $post_meta)) ):
 						if( array_key_exists('oembed-url', $post_meta) ):
@@ -33,9 +42,11 @@
 				  else:?>
                   	<a href="<?php the_permalink();?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>"><?php
 						if( has_post_thumbnail() ):
-							the_post_thumbnail("full");
-						else:?>
-                        	<img src="http://placehold.it/1170x822&text=Image" alt="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" />		<?php endif;?></a>                  
+							$attachment_id = get_post_thumbnail_id(get_the_id());
+							$img_attributes = wp_get_attachment_image_src($attachment_id, $post_thumbnail);
+							echo "<img src='".$img_attributes[0]."' width='".$img_attributes[1]."' height='".$img_attributes[2]."' />";
+						elseif($pholder != 'on'):?>
+                        	<img src="http://placehold.it/1170x822&text=<?php echo the_title(); ?>" alt="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" />		<?php endif;?></a>                  
             <?php endif; ?>
             <div class="entry-thumb-desc"><?php echo dttheme_excerpt( 20 );?></div>
         </div>

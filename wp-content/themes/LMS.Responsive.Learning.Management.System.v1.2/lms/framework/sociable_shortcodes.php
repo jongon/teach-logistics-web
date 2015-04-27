@@ -156,7 +156,6 @@ function digg( $attrs = null, $content = null,$shortcodename ="" ){
 add_shortcode('dt_sc_social','dt_sc_social'); 
 function dt_sc_social($attrs, $content=null,$shortcodename="") {
 	$dttheme_options = get_option(IAMD_THEME_SETTINGS);
-
 	if( isset($dttheme_options['general']['show-sociables']) && isset($dttheme_options['social']) ):
 		$out = "<ul class='social-icons'>";
 			foreach($dttheme_options['social'] as $social):

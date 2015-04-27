@@ -69,7 +69,7 @@ if(is_page()) {
 		  		$header = !empty($header) ? $header : "header1";
 		  	}
 
-		  	require_once(get_template_directory()."/framework/headers/{$header}.php"); ?>
+		  	require_once(IAMD_TD."/framework/headers/{$header}.php"); ?>
         </div><!-- Header Wrapper -->
     
         <!-- **Main** -->
@@ -85,7 +85,7 @@ if(is_page()) {
             endif; ?>
 
         <!-- Sub Title Section -->
-        <?php require_once( get_template_directory()."/framework/sub-title.php"); ?>
+        <?php require_once( IAMD_TD."/framework/sub-title.php"); ?>
         <!-- Sub Title Section -->   
 
 <?php if( !is_page_template( 'tpl-fullwidth.php' ) && !is_page_template('tpl-landingpage.php') ):?>

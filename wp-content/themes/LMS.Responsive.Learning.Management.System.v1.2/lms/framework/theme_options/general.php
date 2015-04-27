@@ -73,6 +73,66 @@
 
                         <p class="note"><?php _e('Upload a retina logo for your theme, or specify the image address of your online logo.','dt_themes');?></p>
                         
+                        <div class="clear"></div>
+                        
+                        <div class="one-half-content">
+                        	<h6><?php _e('Width','dt_themes');?></h6>
+                            <input type="text" class="medium" name="mytheme[general][retina-logo-width]" value="<?php echo dttheme_option('general','retina-logo-width');?>" />
+							<?php _e('px','dt_themes');?>
+                        </div>    
+
+                        <div class="one-half-content last">
+                        	<h6><?php _e('Height','dt_themes');?></h6>
+                            <input type="text" class="medium" name="mytheme[general][retina-logo-height]" value="<?php echo dttheme_option('general','retina-logo-height');?>"/>
+                            <?php _e('px','dt_themes');?>
+                        </div>    
+                        <p class="note"><?php _e('If retina logo is uploaded, enter the standard logo width and height in above respective boxes.','dt_themes');?></p>
+                        <div class="clear"></div>
+                          
+
+                        <div class="hr"></div>
+                        <div class="clear"></div>
+                        
+                        <h6><?php _e('Footer Logo','dt_themes');?></h6>  
+                        <div class="image-preview-container">
+                            <input id="mytheme-footer-logo" name="mytheme[general][footer-logo-url]" type="text" class="uploadfield" readonly="readonly"
+                                    value="<?php echo  dttheme_option('general','footer-logo-url');?>" />
+                            <input type="button" value="<?php _e('Upload','dt_themes');?>" class="upload_image_button show_preview" />
+                            <input type="button" value="<?php _e('Remove','dt_themes');?>" class="upload_image_reset" />
+                            <?php dttheme_adminpanel_image_preview(dttheme_option('general','footer-logo-url'),false,'footer-logo.png');?>
+                        </div>
+                        
+                        <p class="note"> <?php _e('Upload a footer logo for your theme, or specify the image address of your online footer logo.','dt_themes');?> </p>
+
+                        <div class="hr"></div>
+                        <div class="clear"></div>
+                        
+                        <h6><?php _e('Footer Retina Logo','dt_themes');?></h6>
+                        <div class="image-preview-container">
+                          <input id="mytheme-retina-footer-logo" type="text" name="mytheme[general][retina-footer-logo-url]" class="uploadfield" readonly="readonly" 
+                            value="<?php echo dttheme_option('general','retina-footer-logo-url');?>"/>
+                          <input type="button" value="<?php _e('Upload','dt_themes');?>" class="upload_image_button show_preview" />
+                          <input type="button" value="<?php _e('Remove','dt_themes');?>" class="upload_image_reset" />
+                          <?php dttheme_adminpanel_image_preview(dttheme_option('general','retina-footer-logo-url'),false,'footer-logo@2x.png');?>
+                        </div>
+
+                        <p class="note"><?php _e('Upload a retina footer logo for your theme, or specify the image address of your online footer logo.','dt_themes');?></p>
+                        
+                        <div class="clear"></div>
+                        
+                        <div class="one-half-content">
+                        	<h6><?php _e('Width','dt_themes');?></h6>
+                            <input type="text" class="medium" name="mytheme[general][retina-footer-logo-width]" 
+                            	value="<?php echo dttheme_option('general','retina-footer-logo-width');?>" /><?php _e('px','dt_themes');?>
+                        </div>    
+
+                        <div class="one-half-content last">
+                        	<h6><?php _e('Height','dt_themes');?></h6>
+                            <input type="text" class="medium" name="mytheme[general][retina-footer-logo-height]" 
+                            	value="<?php echo dttheme_option('general','retina-footer-logo-height');?>"/><?php _e('px','dt_themes');?>
+                        </div>    
+                        <p class="note"><?php _e('If footer retina logo is uploaded, enter the standard footer logo width and height in above respective boxes.','dt_themes');?></p>
+                        
                     </div> <!-- Logo End -->
 
                     <!-- Favicon -->
@@ -107,7 +167,7 @@
                         <div class="clear"></div>
                         <h6><?php _e('Apple iPhone Icon','dt_themes');?></h6>
                         <div class="image-preview-container">
-                          <input id="mytheme-apple-icon" name="mytheme[general]['apple-favicon']" type="text" class="uploadfield"
+                          <input id="mytheme-apple-icon" name="mytheme[general][apple-favicon]" type="text" class="uploadfield"
                             value="<?php echo dttheme_option('general','apple-favicon');?>"/>
                             <input type="button" value="<?php _e('Upload','dt_themes');?>" class="upload_image_button" />
                             <input type="button" value="<?php _e('Remove','dt_themes');?>" class="upload_image_reset" />
@@ -119,7 +179,7 @@
                         <div class="clear"></div>
                         <h6><?php _e('Apple iPhone Retina Icon','dt_themes');?></h6>
                         <div class="image-preview-container">
-                          <input id="mytheme-apple-icon" name="mytheme[general]['apple-retina-favicon']" type="text" class="uploadfield"
+                          <input id="mytheme-apple-icon" name="mytheme[general][apple-retina-favicon]" type="text" class="uploadfield"
                             value="<?php echo dttheme_option('general','apple-retina-favicon');?>"/>
                             <input type="button" value="<?php _e('Upload','dt_themes');?>" class="upload_image_button" />
                             <input type="button" value="<?php _e('Remove','dt_themes');?>" class="upload_image_reset" />
@@ -131,7 +191,7 @@
                         <div class="clear"></div>
                         <h6><?php _e('Apple iPad Icon','dt_themes');?></h6>
                         <div class="image-preview-container">
-                          <input id="mytheme-apple-icon" name="mytheme[general]['apple-ipad-favicon']" type="text" class="uploadfield"
+                          <input id="mytheme-apple-icon" name="mytheme[general][apple-ipad-favicon]" type="text" class="uploadfield"
                             value="<?php echo dttheme_option('general','apple-ipad-favicon');?>"/>
                             <input type="button" value="<?php _e('Upload','dt_themes');?>" class="upload_image_button" />
                             <input type="button" value="<?php _e('Remove','dt_themes');?>" class="upload_image_reset" />
@@ -143,13 +203,13 @@
                         <div class="clear"></div>
                         <h6><?php _e('Apple iPad Retina Icon','dt_themes');?></h6>
                         <div class="image-preview-container">
-                          <input id="mytheme-apple-icon" name="mytheme[general]['apple-ipad-retina-favicon']" type="text" class="uploadfield"
+                          <input id="mytheme-apple-icon" name="mytheme[general][apple-ipad-retina-favicon]" type="text" class="uploadfield"
                             value="<?php echo dttheme_option('general','apple-ipad-retina-favicon');?>"/>
                             <input type="button" value="<?php _e('Upload','dt_themes');?>" class="upload_image_button" />
                             <input type="button" value="<?php _e('Remove','dt_themes');?>" class="upload_image_reset" />
                             <?php dttheme_adminpanel_image_preview(dttheme_option('general','apple-ipad-retina-favicon'),false,'apple-touch-icon-114x114.png');?>
                         </div>
-                        <p class="note"><?php _e('Upload your custom iPad retina icon (114px by 114px), or specify the oneline URL for favicon','dt_themes');?></p>
+                        <p class="note"><?php _e('Upload your custom iPad retina icon (144px by 144px), or specify the oneline URL for favicon','dt_themes');?></p>
 
                     </div> <!-- Favicon End -->
 
@@ -358,6 +418,19 @@
                       	<p class="note"><?php _e('YES! to hide the front end style picker','dt_themes');?> </p>
                       </div>
                       <div class="hr"></div>
+
+                      <!-- Disable placeholder images -->
+                      <h6><?php _e('Globally disable placeholder images','dt_themes');?></h6>
+                      <div class="column one-fifth">
+                        <?php $switchclass = ( "on" ==  dttheme_option('general','disable-placeholder-images') ) ? 'checkbox-switch-on' :'checkbox-switch-off';?>
+                        <div data-for="mytheme-disable-placeholder-images" class="checkbox-switch <?php echo $switchclass;?>"></div>
+                        <input class="hidden" id="mytheme-disable-placeholder-images" name="mytheme[general][disable-placeholder-images]" type="checkbox" <?php checked(dttheme_option('general','disable-placeholder-images'),'on');?>/>
+                      </div>
+                      <div class="column four-fifth last">
+                        <p class="note"><?php _e('Check if you do not want to diaplay placeholder images','dt_themes');?> </p>
+                      </div>
+                      <div class="hr"></div>
+                      <!-- Disable placeholder images -->
 
                       <h6><?php _e('Disable import dummy content','dt_themes');?></h6>
                       <div class="column one-fifth">

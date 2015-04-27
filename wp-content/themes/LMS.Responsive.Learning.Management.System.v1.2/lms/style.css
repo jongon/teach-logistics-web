@@ -1,10 +1,10 @@
 /*
-Theme Name: LMS
+Theme Name: LMS (Share On Theme123.Net)
 Theme URI: http://wedesignthemes.com/themes/lms/
 Author: the DesignThemes team
 Author URI: http://themeforest.net/user/designthemes
 Description: LMS is a clean, flexible and fully responsive design! Built with HTML5 & CSS3, the clean design can be used for any type of website; business, corporate, portfolio, blog, products, photography, education, medical etc.Endless possiblities to modify layout, styling, fonts, colors, skins easily from the backend. 20 Pre-defined skins, Woo-Commerce support to build your shop in minutes, WPML multi language plugin compatiblity, 2 premium touch enabled & responsive 2D, 3D slider show plugins included, Parallax background option with images and video (self-hosted, youtube, vimeo), SEO friendly semantic markup etc.,
-Version: 1.2
+Version: 1.3
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: black, green, white, light, dark, two-columns, three-columns, left-sidebar, right-sidebar, fixed-layout, responsive-layout, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready, accessibility-ready
@@ -16,6 +16,7 @@ Text Domain: dt_themes
 
 @import "css/reset.css";
 @import "css/prettyPhoto.css";
+@import "css/print.css";
 
 /*------------------------------------------------------------------
 [Table of contents]
@@ -64,7 +65,8 @@ Text Domain: dt_themes
 	
 	/*----*****---- << 1.2. Fonts >> ----*****----*/
 	
-	h1, h2, h3, h4, h5, h6, .dt-sc-course .dt-sc-course-price, .widget.widget_sensei_category_courses ul li a, .dt-menu-toggle, .megamenu-child-container > ul.sub-menu > li > a, .megamenu-child-container > ul.sub-menu > li > .nolink-menu, .special-offers li p, .header-register ul li a, .dt-sc-counter .dt-sc-counter-number, .dt-sc-ico-content.type14 h4, .dt-sc-course-price, .dt-sc-course-duration span, .entry-meta .date, .entry-thumb p, .dt-sc-event-container .dt-sc-event-thumb .event-price, .dt-sc-event-meta p, .breadcrumb, .courses-sorting .courses-popular-type label, ol.dt-sc-lessons-list > li:before { font-family:'Raleway', sans-serif; }	
+	h1, h2, h3, h4, h5, h6, .dt-sc-course .dt-sc-course-price, .widget.widget_sensei_category_courses ul li a, .dt-menu-toggle, .megamenu-child-container > ul.sub-menu > li > a, .megamenu-child-container > ul.sub-menu > li > .nolink-menu, .special-offers li p, .header-register ul li a, .dt-sc-counter .dt-sc-counter-number, .dt-sc-ico-content.type14 h4, .dt-sc-course-price, .dt-sc-course-duration span, .entry-meta .date, .entry-thumb p, .dt-sc-event-container .dt-sc-event-thumb .event-price, .dt-sc-event-meta p, .breadcrumb, .courses-sorting .courses-popular-type label, ol.dt-sc-lessons-list > li:before, .dt-sc-purchased, .dt-sc-course-completed, .dt-sc-user-dashboard-details .dt-sc-course-name a, .dt-sc-lessons-menu ul li a.dt-sc-lesson-menu-name, .dt-quiz-timer .dt-mins, .dt-quiz-timer .dt-secs, .dt-sc-assignment-file-types ul.assignment-file-types li, .dt-sc-assignment-submission li .first { font-family:'Raleway', sans-serif; }	
+	
 	body, input[type="text"], input[type="password"], input[type="email"], input[type="url"], input[type="tel"], input[type="number"], input[type="range"], input[type="date"], textarea, input.text, select, input[type="search"],.dt-sc-course .dt-sc-course-details h5, .tribe-events-day .tribe-events-day-time-slot h5, .single-tribe_events .tribe-events-schedule h3, .tribe-mobile-day-date, .fullwidth-background h1, .slider-search h4, .error-info h2 { font-family:'Open Sans', sans-serif; }
 	
 	/*----*****---- << 1.3. Headings >> ----*****----*/
@@ -95,7 +97,7 @@ Text Domain: dt_themes
 	.social-share-icons li img { transition: opacity .5s ease-in-out; -moz-transition: opacity .5s ease-in-out; -webkit-transition: opacity .5s ease-in-out; }
 	
 	/* Image Load Animation */
-	.dt-sc-custom-course-type .dt-sc-course-thumb, .entry-thumb { /*-webkit-animation: anima 2s;*/ -moz-animation: anima 2s; -o-animation: anima 2s; -ms-animation: anima 2s; animation: anima 2s; /*-webkit-perspective: 500; */ -moz-perspective: 500; -o-perspective: 500; -ms-perspective: 500; perspective: 500; /*-webkit-transform-style: preserve-3d;*/ -moz-transform-style: preserve-3d; -o-transform-style: preserve-3d; -ms-transform-style: preserve-3d; transform-style: preserve-3d; }
+	.dt-sc-custom-course-type .dt-sc-course-thumb, .entry-thumb { -moz-animation: anima 2s; -o-animation: anima 2s; -ms-animation: anima 2s; animation: anima 2s; -moz-perspective: 500; -o-perspective: 500; -ms-perspective: 500; perspective: 500; -moz-transform-style: preserve-3d; -o-transform-style: preserve-3d; -ms-transform-style: preserve-3d; transform-style: preserve-3d; }
 	@keyframes anima {
 		from { margin-top:-50px; filter:alpha(opacity=0); opacity:0; }
 		to { margin:auto; filter:alpha(opacity=100); opacity:1; }
@@ -148,8 +150,6 @@ Text Domain: dt_themes
 	blockquote.alignleft { margin-right:20px; text-align:left; width:30%; float:left; }
 	blockquote.alignright { margin-left:20px; text-align:left; width:30%; float:right; }
 	blockquote.aligncenter { text-align:center; }
-	
-	/* due to IE <HR> margin bugs I had to made classed and apply them to div to achieve the effect of a <HR> */
 	
 	.hr{ background:url(images/splitter.png) repeat-x; height:10px; width:100%; clear:both; display:block; float:left; margin:40px 0px; position:relative; z-index:1; }
 	.hr-border { border:4px double #D9D9D9; width:100%; clear:both; display:block; float:left; margin:50px 0px; position:relative; z-index:1; border-radius:3px; }
@@ -212,7 +212,7 @@ Text Domain: dt_themes
 	
 	select { height:50px; background-color:#ffffff; color:#808080; background-image:url(images/select-box.jpg); background-position:center right; background-repeat: no-repeat; border:1px solid #e2d6c1; width:100%; margin:0px; padding:15px 50px 14px 15px; -webkit-appearance:none; -moz-appearance:none; appearance:none; cursor:pointer; text-indent: 0.01px; text-overflow: ''; }
 	
-	input[type="submit"], button, input[type="button"] { border:none; color:#ffffff; text-transform:uppercase; font-weight:bold; margin:10px 0px 0px; font-size:14px; padding:11px 20px; float:right; cursor:pointer; border-radius:3px; }		
+	input[type="submit"], button, input[type="button"] { border:none; color:#ffffff; text-transform:uppercase; font-weight:bold; margin:10px 0px 0px; font-size:14px; padding:11px 20px; float:right; cursor:pointer; border-radius:3px; -webkit-appearance:none; }		
 	input[type="submit"]:hover, button:hover, input[type="button"]:hover { background:#303030; }
 	
 	#searchform { clear:both; }
@@ -268,7 +268,7 @@ Text Domain: dt_themes
 	.widget ul ul { margin-top:10px; }
 	/*.widget ul ul li { width:90%; }*/
 	
-	.widget ul li { position:relative; padding:6px 0px 6px 15px; /*line-height:35px;*/ }
+	.widget ul li { position:relative; padding:6px 0px 6px 15px; }
 	.widget ul li:before { font-family:FontAwesome; font-style:normal; font-weight:normal; text-decoration:inherit; font-size:12px; position:absolute; top:6px; left:0px; content:"\f105"; }
 	
 	.widget ul#recentcomments li { color:#808080; }
@@ -304,7 +304,7 @@ Text Domain: dt_themes
 	.widget.widget_popular_entries .recent-course-widget ul li { padding:0px 0px 15px; margin:0px 0px 15px; width:100%; border-bottom:1px solid #e4d5bc; }
 	.widget.widget_popular_entries .recent-course-widget ul li:before { content:""; }
 	.widget.widget_popular_entries .recent-course-widget ul li:last-child { border:none; margin-bottom:0px; padding-bottom:0px; }
-	.widget.widget_popular_entries .recent-course-widget ul li img { max-width:90px; float:left; margin:0px 15px 0px 0px; }
+	.widget.widget_popular_entries .recent-course-widget ul li img { max-width:90px; float:left; margin:0px 15px 0px 0px; height:auto; }
 	.widget.widget_popular_entries .recent-course-widget ul li h6 { margin-bottom:10px; font-size:14px; font-weight:500; }
 	.widget.widget_popular_entries .recent-course-widget ul li h6 a { color:#303030; }
 	.widget.widget_popular_entries .recent-course-widget ul li .dt-sc-course-price { font-weight:500; font-size:16px; }
@@ -458,23 +458,23 @@ Text Domain: dt_themes
 	
 	#logo { padding:20px 0px; }
 	
-	#header.header1 #main-menu { width:70%; }
+	/*#header.header1 #main-menu { width:70%; }*/
 	#header.header1 #main-menu > ul.menu > li > a i, #main-menu ul.menu li a .menu-item-description { display:none; }
 	
-	#header.header2 #logo { padding-left:20px; /*width:23%;*/ }
+	#header.header2 #logo { padding-left:20px; }
 	#header.header2 .top-bar { padding-left:2%; padding-right:2%; width:96%; }
 	#header.header2 .header-register { margin-right:20px; }
-	#header.header2 #main-menu { width:70%; }
+	/*#header.header2 #main-menu { width:70%; }*/
 	#header.header2 #main-menu > ul.menu > li > a .menu-item-description { display:none; }
 	#header.header2 #main-menu > ul.menu > li > a { padding-left:34px; padding-right:14px; }
 	#header.header2 #main-menu > ul.menu > li > a i { font-size:14px; left:13px; }
 	
 	#header.header3, #header.header4 { border-bottom:0px; }
-	#header.header3 #logo { width:30%; /*border-left:1px solid #e8e8e8; padding-left:20px;*/ margin-left:0px; }
+	#header.header3 #logo { width:30%; margin-left:0px; }
 	#header.header3 #main-menu, #header.header4 #main-menu { width:auto; padding:0px; margin:15px 0px 0px; float:left; }
 	#header.header3 #main-menu > ul.menu, #header.header4 #main-menu > ul.menu { float:left; }
 	#header.header3 #main-menu > ul.menu > li, #header.header4 #main-menu > ul.menu > li { padding:0px; }
-	#header.header3 #main-menu > ul.menu > li > a, #header.header4 #main-menu > ul.menu > li > a { position:relative; /*margin-right:10px; */padding:13px 18px 11px 39px; }
+	#header.header3 #main-menu > ul.menu > li > a, #header.header4 #main-menu > ul.menu > li > a { position:relative; padding:13px 18px 11px 39px; }
 	#header.header3 #main-menu > ul.menu > li > a i, #header.header4 #main-menu > ul.menu > li > a i { line-height:44px; }
 	#header.header3 #main-menu ul li.menu-item-simple-parent > ul, #header.header4 #main-menu ul li.menu-item-simple-parent > ul { top:50px; }
 	#header.header3 .megamenu-child-container, #header.header4 .megamenu-child-container { top:60px; }
@@ -500,10 +500,9 @@ Text Domain: dt_themes
 	#header .sociable-details .dt-sc-social-icons li:hover:after { height:35px; }
 	
 	/*----*****---- << Sticky Header >> ----*****----*/
-	/*#header-wrapper-sticky-wrapper { height:auto !important; }*/
 	.header-wrapper-sticky-wrapper { max-width:100%; width:100%; }
 	
-	#header-wrapper-sticky-wrapper.is-sticky { position:relative; /*z-index:9999;*/ width:100%; float:left; clear:both; }
+	#header-wrapper-sticky-wrapper.is-sticky { position:relative; width:100%; float:left; clear:both; }
 	
 	.ie9 .page-with-slider #header { background:rgba(253, 246, 234, 0.3); }
 	
@@ -551,11 +550,12 @@ Text Domain: dt_themes
 	
 	#main-menu ul li.menu-item-simple-parent ul, #main-menu ul li.menu-item-simple-parent ul li ul, #main-menu ul li.menu-item-simple-parent ul li ul li ul { display:none; }
 	
-	#main-menu ul li.menu-item-simple-parent ul { width:220px; background:#fdf6ea; /*border-bottom:3px solid; */border-top:3px solid #e9d8c4; padding:10px 0px 10px; position:absolute; top:52px; left:0px; float:left; box-shadow:0px 5px 5px 0px rgba(0, 0, 0, 0.25); -moz-box-shadow:0px 5px 5px 0px rgba(0, 0, 0, 0.25); -webkit-box-shadow:0px 5px 5px 0px rgba(0, 0, 0, 0.25); border-radius:0px 0px 3px 3px; z-index:1; }
+	#main-menu ul li.menu-item-simple-parent:hover > ul, #main-menu ul li.menu-item-simple-parent ul li:hover > ul, #main-menu ul li.menu-item-simple-parent ul li ul li:hover > ul, #main-menu > ul.menu > li:hover > .megamenu-child-container { display:block; opacity:1; }
+	
+	#main-menu ul li.menu-item-simple-parent ul { width:220px; background:#fdf6ea; border-top:3px solid #e9d8c4; padding:10px 0px 10px; position:absolute; top:52px; left:0px; float:left; box-shadow:0px 5px 5px 0px rgba(0, 0, 0, 0.25); -moz-box-shadow:0px 5px 5px 0px rgba(0, 0, 0, 0.25); -webkit-box-shadow:0px 5px 5px 0px rgba(0, 0, 0, 0.25); border-radius:0px 0px 3px 3px; z-index:1; }
 	#main-menu ul li.menu-item-simple-parent ul li { display:block; padding:0px 15px; position:relative; } 
 	#main-menu ul li.menu-item-simple-parent ul li a { color:#545454; position:relative; padding:9px 10px 8px; border-bottom:1px solid transparent; font-size:13px; display:block; border-radius:3px; }
 	#main-menu ul li.menu-item-simple-parent ul li a:hover { background:#f5e9d4; border-color:#e2d6c1;  }
-	/*#main-menu ul li.menu-item-simple-parent ul li a:before { content:"\f105"; font-family:FontAwesome; font-style:normal; font-weight:normal; text-decoration:inherit; font-size:14px; position:absolute; top:11px; left:0px; }*/
 	
 	#main-menu ul li.menu-item-simple-parent ul li ul { left:220px; top:-10px; padding-top:5px; box-shadow:0px 0px 5px rgba(0, 0, 0, 0.25); -moz-box-shadow:0px 0px 5px rgba(0, 0, 0, 0.25); -webkit-box-shadow:0px 0px 5px rgba(0, 0, 0, 0.25); border-radius:3px; }
 	
@@ -775,7 +775,7 @@ Text Domain: dt_themes
 		.portfolio a.close-overlay { display:block; position:absolute; top:0; right:0; z-index:20; width:45px; height:45px; font-size:20px; line-height:42px; color:#ffffff; text-align:center; background-color:rgba(0, 0, 0, 0.1); cursor:pointer; }
 		.portfolio a.close-overlay:hover { background-color:rgba(0, 0, 0, 0.3); }
 		
-		.portfolio-details { clear:both; width:100%; display:block; float:left; background:url(images/textured-border.png) left bottom repeat-x; padding-bottom:6px; }
+		.portfolio-details { clear:both; width:100%; display:block; float:left; /*background:url(images/textured-border.png) left bottom repeat-x;*/ padding-bottom:6px; }
 		.portfolio-details-inner { display:block; padding:20px; border:1px solid #e2d6c1; background:#fcfcf7; }
 		.portfolio-details h5 { font-weight:300; text-transform:none; font-size:24px; margin-bottom:0px; }
 		.portfolio-details h5 a { color:#37251b; }
@@ -814,6 +814,8 @@ Text Domain: dt_themes
 		.portfolio figure .image-overlay::before { position: absolute; top: 20px; right: 20px; bottom: 20px; left: 20px; border: 1px solid #fff; content: ''; opacity: 0; -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;  transition: opacity 0.35s, transform 0.35s; -webkit-transform: translate3d(-20px,0,0); transform: translate3d(-20px,0,0); }
 		.portfolio figure:hover .image-overlay::before { opacity: 1; -webkit-transform: translate3d(0,0,0); transform: translate3d(0,0,0); }		
 		/* Portfolio Hover Effects */
+		
+		
 		
 		.isotope-hidden { display:none !important; }
 		
@@ -946,6 +948,10 @@ Text Domain: dt_themes
 		
 		.blog-thumb .entry-details-desc { display:block; }		
 		.entry-details-desc { display:none; clear:both; margin:20px 0px 0px; padding:0px; float:left; }
+		
+		.page-with-both-sidebar .blog-thumb .entry-thumb img, .page-with-both-sidebar .tpl-blog-holder .dt-sc-one-third .entry-thumb img, .page-with-both-sidebar .tpl-blog-holder .dt-sc-one-half .entry-thumb img { width:100%; height:auto; }
+		
+		.tpl-blog-holder .dt-sc-one-half { width:48.9%; }
 		
 		
 		.entry-meta { width:70px; text-align:center; position:absolute; left:0; padding:0px; }
@@ -1192,11 +1198,6 @@ Text Domain: dt_themes
 	}
 	
 	
-	
-	/*#newsletter form input[type="email"] { font-size:12px; color:#808080; width:280px; display:inline-block; float:none; padding:12px 10px; margin:0px 10px 0px 0px; border:0px; border-radius:0px; }
-	#newsletter form input[type="submit"] { background:none; margin:0px; border:1px solid #ffffff; color:#ffffff; padding:10px 20px; float:none; }
-	#newsletter form input[type="submit"]:hover { background:#ffffff; color:#303030; }*/
-	
 	#newsletter form .dt_sc_mc_result { position:absolute; left:10px; top:43px; color:#ffffff; }
 	
 	#newsletter ul.social-icons { text-align:center; float:left; clear:both; margin:50px 0px 0px; padding:0px; width:100%; }
@@ -1211,7 +1212,7 @@ Text Domain: dt_themes
 	#contact-form p .fa, .mailchimp-form .fa { font-size:14px; line-height:48px; padding:0px; width:6%; text-align:center; border-right:1px solid #e2d6c1; margin:0px; }
 	#contact-form p input, #contact-form p textarea, .mailchimp-form p input, .mailchimp-form p textarea { border:none; padding:13px 0 12px 2%; width:89.4%; margin:0px; display:inline; }
 	#contact-form p textarea { padding-top:15px; height:146px; width:92%; }
-	#contact-form p.textarea-field .fa { padding-bottom:14px; height:145px; float:left; /*margin:0px 0px -2000px; padding:0px 0px 2000px;*/ }
+	#contact-form p.textarea-field .fa { padding-bottom:14px; height:145px; float:left; }
 	
 	form p .fa { color:#808080; }
 	
@@ -1219,7 +1220,7 @@ Text Domain: dt_themes
 	#contact-form p.submit input { padding:11px 20px; }
 	
 	.wpcf7-form-control-wrap { position:relative; }
-	.wpcf7-form span.wpcf7-not-valid-tip { /*background:#ffb0af;*/ border:1px solid #ff7b79; color:#cc0000; padding:4px 10px; top:7px; line-height:normal; right:0px; position:absolute; }
+	.wpcf7-form span.wpcf7-not-valid-tip { border:1px solid #ff7b79; color:#cc0000; padding:4px 10px; top:7px; line-height:normal; right:0px; position:absolute; }
 	
 	span.wpcf7-form-control-wrap { width:92%; }
 	
@@ -1256,8 +1257,8 @@ Text Domain: dt_themes
 	.side-nav-container { float:left; margin:0px; padding:0px; width:98%; }
 	ul.side-nav { border:1px solid; border-bottom:0px; margin:0px; padding:0px; float:left; width:100%; }
 	ul.side-nav li { float:left; width:100%; display:block; padding:0px; border-bottom:1px solid; }
-	ul.side-nav li a { color:#303030; line-height:normal; padding:12px 0px 11px 60px; display:block; position:relative; }
-	ul.side-nav li a:before { content:"\f0da"; font-family:FontAwesome; font-style:normal; font-weight:normal; color:#444446; position:absolute; left:0; top:0; margin:auto; width:45px; height:43px; text-align:center; line-height:45px; }
+	ul.side-nav li a { color:#303030; line-height:normal; padding:14px 0px 13px 60px; display:block; position:relative; }
+	ul.side-nav li a:before { content:"\f0da"; font-family:FontAwesome; font-style:normal; font-weight:normal; color:#444446; position:absolute; left:0; top:0; margin:auto; width:45px; height:100%; text-align:center; line-height:49px; }
 	
 	ul.side-nav > li.current_page_item > a:after, ul.side-nav > li > ul > li.current_page_item > a:after { content:""; position:absolute; background:url(images/side-nav-active.png) no-repeat; width:11px; height:46px; right:-11px; top:0px; }
 	
@@ -1522,9 +1523,11 @@ Text Domain: dt_themes
 	.dt-sc-course-single h2, .dt-sc-course-single h3, .dt-sc-course-single h4 { text-transform:none; }
 	
 	.dt-lesson-wrapper { float:left; clear:both; width:100%; margin:0px; padding:0px;  }
-	.dt-lesson-inner-wrapper { border:5px solid #f5e9d4; border-radius:3px; box-shadow:0 0 0 1px #e2d6c1; display:inline-block; }
+	.dt-lesson-inner-wrapper { border:5px solid #f5e9d4; border-radius:3px; box-shadow:0 0 0 1px #e2d6c1; display:inline-block; width:100%; box-sizing:border-box; }
 	.dt-lesson-wrapper .dt-lesson-title { background:#f5e9d4; padding:11px 20px 15px; margin-bottom:10px; }
-	.dt-lesson-wrapper ol.dt-sc-lessons-list { padding:20px; }
+	.dt-lesson-wrapper ol.dt-sc-lessons-list { padding:20px 20px 0px; }
+	
+	.dt-lesson-wrapper ol.dt-sc-lessons-list .lesson-title h5 { font-size:15px; color:rgba(0, 0, 0, 0.5); margin-bottom:15px; }
 	
 	.dt-sc-course-single .entry-metadata .dt-sc-button { float:right; margin:-13px 3px 0px 0px; font-size:12px; padding:9px 15px 7px; }
 	.dt-sc-course-single .entry-metadata .dt-sc-button i { font-size:14px; }
@@ -1557,6 +1560,8 @@ Text Domain: dt_themes
 	
 	.menu-item-widget-area-container .widget.widget_popular_entries .recent-course-widget ul li h6 { font-weight:300; font-size:14px; }
 	.menu-item-widget-area-container .widget.widget_popular_entries .recent-course-widget ul li h6 a { color:#313131; }
+	
+	.courses-share { margin-bottom:20px; float:left; clear:both; width:100%; }
 	
 	/*----*****---- << 2.3.11. S2Member >> ----*****----*/
 	.tpl-forget-pwd { margin:29px 0px 0px; }
@@ -1637,3 +1642,43 @@ Text Domain: dt_themes
 .dt-sc-custom-course-type .post-ratings-loading { float:left; position:absolute; bottom:55px; right:0px; clear:both; text-align:right; font-size:12px; }
 .dt-sc-custom-course-type .post-ratings-loading img { position:relative; left:-2px; top:3px; }
 
+
+/*----*****---- << Retina Images >> ----*****----*/
+
+.retina_logo { display:none; height:auto !important; }
+html, body { overflow-x:hidden; }
+
+@media only screen and (-moz-min-device-pixel-ratio: 1.5), 
+only screen and (-o-min-device-pixel-ratio: 3/2), 
+only screen and (-webkit-min-device-pixel-ratio: 1.5), 
+only screen and (min-devicepixel-ratio: 1.5), 
+only screen and (min-resolution: 1.5dppx) {
+	
+.normal_logo { display:none; }
+.retina_logo { display:inline-block; }
+	
+.hr{ background-image:url(images/splitter@2x.png); background-size:15px 10px; }
+
+select { background-image:url(images/select-box@2x.jpg); background-size:44px 48px; }
+
+.widget #searchform input[type="submit"], #primary #searchform input[type="submit"] { background-image:url(images/search-ico2@2x.png); background-size:15px 16px; }
+
+.courses-search input[type="submit"] { background-image:url(images/search-ico2@2x.png); background-size:15px 16px; }
+.header-search input[type="submit"] { background-image:url(images/search-ico2@2x.png); background-size:15px 16px; }
+
+.breadcrumb .fa.default { background-image:url(images/breadcrumb-splitter@2x.png); background-size:10px 11px; }
+
+.bx-controls a.bx-prev { background-image:url(images/slider-prev-arrow-white@2x.png); background-size:14px 28px; }
+.bx-controls a.bx-next { background-image:url(images/slider-next-arrow-white@2x.png); background-size:14px 28px; }
+
+.entry-thumb .bx-controls a.bx-prev { background-image:url(images/slider-prev-arrow-white@2x.png); background-size:14px 28px; }
+.entry-thumb .bx-controls a.bx-next { background-image:url(images/slider-next-arrow-white@2x.png); background-size:14px 28px; }
+
+#toTop { background-image:url(images/ui.totop@2x.png); background-size:40px 80px; }	
+#toTopHover { background-image:url(images/ui.totop@2x.png); background-size:40px 80px; }	
+
+ul.side-nav > li.current_page_item > a:after, ul.side-nav > li > ul > li.current_page_item > a:after { background-image:url(images/side-nav-active@2x.png); background-size:11px 46px; }
+
+.tribe-events-list .vevent.hentry { background-image:url(images/splitter@2x.png); background-size:15px 10px; }
+
+}

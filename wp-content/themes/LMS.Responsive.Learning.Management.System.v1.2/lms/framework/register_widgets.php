@@ -1,11 +1,11 @@
 <?php
-require_once get_template_directory().'/framework/theme_widgets/twitter.php';
-require_once get_template_directory().'/framework/theme_widgets/mailchimp.php';
-require_once get_template_directory().'/framework/theme_widgets/flickr.php';
-require_once get_template_directory().'/framework/theme_widgets/recent_posts.php';
-require_once get_template_directory().'/framework/theme_widgets/recent_pages.php';
-require_once get_template_directory().'/framework/theme_widgets/portfolio_widgets.php';
-require_once get_template_directory().'/framework/theme_widgets/courses_widgets.php';
+require_once IAMD_TD.'/framework/theme_widgets/twitter.php';
+require_once IAMD_TD.'/framework/theme_widgets/mailchimp.php';
+require_once IAMD_TD.'/framework/theme_widgets/flickr.php';
+require_once IAMD_TD.'/framework/theme_widgets/recent_posts.php';
+require_once IAMD_TD.'/framework/theme_widgets/recent_pages.php';
+require_once IAMD_TD.'/framework/theme_widgets/portfolio_widgets.php';
+require_once IAMD_TD.'/framework/theme_widgets/courses_widgets.php';
 
 add_action('widgets_init', 'dttheme_widgets');
 function dttheme_widgets() {

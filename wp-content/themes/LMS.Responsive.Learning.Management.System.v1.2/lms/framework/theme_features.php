@@ -26,9 +26,12 @@
 		
 		# Now Theme supports WooCommerce
 		add_theme_support('woocommerce');
+		
+		# Now Theme supports Sensei Plugin
+		add_theme_support('sensei');
 
 		// Add theme support for Translation
-		load_theme_textdomain('dt_themes', get_template_directory().'/languages');
+		load_theme_textdomain('dt_themes', IAMD_TD.'/languages');
 
 		// Add theme support for Post Formats
 		$formats = array(
@@ -66,6 +69,44 @@
 		));
 
 		add_image_size('dt-course-widget', 110, 90, true);
+		
+		
+		add_image_size('blog-one-column', 1170, 822, true);
+		add_image_size('blog-one-column-single-sidebar', 880, 618, true);
+		add_image_size('blog-one-column-both-sidebar', 590, 415, true);
+
+		add_image_size('blogcourse-two-column', 573, 403, true);
+		add_image_size('blog-two-column-single-sidebar', 429, 302, true);
+		add_image_size('course-two-column-single-sidebar', 431, 303, true);
+		add_image_size('blogcourse-two-column-both-sidebar', 420, 295, true);
+
+		add_image_size('blogcourse-three-column', 420, 295, true);
+		add_image_size('blogcourse-three-column-single-sidebar', 420, 295, true);
+		add_image_size('blogcourse-three-column-both-sidebar', 420, 295, true);
+
+		add_image_size('blog-thumb', 420, 295, true);
+		add_image_size('blog-thumb-single-sidebar', 420, 295, true);
+		add_image_size('blog-thumb-both-sidebar', 420, 295, true);
+
+
+		add_image_size('portfolio-one-column', 1170, 878, true);
+		add_image_size('portfolio-one-column-single-sidebar', 940, 705, true);
+		add_image_size('portfolio-one-column-both-sidebar', 650, 488, true);
+
+		add_image_size('portfolio-two-column', 633, 475, true);
+		add_image_size('portfolio-two-column-single-sidebar', 489, 367, true);
+		add_image_size('portfolio-two-column-both-sidebar', 420, 315, true);
+
+		add_image_size('portfolio-three-column', 434, 326, true);
+		add_image_size('portfolio-three-column-single-sidebar', 420, 315, true);
+		add_image_size('portfolio-three-column-both-sidebar', 420, 315, true);
+
+		add_image_size('portfolio-four-column', 420, 315, true);
+		add_image_size('portfolio-four-column-single-sidebar', 420, 315, true);
+		add_image_size('portfolio-four-column-both-sidebar', 420, 315, true);
+		
+		add_image_size('portfolio-widget-thumb', 70, 53, true);
+		
 		
 		// END of Featured Images option
 		

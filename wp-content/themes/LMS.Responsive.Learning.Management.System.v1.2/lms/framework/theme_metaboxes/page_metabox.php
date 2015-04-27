@@ -172,7 +172,7 @@
                             <input name="slider-image" type="text" class="uploadfield medium" readonly="readonly" value="<?php echo $slider_image;?>"/>
                             <input type="button" value="<?php _e('Upload','dt_themes');?>" class="upload_image_button show_preview" />
                             <input type="button" value="<?php _e('Remove','dt_themes');?>" class="upload_image_reset" />
-                            <?php if( !empty($subtitlebg) ) dttheme_adminpanel_image_preview($slider_image );?>
+                            <?php if( !empty($slider_image) ) dttheme_adminpanel_image_preview($slider_image );?>
                             <p class="note"><?php _e("Upload an image instead of slider",'dt_themes');?></p>
                         </div>    
                     </div>
@@ -665,6 +665,13 @@
 				$settings['slider-image'] = $_POST['slider-image'];
 				$settings['slider-shortcode'] = $_POST['slider-shortcode'];
 				$settings['full-width-section'] = $_POST['page-full-width-section'];
+			
+			elseif( "tpl-login.php" == $_POST['page_template'] ):
+				$settings['show_slider'] =  $_POST['mytheme-show-slider'];
+				$settings['slider_type'] = $_POST['mytheme-slider-type'];
+				$settings['slider-image'] = $_POST['slider-image'];
+				$settings['slider-shortcode'] = $_POST['slider-shortcode'];
+				$settings['comment'] = $_POST['mytheme-page-comment'];
 			
 			elseif( "tpl-blog.php" == $_POST['page_template'] ):
 				$settings['blog-post-layout'] = $_POST['mytheme-blog-post-layout'];

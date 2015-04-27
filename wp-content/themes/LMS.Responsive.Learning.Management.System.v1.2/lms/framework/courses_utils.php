@@ -10,6 +10,9 @@ if($course_page_type == 'archive' || $course_page_type == 'tax-archive') {
 	$post_layout = dttheme_option('dt_course','archives-post-layout'); 
 	$post_layout = !empty($post_layout) ? $post_layout : "one-half-column";
 	
+	$page_layout = dttheme_option('dt_course','archives-layout'); 
+	$page_layout = !empty($page_layout) ? $page_layout : "content-full-width";
+	
 	$post_per_page = get_option('posts_per_page');
 	
 } else {
@@ -19,11 +22,13 @@ if($course_page_type == 'archive' || $course_page_type == 'tax-archive') {
 	
 	$post_layout  = array_key_exists( "courses-post-layout", $tpl_default_settings ) ? $tpl_default_settings['courses-post-layout'] : "one-half-column";
 	$post_per_page	=	isset($tpl_default_settings['courses-post-per-page']) ? $tpl_default_settings['courses-post-per-page'] : -1;
+	
+	$page_layout  = array_key_exists( "layout", $tpl_default_settings ) ? $tpl_default_settings['layout'] : "content-full-width";
 
 }
 
 
-$grid_view = $list_view = $layout_class = $post_class = "";
+$grid_view = $list_view = $layout_class = $post_class = $post_thumbnail = "";
 
 switch($post_layout):
 
@@ -31,15 +36,31 @@ switch($post_layout):
 		$post_class = "column dt-sc-one-half";
 		$firstcnt = 2;
 		$grid_view = 'active';
+		$post_thumbnail = 'blogcourse-two-column';
+		if($page_layout == 'with-left-sidebar' || $page_layout == 'with-right-sidebar') $post_thumbnail = 'course-two-column';
+		else $post_thumbnail = 'blogcourse-two-column';
 	break;
 
 	case 'one-third-column':
 		$post_class = "column dt-sc-one-third";
 		$firstcnt = 3;
 		$grid_view = 'active';
+		$post_thumbnail = 'blogcourse-three-column';
 	break;
 
 endswitch;
+
+switch ( $page_layout ) {
+	case 'with-left-sidebar':
+	case 'with-right-sidebar':
+		$post_thumbnail .= "-single-sidebar";
+	break;
+
+	case 'both-sidebar':
+		$post_thumbnail .= "-both-sidebar";
+	break;
+}
+
 
 $curr_page = isset($_REQUEST['curr_page']) ? $_REQUEST['curr_page'] : 1;
 $offset = isset($_REQUEST['offset']) ? $_REQUEST['offset'] : 0;
@@ -66,7 +87,7 @@ echo '<span id="dt-course-datas" data-postid="'.$post_id.'" data-view_type="'.$v
 
 if($courses_type != 'popular') {
 	
-	$args = array( 'offset'=>$offset, 'paged' => $curr_page ,'posts_per_page' => $post_per_page,'post_type' => 'dt_courses','meta_query'=>array(), 'tax_query'=>array(),);
+	$args = array( 'offset'=>$offset, 'paged' => $curr_page ,'posts_per_page' => $post_per_page,'post_type' => 'dt_courses','meta_query'=>array(), 'tax_query'=>array(), 'orderby' => 'menu_order', 'order' => 'ASC');
 
 	if($price_type == 'paid') {
 		
@@ -103,9 +124,13 @@ if($courses_type != 'popular') {
 						
 	}
 		
+	$pholder = dttheme_option('general', 'disable-placeholder-images');
+		
 	$wp_query->query( $args );
 	if( $wp_query->have_posts() ):  while( $wp_query->have_posts() ): $wp_query->the_post();
 	
+		$s2_level = "access_s2member_ccap_cid_{$post->ID}";
+		
 		$firstcls = $temp_class = '';
 		$no = $wp_query->current_post+1;
 		
@@ -117,6 +142,7 @@ if($courses_type != 'popular') {
 		if( $grid_view == 'active' ) {
 		echo '<div '.$temp_class.'>';
 		}
+				
 		?>
 		<article id="post-<?php echo get_the_ID(); ?>" class="<?php echo implode(" ", get_post_class("dt-sc-custom-course-type {$layout_class}", get_the_ID())); ?>">
 		
@@ -124,11 +150,11 @@ if($courses_type != 'popular') {
 				<a href="<?php echo the_permalink(); ?>" >
 					<?php
 					if(has_post_thumbnail()):
-						$image_url = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'full');
-					?>
-						<img src="<?php echo $image_url[0]; ?>" alt="<?php echo get_the_title(); ?>" />
-					<?php else: ?>
-						<img src="http://placehold.it/1170x822&text=Image" alt="<?php echo get_the_title(); ?>" />
+						$attachment_id = get_post_thumbnail_id(get_the_id());
+						$img_attributes = wp_get_attachment_image_src($attachment_id, $post_thumbnail);
+						echo "<img src='".$img_attributes[0]."' width='".$img_attributes[1]."' height='".$img_attributes[2]."' />";
+					 elseif($pholder != 'on'): ?>
+						<img src="http://placehold.it/1170x822&text=<?php echo get_the_title(); ?>" alt="<?php echo get_the_title(); ?>" />
 					<?php endif; ?>
 				 </a>
                 <div class="dt-sc-course-overlay">
@@ -167,36 +193,63 @@ if($courses_type != 'popular') {
 				<?php if($list_view == 'active') { ?>
                 
                    <h5><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h5>
-                
-                    <?php $starting_price = get_post_meta(get_the_ID(), 'starting-price', true);
-                    if($starting_price != ''): ?>
-                        <span class="dt-sc-course-price"> <span class="amount"> 
-                            <?php 
-                            if(dttheme_option('dt_course','currency-position') == 'after-price') 
-                                echo $starting_price.dttheme_option('dt_course','currency'); 
-                            else
-                                echo dttheme_option('dt_course','currency').$starting_price; 
-                            ?>
-                        </span> </span>
-                    <?php else: ?>
-                        <span class="dt-sc-course-price"> <span class="amount"> <?php echo __('Free', 'dt_themes'); ?> </span> </span>
-                    <?php endif; ?>
+                	
+                  
+						<?php
+                        if ( current_user_can($s2_level) ){
+								echo '<div class="dt-sc-purchased-details">';
+                            echo '<span class="dt-sc-purchased"> '.__('Purchased Already','dt_themes').'</span>';
+                            $course_status = dt_get_users_course_status($post->ID, '');
+                            if($course_status)
+                                echo '<div class="dt-sc-course-completed"> <span class="fa fa-check-circle"> </span> '.__('Completed', 'dt_themes').'</div>';
+								echo '</div>';
+                        } else {
+                        ?>
+                    
+						<?php $starting_price = get_post_meta(get_the_ID(), 'starting-price', true);
+                        if($starting_price != ''): ?>
+                            <span class="dt-sc-course-price"> <span class="amount"> 
+                                <?php 
+                                if(dttheme_option('dt_course','currency-position') == 'after-price') 
+                                    echo $starting_price.dttheme_option('dt_course','currency'); 
+                                else
+                                    echo dttheme_option('dt_course','currency').$starting_price; 
+                                ?>
+                            </span> </span>
+                        <?php else: ?>
+                            <span class="dt-sc-course-price"> <span class="amount"> <?php echo __('Free', 'dt_themes'); ?> </span> </span>
+                        <?php endif; ?>
+                    
+                    <?php } ?>
                                 
                 <?php } else { ?>
                 
-                    <?php $starting_price = get_post_meta(get_the_ID(), 'starting-price', true);
-                    if($starting_price != ''): ?>
-                        <span class="dt-sc-course-price"> <span class="amount"> 
-                            <?php 
-                            if(dttheme_option('dt_course','currency-position') == 'after-price') 
-                                echo $starting_price.dttheme_option('dt_course','currency'); 
-                            else
-                                echo dttheme_option('dt_course','currency').$starting_price; 
-                            ?>
-                        </span> </span>
-                    <?php else: ?>
-                        <span class="dt-sc-course-price"> <span class="amount"> <?php echo __('Free', 'dt_themes'); ?> </span> </span>
-                    <?php endif; ?>
+                	<?php
+					if ( current_user_can($s2_level) ){
+						echo '<div class="dt-sc-purchased-details">';
+						echo '<span class="dt-sc-purchased"> '.__('Purchased Already','dt_themes').'</span>';
+						$course_status = dt_get_users_course_status($post->ID, '');
+						if($course_status)
+							echo '<div class="dt-sc-course-completed"> <span class="fa fa-check-circle"> </span> '.__('Completed', 'dt_themes').'</div>';
+						echo '</div>';
+					} else {
+					?>
+                    
+						<?php $starting_price = get_post_meta(get_the_ID(), 'starting-price', true);
+                        if($starting_price != ''): ?>
+                            <span class="dt-sc-course-price"> <span class="amount"> 
+                                <?php 
+                                if(dttheme_option('dt_course','currency-position') == 'after-price') 
+                                    echo $starting_price.dttheme_option('dt_course','currency'); 
+                                else
+                                    echo dttheme_option('dt_course','currency').$starting_price; 
+                                ?>
+                            </span> </span>
+                        <?php else: ?>
+                            <span class="dt-sc-course-price"> <span class="amount"> <?php echo __('Free', 'dt_themes'); ?> </span> </span>
+                        <?php endif; ?>
+                        
+                    <?php } ?>
                     
                     <h5><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h5>
                 
@@ -278,6 +331,7 @@ if($courses_type != 'popular') {
 	
 	}	
 	
+	$pholder = dttheme_option('general', 'disable-placeholder-images');
 	
 	$wp_course_qry = $wpdb->get_results( $cp_qry2 );
 	
@@ -287,6 +341,8 @@ if($courses_type != 'popular') {
 		foreach($wp_course_qry as $course_item) :
 			
 			$course_item_id = $course_item -> ID;
+			
+		    $s2_level = "access_s2member_ccap_cid_{$course_item_id}";
 			
 			$firstcls = $temp_class = '';
 			$no = $cs_num + 1;
@@ -306,11 +362,11 @@ if($courses_type != 'popular') {
 					<a href="<?php echo get_permalink($course_item_id); ?>" >
 						<?php
 						if(has_post_thumbnail($course_item_id)):
-							$image_url = wp_get_attachment_image_src( get_post_thumbnail_id($course_item_id), 'full');
-						?>
-							<img src="<?php echo $image_url[0]; ?>" alt="<?php echo $course_item->post_title; ?>" />
-						<?php else: ?>
-							<img src="http://placehold.it/1170x822&text=Image" alt="<?php echo $course_item->post_title; ?>" />
+							$attachment_id = get_post_thumbnail_id($course_item_id);
+							$img_attributes = wp_get_attachment_image_src($attachment_id, $post_thumbnail);
+							echo "<img src='".$img_attributes[0]."' width='".$img_attributes[1]."' height='".$img_attributes[2]."' />";
+						elseif($pholder != 'on'): ?>
+							<img src="http://placehold.it/1170x822&text=<?php echo get_the_title(); ?>" alt="<?php echo $course_item->post_title; ?>" />
 						<?php endif; ?>
 					 </a>
                     <div class="dt-sc-course-overlay">
@@ -350,6 +406,17 @@ if($courses_type != 'popular') {
                     
                         <h5><a href="<?php echo get_permalink($course_item_id); ?>" title="<?php echo $course_item->post_title; ?>"><?php echo $course_item->post_title; ?></a></h5>
 
+						<?php
+                        if ( current_user_can($s2_level) ){
+								echo '<div class="dt-sc-purchased-details">';
+                            echo '<span class="dt-sc-purchased"> '.__('Purchased Already','dt_themes').'</span>';
+                            $course_status = dt_get_users_course_status($course_item_id, '');
+                            if($course_status)
+                                echo '<div class="dt-sc-course-completed"> <span class="fa fa-check-circle"> </span> '.__('Completed', 'dt_themes').'</div>';
+								echo '</div>';
+                        } else {
+                        ?>
+
 						<?php $starting_price = get_post_meta($course_item_id, 'starting-price', true);
                         if($starting_price != ''): ?>
                             <span class="dt-sc-course-price"> <span class="amount"> 
@@ -363,8 +430,21 @@ if($courses_type != 'popular') {
                         <?php else: ?>
                             <span class="dt-sc-course-price"> <span class="amount"> <?php echo __('Free', 'dt_themes'); ?> </span> </span>
                         <?php endif; ?>
+                        
+                        <?php } ?>
                                         
                     <?php } else { ?>
+                    
+						<?php
+                        if ( current_user_can($s2_level) ){
+								echo '<div class="dt-sc-purchased-details">';
+                            echo '<span class="dt-sc-purchased"> '.__('Purchased Already','dt_themes').'</span>';
+                            $course_status = dt_get_users_course_status($course_item_id, '');
+                            if($course_status)
+                                echo '<div class="dt-sc-course-completed"> <span class="fa fa-check-circle"> </span> '.__('Completed', 'dt_themes').'</div>';
+								echo '</div>';
+                        } else {
+                        ?>
                     
 						<?php $starting_price = get_post_meta($course_item_id, 'starting-price', true);
                         if($starting_price != ''): ?>
@@ -379,6 +459,8 @@ if($courses_type != 'popular') {
                         <?php else: ?>
                             <span class="dt-sc-course-price"> <span class="amount"> <?php echo __('Free', 'dt_themes'); ?> </span> </span>
                         <?php endif; ?>
+                        
+                        <?php } ?>
                     
                         <h5><a href="<?php echo get_permalink($course_item_id); ?>" title="<?php echo $course_item->post_title; ?>"><?php echo $course_item->post_title; ?></a></h5>
                     

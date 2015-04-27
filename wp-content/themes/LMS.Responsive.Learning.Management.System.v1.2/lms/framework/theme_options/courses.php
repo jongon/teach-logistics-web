@@ -16,15 +16,15 @@
                 </div>
                 <div class="box-content">
 
-                    <div class="column one-third"><label><?php _e('Currency','dt_themes');?></label></div>
+                    <div class="column one-third"><label><?php _e('Currency Symbol','dt_themes');?></label></div>
                     <div class="column two-third last">
                         <input name="mytheme[dt_course][currency]" type="text" class="small" value="<?php echo trim(stripslashes(dttheme_option('dt_course','currency')));?>" />
-                        <p class="note"><?php _e('Please set default currency','dt_themes');?></p>
+                        <p class="note"><?php _e('Please set default currency symbol which will be used in front end display','dt_themes');?></p>
                     </div>
                     
 					<div class="hr_invisible"> </div>
  
-                    <div class="column one-third"><label><?php _e('Currency Position','dt_themes');?></label></div>
+                    <div class="column one-third"><label><?php _e('Currency Symbol Position','dt_themes');?></label></div>
                     <div class="column two-third last">
                         <?php $position_options = array('before-price' => 'Before Price', 'after-price' => 'After Price'); ?>
                         <select id="mytheme-currency-position" name="mytheme[dt_course][currency-position]">
@@ -36,9 +36,27 @@
 						 endforeach;
 						 ?>
                         </select>                         
-                        <p class="note"><?php _e('Please select curreny position to display','dt_themes');?></p>
+                        <p class="note"><?php _e('Please select curreny position to display in front end','dt_themes');?></p>
                     </div>
-                   
+                    
+					<div class="hr_invisible"> </div>
+ 
+                    <div class="column one-third"><label><?php _e('Currency','dt_themes');?></label></div>
+                    <div class="column two-third last">
+                        <?php
+						$currency_options = array('ADF', 'ADP', 'AED', 'AFA', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'AON', 'ARS', 'ATS', 'AUD', 'AWG', 'AZN', 'BAM', 'BBD', 'BDT', 'BEF', 'BGN', 'BHD', 'BIF', 'BMD', 'BND', 'BOB', 'BRL', 'BSD', 'BTN', 'BWP', 'BYR', 'BZD', 'CAD', 'CDF', 'CFP', 'CHF', 'CLP', 'CNY', 'COP', 'CRC', 'CSK', 'CUC', 'CUP', 'CVE', 'CYP', 'CZK', 'DEM', 'DJF', 'DKK', 'DOP', 'DZD', 'ECS', 'EEK', 'EGP', 'ESP', 'ETB', 'EUR', 'FIM', 'FJD', 'FKP', 'FRF', 'GBP', 'GEL', 'GHC', 'GHS', 'GIP', 'GMD', 'GNF', 'GRD', 'GTQ', 'GYD', 'HKD', 'HNL', 'HRK', 'HTG', 'HUF', 'IDR', 'IEP', 'ILS', 'INR', 'IQD', 'IRR', 'ISK', 'ITL', 'JMD', 'JOD', 'JPY', 'KES', 'KGS', 'KHR', 'KMF', 'KPW', 'KRW', 'KWD', 'KYD', 'KZT', 'LAK', 'LBP', 'LKR', 'LRD', 'LSL', 'LTL', 'LUF', 'LVL', 'LYD', 'MAD', 'MDL', 'MGF', 'MKD', 'MMK', 'MNT', 'MOP', 'MRO', 'MTL', 'MUR', 'MVR', 'MWK', 'MXN', 'MYR', 'MZM', 'MZN', 'NAD', 'NGN', 'NIO', 'NLG', 'NOK', 'NPR', 'NZD', 'OMR', 'PAB', 'PEN', 'PGK', 'PHP', 'PKR', 'PLN', 'PTE', 'PYG', 'QAR', 'ROL', 'RON', 'RSD', 'RUB', 'SAR', 'SBD', 'SCR', 'SDD', 'SDG', 'SDP', 'SEK', 'SGD', 'SHP', 'SIT', 'SKK', 'SLL', 'SOS', 'SRD', 'SRG', 'STD', 'SVC', 'SYP', 'SZL', 'THB', 'TMM', 'TND', 'TOP', 'TRL', 'TRY', 'TTD', 'TWD', 'TZS', 'UAH', 'UGS', 'USD', 'UYU', 'UZS', 'VEF', 'VND', 'VUV', 'WST', 'XAF', 'XCD', 'XOF', 'XPF', 'YER', 'YUN', 'ZAR', 'ZMK', 'ZWD');
+						$currency_s2member = dttheme_option('dt_course','currency-s2member') != '' ? dttheme_option('dt_course','currency-s2member') : 'USD';
+						 ?>
+                        <select id="mytheme-currency-s2member" name="mytheme[dt_course][currency-s2member]">
+                        <?php 
+						foreach ($currency_options as $value):
+							$selected = ( $value == $currency_s2member ) ? ' selected="selected" ' : '';
+							echo "<option $selected value='$value'>$value</option>";
+						 endforeach;
+						 ?>
+                        </select>                         
+                        <p class="note"><?php _e('Please select your curreny symbol which will be used in s2member for payment.','dt_themes');?></p>
+                    </div>
                     
                 </div>
             </div>

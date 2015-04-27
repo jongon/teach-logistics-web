@@ -135,3 +135,12 @@ ul.products li .product-details .add_to_cart_button, ul.products li .product-det
 .course-container .navigation a:hover, .navigation a:hover { background-color:#81164e; }
 .course-container .navigation a:hover, .navigation a:hover { border-color:#81164e; }
 
+/* Updates - Skin Color */
+.dt-sc-purchased, .dt-sc-dashboard-menus li a.active, .dt-sc-lessons-menu h4, .dt-sc-lesson-staff .lesson-staff-title, .dt-sc-lessons-menu ul li.current:before, .dt-sc-lessons-menu ul li.dt-lesson-complete.current:before, .dt-sc-timer-container h4 { background:#43a898; }
+
+.dt-sc-lessons-menu ul li.dt-lesson-complete.current:before { border-color:#43a898; }
+
+.dt-sc-user-dashboard-details .dt-sc-lesson-name a:hover, .dt-sc-user-dashboard-details .dt-sc-assignment-name a:hover, .dt-sc-user-dashboard-details .dt-sc-teachers-name a:hover, .dt-sc-lessons-menu ul li a.dt-sc-lesson-menu-name:hover, .dt-sc-lessons-menu ul li .dt-sc-lesson-menu-duration, .dt-sc-lessons-menu ul li.current a.dt-sc-lesson-menu-name { color:#43a898; }
+
+.dt-sc-media-attachments li a:hover, .dt-sc-assignment-score { background-color:#81164e; }
+.dt-sc-media-attachments li a:hover { border-color:#81164e; }

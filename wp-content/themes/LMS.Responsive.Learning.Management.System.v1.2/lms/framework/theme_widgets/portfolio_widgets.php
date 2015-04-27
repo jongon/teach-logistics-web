@@ -98,21 +98,27 @@ class MY_Portfolio_Widget extends WP_Widget {
 					if(1 == $_enabled_image):
 						 $portfolio_settings = get_post_meta ( $post->ID, '_portfolio_settings', TRUE );
                          $portfolio_settings = is_array ( $portfolio_settings ) ? $portfolio_settings : array ();
-						 
+						 	
+							$width = $height = '';
 						 	if( array_key_exists("items_name",$portfolio_settings) ):
 								$item =  $portfolio_settings['items_name'][0];
 								$image;								
 								if( "video" === $item ):
 									$image = "http://placehold.it/90&text=Video%20Portfolio";
-                                    else:
-                                        $image = $portfolio_settings['items'][0];
-                                    endif;
-                                else:
-                                    $image = "http://placehold.it/90&text=Add%20Image%20/%20Video%20%20to%20Portfolio";
-                                endif;
+								else:
+									$image = $portfolio_settings['items'][0];
+									$attachment_id = dt_get_attachment_id_from_url($portfolio_settings['items'][0]);
+									$img_attributes = wp_get_attachment_image_src($attachment_id, 'portfolio-widget-thumb');
+									$image = $img_attributes[0];
+									$width = "width='".$img_attributes[1]."'";
+									$height = "height='".$img_attributes[2]."'";
+								endif;
+							else:
+								$image = "http://placehold.it/90&text=Add%20Image%20/%20Video%20%20to%20Portfolio";
+							endif;
 								
 								echo "<a href='".get_permalink()."' class='thumb'>";
-								echo "<img src='$image' alt='{$title}'/>";
+								echo "<img src='$image' alt='{$title}' {$width} {$height} />";
 								echo "</a>";
 					endif;
 					

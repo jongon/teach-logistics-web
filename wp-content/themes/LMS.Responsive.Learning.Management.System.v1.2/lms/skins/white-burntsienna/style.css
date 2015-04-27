@@ -89,6 +89,23 @@ ol.dt-sc-lessons-list > li.dt-hidden-lesson > .hidden-lesson-overlay { backgroun
 ul.side-nav > li.current_page_item > a:after, ul.side-nav > li > ul > li.current_page_item > a:after { background:url(images/side-nav-active.png) no-repeat; }
 .dt-sc-testimonial blockquote:before { background:url(images/testimonial-arrow.png) no-repeat; }
 
+/* Updates */
+ol.dt-sc-lessons-list > li:after, ol.dt-sc-lessons-list li ol li .dt_lessons:before, ol.dt-sc-lessons-list li ol li.hassub:after { background:#dfdfdf; }
+.dt-sc-dashboard-menus, .dt-sc-lessons-menu ul li:before, #dt-question-list .dt-question, .dt-sc-post-quiz-msg, .dt-sc-assignment-submission { border-color:#dfdfdf; }
+.dt-sc-lessons-menu ul li:after { border-right-color:#dfdfdf; }
+.dt-sc-lesson-staff .lesson-staff-details ul.teachers-details li, .dt-sc-assignment-submission li { border-bottom-color:#dfdfdf; }
+.dt-sc-assignment-submission li .column {  border-left-color:#dfdfdf; } 
+
+.dt-sc-lessons-menu ul, .dt-sc-lessons-menu ul li:before, .dt-sc-lesson-staff .lesson-staff-details, .dt-sc-timer-container, #dt-question-list .dt-title, .dt-mark, .dt-sc-post-quiz-msg, .dt-sc-assignment-file-types ul.assignment-file-types li, .dt-sc-assignment-file-size h6 span, .dt-sc-assignment-submission, .dt-sc-dashboard-menus { background:#f6f6f6; }
+
+.dt-sc-user-details { background-color:#ededed; }
+#dt-question-list .dt-question:before { border-color:#f6f6f6; }
+
+.dt_quizes #dt-sc-ajax-load-image {   background:rgba(255, 255, 255, 0.7); }
+ol.dt-sc-lessons-list > li:before { background-color:#ffffff; }
+
+div.light_rounded .pp_top .pp_middle, div.light_rounded .pp_content_container .pp_left, div.light_rounded .pp_content_container .pp_right, div.light_rounded .pp_bottom .pp_middle, div.light_square .pp_left, div.light_square .pp_middle, div.light_square .pp_right, div.light_square .pp_content, div.facebook .pp_content { background-color:#ffffff; }
+
 /*----*****---- << Skin Color >> ----*****----*/
 
 a, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover, .fullwidth-section.dark-bg h1 a:hover, .fullwidth-section.dark-bg h2 a:hover, .fullwidth-section.dark-bg h3 a:hover, .fullwidth-section.dark-bg h4 a:hover, .fullwidth-section.dark-bg h5 a:hover, .fullwidth-section.dark-bg h6 a:hover, .dt-sc-ico-content.type14 .icon, .dt-sc-course-price, .dt-sc-course-meta p a:hover, .entry-details .entry-metadata p a:hover, .entry-details .entry-metadata p a:hover span, .dt-sc-ico-content.type13:hover h4 a, .dt-sc-timeline-section h2 a, .dt-sc-timeline-section h2, .widget.widget_popular_entries .recent-course-widget ul li .dt-sc-course-price, .widget.widget_popular_entries .recent-course-widget ul li h6 a:hover, .widget ul li a:hover, .widget.widget_text .textwidget .dt-sc-contact-info p a, .dt-sc-timeline .dt-sc-timeline-content i, tbody th a, .dt-sc-ico-content.type1 .icon span, .content-slider .rating span, .ajax-controls a:hover, .ajax-controls .ajax-close, .dt-sc-contact-info p a:hover, .recent-posts-widget ul li .entry-details .entry-title h4 a:hover,  .widget ul#recentcomments li a:hover, ul.tweet_list li a, .dt-sc-ico-content.type4 .icon span, .dt-sc-ico-content.type6 .icon span, .dt-sc-ico-content.type8 .icon span, .dt-sc-callout-box.type2 .icon, .dt-sc-callout-box.type3 .icon, .dt-sc-callout-box.type4 .icon, .dt-sc-pr-tb-col.selected .dt-sc-buy-now .dt-sc-button, .dt-sc-ico-content.type2:hover .icon span, .dt-sc-ico-content.type3:hover .icon, .dt-sc-ico-content.type5 .icon, .dt-sc-ico-content.type9 .icon, .dt-sc-ico-content.type7:hover .icon span, .contact-details p a:hover, .contact-details p, .dt-sc-callout-box.type1:hover .icon, .dt-sc-callout-box.type5:hover .icon, .dt-sc-testimonial .author-detail, .dt-sc-ico-content.type10 .icon span, .dt-sc-ico-content.type11 .icon, p span, .dt-sc-callout-box.type5 .dt-sc-button:hover, .project-details p a:hover, .dt-sc-contact-info .icon, .widget .recent-portfolio-widget li h6 a:hover, #footer .widget .recent-portfolio-widget li h6 a:hover, ul.side-nav > li.current_page_item > a:hover, ul.side-nav > li > ul > li.current_page_item > a:hover, ul.side-nav > li > ul > li > ul > li.current_page_item > a:hover, .dt-sc-ico-content.type12:hover h4 a, .fullwidth-background.dark-bg .breadcrumb a:hover, .fullwidth-background .breadcrumb a:hover, ul.side-nav li.current_page_item a, .courses-table-title a:hover, .courses-table-type, .dt-sc-course-single .entry-metadata p a:hover, ol.dt-sc-lessons-list li .lesson-metadata p a:hover, .dt-sc-lesson-single .lesson-metadata p a:hover, .dt-sc-pr-tb-col.type2.selected .dt-sc-tb-header .dt-sc-price, .dt-sc-pr-tb-col.type2:hover .dt-sc-tb-header .dt-sc-price, .dt-sc-course.custom-course-type .dt-sc-course-duration span, .dt-sc-course.custom-course-type .dt-sc-course-meta p a:hover, .fullwidth-section.dark-bg .dt-sc-course.custom-course-type .dt-sc-course-thumb h5 a:hover, .megamenu-child-container > ul.sub-menu > li > a:hover, .dt-sc-ico-content.type12 .icon, .dt-sc-team h5 a, .dt-team-entry-left .dt-sc-team h2, ul.teachers-details li:before, .dt-team-entry-content h3 { color:#d36b5e; }
@@ -222,3 +239,27 @@ ul.products li .product-details .add_to_cart_button, ul.products li .product-det
 /* Secondary Color */
 .course-container .navigation a:hover, .navigation a:hover { background-color:#d36b5e; }
 .course-container .navigation a:hover, .navigation a:hover { border-color:#d36b5e; }
+
+/* Updates - Skin Color */
+.dt-sc-purchased, .dt-sc-dashboard-menus li a.active, .dt-sc-lessons-menu h4, .dt-sc-lesson-staff .lesson-staff-title, .dt-sc-lessons-menu ul li.current:before, .dt-sc-lessons-menu ul li.dt-lesson-complete.current:before, .dt-sc-timer-container h4 { background:#d36b5e; }
+
+.dt-sc-lessons-menu ul li.dt-lesson-complete.current:before { border-color:#d36b5e; }
+
+.dt-sc-user-dashboard-details .dt-sc-lesson-name a:hover, .dt-sc-user-dashboard-details .dt-sc-assignment-name a:hover, .dt-sc-user-dashboard-details .dt-sc-teachers-name a:hover, .dt-sc-lessons-menu ul li a.dt-sc-lesson-menu-name:hover, .dt-sc-lessons-menu ul li .dt-sc-lesson-menu-duration, .dt-sc-lessons-menu ul li.current a.dt-sc-lesson-menu-name { color:#d36b5e; }
+
+.dt-sc-media-attachments li a:hover, .dt-sc-assignment-score { background-color:#d36b5e; }
+.dt-sc-media-attachments li a:hover { border-color:#d36b5e; }
+
+/*----*****---- << Retina Images >> ----*****----*/
+
+@media only screen and (-moz-min-device-pixel-ratio: 1.5), 
+only screen and (-o-min-device-pixel-ratio: 3/2), 
+only screen and (-webkit-min-device-pixel-ratio: 1.5), 
+only screen and (min-devicepixel-ratio: 1.5), 
+only screen and (min-resolution: 1.5dppx) {
+
+	.dt-sc-timeline-section { background-image:url(images/timeline_line@2x.jpg); background-size:10px 1px; }
+	ul.side-nav > li.current_page_item > a:after, ul.side-nav > li > ul > li.current_page_item > a:after { background-image:url(images/side-nav-active@2x.png); background-size:11px 46px; }
+	.dt-sc-testimonial blockquote:before { background-image:url(images/testimonial-arrow@2x.png); background-size:18px 23px; }
+
+}

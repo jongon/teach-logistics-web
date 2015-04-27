@@ -1,7 +1,34 @@
 *** LMS - Responsive Learning Management Theme Change log ***
 
-2014.08.14 - version 1.0
- * First release!
+
+2014.01.14 - version 1.3
+ * Wordpress 4.1 compatible
+ * Now course page can have media attachments.
+ * Quiz pages for courses with auto and manual evaluation 
+ * Options to have following type of questions Multiple Choice, Multiple Correct, True / False, Gap Fill, Single Line and Multi Line
+ * Certificates and Badges option for courses
+ * Options to add assignemnts and include in course evaluation.
+ * Payments for teachers can be feeded manually.
+ * Simple and graphical analysis of courses, course subscriptions, course completion, etc,
+ * Updated Dashboard.
+ * Retina and RTL support.
+ * Image Optimization.
+ * Updated dummy content file.
+ * Updated documentation.
+ * Added demo slider zip files for both Layer Slider and Revolution Slider.
+ * Option to disable placeholder images.
+ * Theme and plugin languages files updated
+ * The Events Calendar and The Events Calendar PRO 3.9 compatible
+ * Woocommerce 2.2.10 and BuddyPress 2.1.1 compatible
+ * Option to update footer logo in buddha panel
+ * Now dt_sc_recent_post shortcode can have categories attribute
+ * Option to have own server video in course and lessons page
+ * Fixed menus comes in two line issue
+
+
+2014.09.15 - version 1.2
+ * Wordpress 4.0 compatible
+ * Woocommerce 2.2.2 compatible
 
 
 
@@ -10,7 +37,5 @@
  
  * Now white skins are also available (Added 20 more skins)
 
-
-2014.09.15 - version 1.2
- * Wordpress 4.0 compatible
- * Woocommerce 2.2.2 compatible
+2014.08.14 - version 1.0
+ * First release!

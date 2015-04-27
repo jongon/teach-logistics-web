@@ -90,26 +90,26 @@ function dttheme_options_page(){ ?>
 	                        <a class="mytheme-import-button bpanel-button blue-btn <?php echo $import_disable;?>"><?php _e('Import Dummy Data','dt_themes');?></a>
                         </div>
                         
-                    	<?php require_once(get_template_directory().'/framework/theme_options/general.php');?>
-                        <?php require_once(get_template_directory().'/framework/theme_options/appearance.php');?>
-                        <?php require_once(get_template_directory().'/framework/theme_options/integration.php');?>
-                        <?php require_once(get_template_directory().'/framework/theme_options/specialty-pages.php');?>
-                        <?php require_once(get_template_directory().'/framework/theme_options/footer.php');?>
-                        <?php require_once(get_template_directory().'/framework/theme_options/widgetarea.php');?>
-                        <?php require_once(get_template_directory().'/framework/theme_options/woocommerce.php');?>
-                        <?php require_once(get_template_directory().'/framework/theme_options/courses.php');?>
-                        <?php require_once(get_template_directory().'/framework/theme_options/events.php');?>
-                        <?php require_once(get_template_directory().'/framework/theme_options/buddypress.php');?>
-                        <?php require_once(get_template_directory().'/framework/theme_options/pagebuilder.php');?>
-						<?php require_once(get_template_directory().'/framework/theme_options/responsive.php');?>
-                        <?php require_once(get_template_directory().'/framework/theme_options/branding.php');?>
-                        <?php require_once(get_template_directory().'/framework/theme_options/skins.php');?>
+                    	<?php require_once(IAMD_TD.'/framework/theme_options/general.php');?>
+                        <?php require_once(IAMD_TD.'/framework/theme_options/appearance.php');?>
+                        <?php require_once(IAMD_TD.'/framework/theme_options/integration.php');?>
+                        <?php require_once(IAMD_TD.'/framework/theme_options/specialty-pages.php');?>
+                        <?php require_once(IAMD_TD.'/framework/theme_options/footer.php');?>
+                        <?php require_once(IAMD_TD.'/framework/theme_options/widgetarea.php');?>
+                        <?php require_once(IAMD_TD.'/framework/theme_options/woocommerce.php');?>
+                        <?php require_once(IAMD_TD.'/framework/theme_options/courses.php');?>
+                        <?php require_once(IAMD_TD.'/framework/theme_options/events.php');?>
+                        <?php require_once(IAMD_TD.'/framework/theme_options/buddypress.php');?>
+                        <?php require_once(IAMD_TD.'/framework/theme_options/pagebuilder.php');?>
+						<?php require_once(IAMD_TD.'/framework/theme_options/responsive.php');?>
+                        <?php require_once(IAMD_TD.'/framework/theme_options/branding.php');?>
+                        <?php require_once(IAMD_TD.'/framework/theme_options/skins.php');?>
                         <?php $status = dttheme_is_plugin_active('all-in-one-seo-pack/all_in_one_seo_pack.php')|| dttheme_is_plugin_active('wordpress-seo/wp-seo.php');
 							  if(!$status):
-							  	require_once(get_template_directory().'/framework/theme_options/seo.php');
+							  	require_once(IAMD_TD.'/framework/theme_options/seo.php');
 							  endif;
 							  ?>
-                        <?php require_once(get_template_directory().'/framework/theme_options/backup.php');?>
+                        <?php require_once(IAMD_TD.'/framework/theme_options/backup.php');?>
 						<!-- #bpanel-bottom -->
                         <div id="bpanel-bottom">
                            <input type="submit" value="<?php _e('Reset All','dt_themes');?>" class="save-reset mytheme-reset-button bpanel-button white-btn" name="mytheme[reset]" />

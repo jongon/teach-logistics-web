@@ -7,18 +7,25 @@ switch($post_layout):
 	case 'one-column':
 		$post_class = " column dt-sc-one-column ";
 		$columns = "";
+		$post_thumbnail = 'blog-one-column';
 	break;
 
 	case 'one-half-column';
 		$post_class = " column dt-sc-one-half";
 		$columns = 2;
+		if($thumbnail_sidebar == "-single-sidebar") $post_thumbnail = 'blog-two-column';
+		else $post_thumbnail = 'blogcourse-two-column';
 	break;
 
 	case 'one-third-column':
 		$post_class = " column dt-sc-one-third ";
 		$columns = 3;
+		$post_thumbnail = 'blogcourse-three-column';
 	break;
 endswitch;
+
+$post_thumbnail = $post_thumbnail.$thumbnail_sidebar;
+set_query_var( 'post_thumbnail', $post_thumbnail );
 
 if( have_posts() ):
 	echo "<div class='tpl-blog-holder apply-isotope'>";

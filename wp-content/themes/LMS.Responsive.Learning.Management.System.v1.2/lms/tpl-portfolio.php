@@ -6,30 +6,34 @@
 
 	$page_layout  = array_key_exists( "layout", $tpl_default_settings ) ? $tpl_default_settings['layout'] : "content-full-width";
 	$show_sidebar = $show_left_sidebar = $show_right_sidebar =  false;
-	$sidebar_class = "";
+	$sidebar_class = $thumbnail_sidebar = $post_thumbnail = "";
 
 	switch ( $page_layout ) {
 		case 'with-left-sidebar':
 			$page_layout = "page-with-sidebar with-left-sidebar";
 			$show_sidebar = $show_left_sidebar = true;
 			$sidebar_class = "secondary-has-left-sidebar";
+			$thumbnail_sidebar = "-single-sidebar";
 		break;
 
 		case 'with-right-sidebar':
 			$page_layout = "page-with-sidebar with-right-sidebar";
 			$show_sidebar = $show_right_sidebar	= true;
 			$sidebar_class = "secondary-has-right-sidebar";
+			$thumbnail_sidebar = "-single-sidebar";
 		break;
 
 		case 'both-sidebar':
 			$page_layout = "page-with-sidebar page-with-both-sidebar";
 			$show_sidebar = $show_right_sidebar	= $show_left_sidebar = true;
 			$sidebar_class = "secondary-has-both-sidebar";
+			$thumbnail_sidebar = "-both-sidebar";
 		break;
 
 		case 'content-full-width':
 		default:
 			$page_layout = "content-full-width";
+			$thumbnail_sidebar = "";
 		break;
 	}
 
@@ -61,23 +65,29 @@
 					case 'one-column':
 						$post_class = $show_sidebar ? " portfolio column dt-sc-one-column with-sidebar" : " portfolio column dt-sc-one-column ";
 						$columns = 1;
+						$post_thumbnail = 'portfolio-one-column';
 					break;
 
 					case 'one-half-column';
 						$post_class = $show_sidebar ? " portfolio column dt-sc-one-half with-sidebar " : " portfolio column dt-sc-one-half ";
 						$columns = 2;
+						$post_thumbnail = 'portfolio-two-column';
 					break;
 					
 					case 'one-third-column':
 						$post_class = $show_sidebar ? " portfolio column dt-sc-one-third with-sidebar " : " portfolio column dt-sc-one-third ";
 						$columns = 3;
+						$post_thumbnail = 'portfolio-three-column';
 					break;
 
 					case 'one-fourth-column':
 						$post_class = $show_sidebar ? " portfolio column dt-sc-one-fourth with-sidebar " : "portfolio column dt-sc-one-fourth";
 						$columns = 4;
+						$post_thumbnail = 'portfolio-four-column';
 					break;
-				endswitch;			
+				endswitch;	
+				
+			$post_thumbnail = $post_thumbnail.$thumbnail_sidebar;			
 
 			$categories =	isset($tpl_default_settings['portfolio-categories']) ? array_filter($tpl_default_settings['portfolio-categories']) : "";
 			if(empty($categories)):
@@ -157,7 +167,9 @@
                         						echo '<img src="http://placehold.it/1170x878&text=Add%20Image%20/%20Video%20%20to%20Portfolio" width="1170" height="878" alt="" />';
                         					}
                         				} else {
-                        					echo "<img src='".$portfolio_item_meta['items'][0]."' width='1170' height='878' alt='' />";
+											$attachment_id = dt_get_attachment_id_from_url($portfolio_item_meta['items'][0]);
+											$img_attributes = wp_get_attachment_image_src($attachment_id, $post_thumbnail);
+											echo "<img src='".$img_attributes[0]."' width='".$img_attributes[1]."' height='".$img_attributes[2]."' />";
                         				}
                         			} else {
                         				echo "<img src='{$popup}' alt='' />";

@@ -72,6 +72,7 @@ var mythemeAdmin = {
 	
   },// init() End
   
+  
   adminPanelTab : function(){
     "use strict";
    var  $tab = jQuery('#bpanel,#bpanel div.bpanel-content');
@@ -131,7 +132,8 @@ var mythemeAdmin = {
       var $this = jQuery(this);
       fileInput = jQuery(this).siblings(".uploadfield");
       $previewImg = jQuery(this).siblings("div.bpanel-option-help").find('img:last');
-      tb_show('', 'media-upload.php?post_id=0&amp;type=image&amp;mytheme_upload_button=1&amp;TB_iframe=true');
+	  if($this.hasClass('multifile-upload')) tb_show('', 'media-upload.php?post_id=0&amp;dtcourse_upload_button=1&amp;TB_iframe=true');
+	  else tb_show('', 'media-upload.php?post_id=0&amp;type=image&amp;mytheme_upload_button=1&amp;TB_iframe=true');
       header_clicked = true;
       e.preventDefault();
     });
@@ -161,12 +163,17 @@ var mythemeAdmin = {
     // Note: If header is not clicked, we use the original function.
     window.send_to_editor = function(html) {
       if (header_clicked) {
-        var imgurl = jQuery(html).attr('src');
-        fileInput.val(imgurl);
-        
+		var fieldurl;
+		var imgurl = jQuery(html).attr('src');
+		
+		if(imgurl != '' && typeof(imgurl) !== "undefined") fieldurl = imgurl;	
+		else fieldurl = jQuery(html).attr('href');
+		
+        fileInput.val(fieldurl);
+		
         //Show preview image
         if(jQuery($this).hasClass('show_preview')){
-          $previewImg.attr('src',imgurl);
+          $previewImg.attr('src',fieldurl);
         }//Show preview image end
         
         if(mysiteWpVersion>='3.3') {
@@ -618,9 +625,10 @@ var mythemeAdmin = {
     });
     
     //Sorting Sliders
-    if($used_sliders_container.find('li').length){ $no_sliders_container.hide();}
+    if($used_sliders_container.find('li').length){ $no_sliders_container.hide();
     $used_sliders_container.sortable({placeholder: 'sortable-placeholder',forcePlaceholderSize: true,cancel: '.my_delete, input, textarea, label'});
-    
+    }
+	
     //Pagination
     if(jQuery('#j-slider-pagination').length > 0 ) {
       jQuery('#j-slider-pagination').each(function(){
@@ -858,7 +866,7 @@ var mythemeAdmin = {
 				break;
 
 				case 'tpl-fullwidth.php':
-					$ptemplate_box.find('span:first').text('Full Width page Options');
+					$ptemplate_box.find('span:first').text('Fullwidth Page Options');
 					$ptemplate_box.slideDown();
 					$ptemplate_box.find('#tpl-breadcrumbsection-settings').slideDown();
 					$ptemplate_box.find('#tpl-common-settings').slideDown();
@@ -1095,8 +1103,7 @@ var mythemeAdmin = {
 		  }//END IF()
 		  e.preventDefault();
 	  });
-  } //importOption()
-  
+  }, //importOption()
   
 }; // mythemeAdmin End
 

@@ -1717,6 +1717,8 @@ dl.customer_details { margin:0px; }
 
 h3#ship-to-different-address label { color:#303030; }
 
+.payment_method_paypal a.about_paypal { position:relative; left:10px; }
+
 
 /*----*****---- << Shortcodes >> ----*****----*/
 .product.woocommerce ins { background:none; }

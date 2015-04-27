@@ -7,8 +7,22 @@
         <?php $dttheme_options = get_option(IAMD_THEME_SETTINGS); $dttheme_general = $dttheme_options['general'];?>
         <!-- **Footer** -->
         <footer id="footer">
-            <div class="footer-logo">        			
-                <img title="<?php echo __('Footer Logo', 'dt_themes'); ?>" alt="<?php echo __('Footer Logo', 'dt_themes'); ?>" src="<?php echo IAMD_BASE_URL."images/footer-logo.png"; ?>">
+            <div class="footer-logo">  
+					<?php
+        			$flogo = dttheme_option('general','footer-logo-url');
+        			$flogo = !empty($flogo) ? $flogo : IAMD_BASE_URL."images/footer-logo.png";
+					
+					$retina_url = dttheme_option('general','retina-footer-logo-url');
+					$retina_url = !empty($retina_url) ? $retina_url : IAMD_BASE_URL."images/footer-logo@2x.png";
+					
+					$width = dttheme_option('general','retina-footer-logo-width');
+					$width = !empty($width) ? $width."px;" : "98px";
+					
+					$height = dttheme_option('general','retina-footer-logo-height');
+					$height = !empty($height) ? $height."px;" : "99px";
+					?>
+        			<img class="normal_logo" src="<?php echo $flogo;?>" alt="<?php _e('Footer Logo','dt_themes');?>" title="<?php _e('Footer Logo','dt_themes');?>">
+                    <img class="retina_logo" src="<?php echo $retina_url;?>" alt="<?php echo dttheme_blog_title();?>" title="<?php echo dttheme_blog_title(); ?>" style="width:<?php echo $width;?>; height:<?php echo $height;?>;"/>            
             </div>
 		<?php
         	if(!empty($dttheme_general['show-footer'])): ?>

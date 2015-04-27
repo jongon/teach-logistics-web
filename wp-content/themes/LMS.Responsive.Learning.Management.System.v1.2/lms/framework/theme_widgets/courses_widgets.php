@@ -72,10 +72,11 @@ class MY_Course_Widget extends WP_Widget {
 		
 		$_enable_course_image = ($instance['_enable_course_image'] == 1) ? 1:0;
 
-		$arg = array('posts_per_page' => $_post_count ,'post_type' => 'dt_courses');
+		$arg = array('posts_per_page' => $_post_count ,'post_type' => 'dt_courses', 'orderby' => 'menu_order', 'order' => 'ASC');
 		$arg = empty($_post_categories) ? $arg : array(
 											'posts_per_page'=> $_post_count,
-											'tax_query'		=> array(array( 'taxonomy'=>'course_category', 'field'=>'id', 'operator'=>'IN', 'terms'=>$_post_categories ) ));
+											'tax_query'		=> array(array( 'taxonomy'=>'course_category', 'field'=>'id', 'operator'=>'IN', 'terms'=>$_post_categories ) ), 
+											'orderby' => 'menu_order', 'order' => 'ASC');
 		echo $before_widget;
  	    if ( !empty( $title ) ) echo $before_title.$title.$after_title;
 		echo "<div class='recent-course-widget'><ul>";		
@@ -89,7 +90,7 @@ class MY_Course_Widget extends WP_Widget {
 					
 						if(has_post_thumbnail()):
 							$image_url = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'dt-course-widget');
-							echo '<img src="'.$image_url[0].'" alt="'.get_the_title().'" />';
+							echo '<img src="'.$image_url[0].'" alt="'.get_the_title().'" width="'.$image_url[1].'" height="'.$image_url[2].'" />';
 						else:
 							echo '<img src="http://placehold.it/110x90&text=Image" alt="'.get_the_title().'" />';
 						endif;

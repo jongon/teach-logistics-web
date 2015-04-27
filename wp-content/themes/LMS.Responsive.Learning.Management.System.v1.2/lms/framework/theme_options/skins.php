@@ -28,7 +28,7 @@
                 <div class="box-title"><h3><?php _e('Available Skins','dt_themes');?></h3></div>
                 <div class="box-content">
                 	<ul id="j-available-themes" class="skins-list">
-					<?php foreach(getFolders(get_template_directory()."/skins") as $skin ):
+					<?php foreach(getFolders(IAMD_TD."/skins") as $skin ):
                             $active = ($theme == $skin) ? 'class="active"' : NULL;
                             $img = IAMD_BASE_URL."skins/{$skin}/screenshot.png";
                             echo "<li data-attachment-theme='{$skin}' {$active}>";

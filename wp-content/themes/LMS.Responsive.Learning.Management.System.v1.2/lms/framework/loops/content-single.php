@@ -8,18 +8,21 @@
 	$hide_category_meta = isset( $tpl_default_settings['disable-category-info'] ) ? " hidden " : "";
 	$hide_tag_meta = isset( $tpl_default_settings['disable-tag-info'] ) ? " hidden " : "tags";
 
-	$format = get_post_format(  $post->ID );?>
+	$format = get_post_format(  $post->ID );
+	
+	$pholder = dttheme_option('general', 'disable-placeholder-images');
+	?>
 
 <!--#post-<?php the_ID()?> starts -->
 <article id="post-<?php the_ID();?>" <?php post_class(array('blog-entry','blog-single-entry'));?>>
 <div class="blog-entry-inner">
 
 	<div class="entry-thumb">
-		<?php if( $format === "image" || empty($format) ):?>
+		<?php if( ($format === "image" || empty($format)) && !array_key_exists("disable-featured-image", $tpl_default_settings) ): ?>
 				<a href="<?php the_permalink();?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>">
 				<?php if( has_post_thumbnail() ):
 						the_post_thumbnail("full");
-					  else:?>
+					  elseif($pholder != "on"):?>
 					  	<img src="http://placehold.it/1170x822&text=Image" alt="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" />
 				<?php endif;?>
 				</a>
@@ -40,12 +43,12 @@
 			  		elseif( array_key_exists("self-hosted-url", $tpl_default_settings) ):
 						echo apply_filters( 'the_content', $tpl_default_settings['self-hosted-url'] );
 					endif;
-			 else:
+			 elseif(!array_key_exists("disable-featured-image", $tpl_default_settings)):
 			 ?>
                   	<a href="<?php the_permalink();?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>"><?php
 						if( has_post_thumbnail() ):
 							the_post_thumbnail("full");
-						else:?>
+						elseif($pholder != "on"):?>
                         	<img src="http://placehold.it/1170x822&text=Image" alt="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" />		<?php endif;?></a>                  
             <?php endif; ?>
 	</div>

@@ -6,30 +6,34 @@
 
 	$page_layout  = array_key_exists( "layout", $tpl_default_settings ) ? $tpl_default_settings['layout'] : "content-full-width";
 	$show_sidebar = $show_left_sidebar = $show_right_sidebar =  false;
-	$sidebar_class = "";
+	$sidebar_class = $thumbnail_sidebar = $post_thumbnail = "";
 
 	switch ( $page_layout ) {
 		case 'with-left-sidebar':
 			$page_layout = "page-with-sidebar with-left-sidebar";
 			$show_sidebar = $show_left_sidebar = true;
 			$sidebar_class = "secondary-has-left-sidebar";
+			$thumbnail_sidebar = "-single-sidebar";
 		break;
 
 		case 'with-right-sidebar':
 			$page_layout = "page-with-sidebar with-right-sidebar";
 			$show_sidebar = $show_right_sidebar	= true;
 			$sidebar_class = "secondary-has-right-sidebar";
+			$thumbnail_sidebar = "-single-sidebar";
 		break;
 
 		case 'both-sidebar':
 			$page_layout = "page-with-sidebar page-with-both-sidebar";
 			$show_sidebar = $show_right_sidebar	= $show_left_sidebar = true;
 			$sidebar_class = "secondary-has-both-sidebar";
+			$thumbnail_sidebar = "-both-sidebar";
 		break;
 
 		case 'content-full-width':
 		default:
 			$page_layout = "content-full-width";
+			$thumbnail_sidebar = "";
 		break;
 	}
 
@@ -68,26 +72,32 @@
 			case 'one-column':
 				$post_class = $show_sidebar ? " column dt-sc-one-column with-sidebar blog-fullwidth" : " column dt-sc-one-column blog-fullwidth";
 				$columns = 1;
+				$post_thumbnail = 'blog-one-column';
 			break;
 
 			case 'one-half-column';
 				$post_class = $show_sidebar ? " column dt-sc-one-half with-sidebar" : " column dt-sc-one-half";
 				$columns = 2;
 				$container_class = "apply-isotope";
+				if($thumbnail_sidebar == "-single-sidebar") $post_thumbnail = 'blog-two-column';
+				else $post_thumbnail = 'blogcourse-two-column';
 			break;
 
 			case 'one-third-column':
 				$post_class = $show_sidebar ? " column dt-sc-one-third with-sidebar" : " column dt-sc-one-third";
 				$columns = 3;
 				$container_class = "apply-isotope";
+				$post_thumbnail = 'blogcourse-three-column';
 			break;
 
 			case 'post-thumb':
 				$post_class = $show_sidebar ? " column blog-thumb with-sidebar" : " column blog-thumb";
 				$columns = 1;
+				$post_thumbnail = 'blog-thumb';
 			break;
 		endswitch;
-
+		
+		$post_thumbnail = $post_thumbnail.$thumbnail_sidebar;
 
 		if ( empty( $categories ) ):
 			$args = array( 'paged'=>get_query_var( 'paged' ), 'posts_per_page'=>$post_per_page, 'post_type'=> 'post' );
@@ -116,19 +126,28 @@
 						<div class="blog-entry-inner">
 
 							<div class="entry-thumb">
-								<?php $post_meta = get_post_meta(get_the_id() ,'_dt_post_settings',TRUE);
-                                $post_meta = is_array( $post_meta ) ? $post_meta  : array(); ?>
+								<?php 
+								$post_meta = get_post_meta(get_the_id() ,'_dt_post_settings',TRUE);
+                                $post_meta = is_array( $post_meta ) ? $post_meta  : array(); 
+								$pholder = dttheme_option('general', 'disable-placeholder-images');
+								?>
                                 <?php if( $format === "image" || empty($format) ): ?>
                                         <a href="<?php the_permalink();?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>">
                                         <?php if( has_post_thumbnail() ):
-                                                the_post_thumbnail("full");
-                                              else:?>
-                                                <img src="http://placehold.it/1170x822&text=Image" alt="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" />
+												$attachment_id = get_post_thumbnail_id(get_the_id());
+												$img_attributes = wp_get_attachment_image_src($attachment_id, $post_thumbnail);
+												echo "<img src='".$img_attributes[0]."' width='".$img_attributes[1]."' height='".$img_attributes[2]."' />";
+                                              elseif($pholder != 'on'):?>
+                                                <img src="http://placehold.it/1170x822&text=<?php the_title(); ?>" alt="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" />
                                         <?php endif;?>
                                         </a>
                                 <?php elseif( $format === "gallery" && array_key_exists("items", $post_meta)):
                                             echo "<ul class='entry-gallery-post-slider'>";
-                                            foreach ( $post_meta['items'] as $item ) { echo "<li><img src='{$item}' alt='' /></li>";	}
+                                            foreach ( $post_meta['items'] as $item ) {
+												$attachment_id = dt_get_attachment_id_from_url($item);
+												$img_attributes = wp_get_attachment_image_src($attachment_id, $post_thumbnail);
+												echo "<li><img src='".$img_attributes[0]."' width='".$img_attributes[1]."' height='".$img_attributes[2]."' /></li>";
+											}
                                             echo "</ul>";
                                       elseif( $format === "video" && ( array_key_exists('oembed-url', $post_meta) || array_key_exists('self-hosted-url', $post_meta) ) ):
                                             if( array_key_exists('oembed-url', $post_meta) ):
@@ -145,9 +164,11 @@
                                       else: ?>
                                         <a href="<?php the_permalink();?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>"><?php
                                             if( has_post_thumbnail() ):
-                                                the_post_thumbnail("full");
-                                            else:?>
-                                                <img src="http://placehold.it/1170x822&text=Image" alt="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" />
+												$attachment_id = get_post_thumbnail_id(get_the_id());
+												$img_attributes = wp_get_attachment_image_src($attachment_id, $post_thumbnail);
+												echo "<img src='".$img_attributes[0]."' width='".$img_attributes[1]."' height='".$img_attributes[2]."' />";
+                                            elseif($pholder != 'on'):?>
+                                                <img src="http://placehold.it/1170x822&text=<?php the_title(); ?>" alt="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" />
                                         <?php endif;?></a>
                                 <?php endif; ?>
 								 <?php if( array_key_exists('blog-post-excerpt-length',$tpl_default_settings) ): ?>

@@ -1,6 +1,7 @@
 <?php if( ! defined('IAMD_BASE_URL' ) ){	define( 'IAMD_BASE_URL',  get_template_directory_uri().'/'); }
 define('IAMD_FW_URL', IAMD_BASE_URL . 'framework/' );
 define('IAMD_FW',get_template_directory().'/framework/');
+define('IAMD_TD',get_template_directory());
 define('IAMD_IMPORTER_URL',IAMD_FW.'wordpress-importer/');
 define('IAMD_THEME_SETTINGS', 'mytheme');
 define('IAMD_SAMPLE_FONT', __('The quick brown fox jumps over the lazy dog','dt_themes') );

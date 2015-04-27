@@ -5,20 +5,22 @@ $post_class = "";
 
 switch($post_layout):
 	case 'one-column':
-		$post_class = " column dt-sc-one-column ";
-		$firstcnt = 1;
-	break;
-
 	case 'one-half-column';
 		$post_class = " column dt-sc-one-half";
 		$firstcnt = 2;
+		if($thumbnail_sidebar == "-single-sidebar") $post_thumbnail = 'course-two-column';
+		else $post_thumbnail = 'blogcourse-two-column';
 	break;
 
 	case 'one-third-column':
 		$post_class = " column dt-sc-one-third ";
 		$firstcnt = 3;
+		$post_thumbnail = 'blogcourse-three-column';
 	break;
 endswitch;
+
+$post_thumbnail = $post_thumbnail.$thumbnail_sidebar;
+
 
 $post_per_page = get_option('posts_per_page');
 
@@ -45,10 +47,10 @@ if( $wp_query->have_posts() ):  while( $wp_query->have_posts() ): $wp_query->the
 			<a href="<?php echo the_permalink(); ?>" >
 				<?php
 				if(has_post_thumbnail()):
-					$image_url = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'full');
-				?>
-					<img src="<?php echo $image_url[0]; ?>" alt="<?php echo get_the_title(); ?>" />
-				<?php else: ?>
+					$attachment_id = get_post_thumbnail_id(get_the_id());
+					$img_attributes = wp_get_attachment_image_src($attachment_id, $post_thumbnail);
+					echo "<img src='".$img_attributes[0]."' width='".$img_attributes[1]."' height='".$img_attributes[2]."' />";
+				else: ?>
 					<img src="http://placehold.it/1170x822&text=Image" alt="<?php echo get_the_title(); ?>" />
 				<?php endif; ?>
 			 </a>

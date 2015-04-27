@@ -4,33 +4,39 @@ get_header();
 	$page_layout 	= dttheme_option('specialty','search-layout');
   	$page_layout 	= !empty($page_layout) ? $page_layout : "content-full-width";
 	$show_sidebar = $show_left_sidebar = $show_right_sidebar =  false;
-	$sidebar_class = "";
+	$sidebar_class = $thumbnail_sidebar = "";
 
 	switch ( $page_layout ) {
 		case 'with-left-sidebar':
 			$page_layout = "page-with-sidebar with-left-sidebar";
 			$show_sidebar = $show_left_sidebar = true;
 			$sidebar_class = "secondary-has-left-sidebar";
+			$thumbnail_sidebar = "-single-sidebar";
 		break;
 
 		case 'with-right-sidebar':
 			$page_layout = "page-with-sidebar with-right-sidebar";
 			$show_sidebar = $show_right_sidebar	= true;
 			$sidebar_class = "secondary-has-right-sidebar";
+			$thumbnail_sidebar = "-single-sidebar";
 		break;
 
 		case 'both-sidebar':
 			$page_layout = "page-with-sidebar page-with-both-sidebar";
 			$show_sidebar = $show_right_sidebar	= $show_left_sidebar = true;
 			$sidebar_class = "secondary-has-both-sidebar";
+			$thumbnail_sidebar = "-both-sidebar";
 		break;
 
 		case 'content-full-width':
 		default:
 			$page_layout = "content-full-width";
+			$thumbnail_sidebar = "";
 		break;
 	}
 
+	set_query_var( 'thumbnail_sidebar', $thumbnail_sidebar );
+	
 	if ( $show_sidebar ):
 		if ( $show_left_sidebar ): ?>
 			<!-- Secondary Left -->

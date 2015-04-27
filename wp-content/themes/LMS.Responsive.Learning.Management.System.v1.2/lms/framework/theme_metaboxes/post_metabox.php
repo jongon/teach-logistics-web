@@ -220,7 +220,7 @@
                 <div class="column one-sixth"><label><?php _e('Image Gallery','dt_themes');?> </label></div>
                 <div class="column five-sixth last">
                     <div class="dt-media-btns-container">
-                        <a href="#" class="dt-open-media-for-gallery-post button button-primary">
+                        <a href="#" class="dt-open-media-for-gallery-post custom-button-style">
                             <?php _e( 'Click Here to Add Images', 'dt_themes' );?> </a>
                     </div>
                     <div class="clear"></div>

@@ -576,16 +576,7 @@ function dttheme_show_footer_widgetarea($count) {
  * Check the plugin is activated
  */
 function dttheme_is_plugin_active($plugin) {
-	if (is_multisite ()) :
-		$plugins = array ();
-		$c_plugins = is_array ( get_site_option ( 'active_sitewide_plugins' ) ) ? get_site_option ( 'active_sitewide_plugins' ) : array ();
-		foreach ( array_keys ( $c_plugins ) as $c_plugin ) :
-			$plugins [] = $c_plugin;
-		endforeach;
-		return in_array ( $plugin, $plugins );
-	 else :
-		return in_array ( $plugin, ( array ) get_option ( 'active_plugins', array () ) );
-	endif;
+	return in_array ( $plugin, ( array ) get_option ( 'active_plugins', array () ) );
 }
 // # --- **** dttheme_is_plugin_active() *** --- ###
 
@@ -706,12 +697,15 @@ function dttheme_load_basic_css() {
 		echo "<link href='$ipad_url' sizes='72x72' rel='apple-touch-icon-precomposed'/>\n";
 
 
-		$ipad_retina_url = ! empty ( $dttheme_general ['apple-ipad-retina-favicon'] ) ? $dttheme_general ['apple-ipad-retina-favicon'] : IAMD_BASE_URL . "images/apple-touch-icon-114x114.png";
-		echo "<link href='$ipad_retina_url' sizes='114x114' rel='apple-touch-icon-precomposed'/>\n";
+		$ipad_retina_url = ! empty ( $dttheme_general ['apple-ipad-retina-favicon'] ) ? $dttheme_general ['apple-ipad-retina-favicon'] : IAMD_BASE_URL . "images/apple-touch-icon-144x144.png";
+		echo "<link href='$ipad_retina_url' sizes='144x144' rel='apple-touch-icon-precomposed'/>\n";
 	endif;
 	
 	wp_enqueue_style ( 'lms-default', get_stylesheet_uri () );
-	wp_enqueue_style ( 'custom-font-awesome', IAMD_BASE_URL . 'css/font-awesome.min.css', array (), '3.0.2' );
+	
+	if(is_rtl()) wp_enqueue_style ( 'rtl', IAMD_BASE_URL . 'rtl.css');
+	
+	wp_enqueue_style ( 'custom-font-awesome', IAMD_BASE_URL . 'css/font-awesome.min.css' );
 
 	if(dttheme_is_plugin_active('woothemes-sensei/woothemes-sensei.php')) wp_enqueue_style('sensei', IAMD_BASE_URL.'sensei/css/style.css');
 	
@@ -720,6 +714,7 @@ function dttheme_load_basic_css() {
 
 	wp_enqueue_style( 'font-raleway', '//fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,800,700,900' );
 	wp_enqueue_style( 'font-opensans', '//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' );
+	wp_enqueue_style( 'font-dancingscript', '//fonts.googleapis.com/css?family=Dancing+Script' );
 
 }
 add_action( 'wp_enqueue_scripts', 'dttheme_load_basic_css', '100' );
@@ -1105,6 +1100,90 @@ function get_course_subcategories() {
 	}
 	
 	echo $out;
+	die();
+}
+
+add_action("wp_ajax_dt_generate_certificate", "dt_generate_certificate");
+add_action("wp_ajax_nopriv_dt_generate_certificate", "dt_generate_certificate");
+function dt_generate_certificate() {
+	
+	if ( !wp_verify_nonce( $_REQUEST['nonce'], "dt_certificate_nonce")) {
+		exit();
+	}
+	$out = '';   
+
+	$certificate_id = $_REQUEST['certificate_id'];
+	$args = array('post_type' => 'dt_certificates', 'p' => $certificate_id);
+	$the_query = new WP_Query($args);
+	
+	if($the_query->have_posts()):
+		while($the_query->have_posts()): $the_query->the_post();
+		
+			$post_id = get_the_ID(); 
+			$background_image = get_post_meta ( $post_id, 'background-image', TRUE );
+			$custom_class = get_post_meta ( $post_id, 'custom-class', TRUE );
+			$custom_css = get_post_meta ( $post_id, 'custom-css', TRUE );
+			
+			$enable_print = get_post_meta ( $post_id, 'enable-print', TRUE );
+			
+			if(isset($enable_print) && $enable_print != '')
+				$out .= '<a href="#" class="dt_print_certificate"><span class="fa fa-print"></span>'. __('Print', 'dt_themes').'</a>';
+				
+			$out .= '<div class="dt-sc-certificate-container '.$custom_class.'" style="background:url('.$background_image.')">';
+			$out .= do_shortcode(get_the_content());
+			$out .= '</div>';
+			
+			if (!empty($custom_css)) :
+				$output = "\r".'<style type="text/css">'."\r".$custom_css."\r".'</style>'."\r";
+				$out .= $output;
+			endif;
+		
+		endwhile;
+	endif;
+
+	
+	if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+		echo $out;
+	} 
+	else {
+		header("Location: ".$_SERVER["HTTP_REFERER"]);
+	}
+	die();
+}
+
+add_action( 'wp_ajax_dt_dashboard_teacher_courses', 'dt_dashboard_teacher_courses' );
+add_action( 'wp_ajax_nopriv_dt_dashboard_teacher_courses', 'dt_dashboard_teacher_courses' );
+function dt_dashboard_teacher_courses() {
+	
+	$curr_page = $_REQUEST['curr_page'];
+	dt_get_teacher_courses(10, $curr_page);
+	die();
+}
+
+add_action( 'wp_ajax_dt_dashboard_user_courses', 'dt_dashboard_user_courses' );
+add_action( 'wp_ajax_nopriv_dt_dashboard_user_courses', 'dt_dashboard_user_courses' );
+function dt_dashboard_user_courses() {
+	
+	$curr_page = $_REQUEST['curr_page'];
+	dt_get_user_course_overview(5, $curr_page);
+	die();
+}
+
+add_action( 'wp_ajax_dt_dashboard_user_assignments', 'dt_dashboard_user_assignments' );
+add_action( 'wp_ajax_nopriv_dt_dashboard_user_assignments', 'dt_dashboard_user_assignments' );
+function dt_dashboard_user_assignments() {
+	
+	$curr_page = $_REQUEST['curr_page'];
+	dt_get_user_assignments(10, $curr_page);
+	die();
+}
+
+add_action( 'wp_ajax_dt_dashboard_teacher_assignments', 'dt_dashboard_teacher_assignments' );
+add_action( 'wp_ajax_nopriv_dt_dashboard_teacher_assignments', 'dt_dashboard_teacher_assignments' );
+function dt_dashboard_teacher_assignments() {
+	
+	$curr_page = $_REQUEST['curr_page'];
+	dt_get_teacher_assignments(10, $curr_page);
 	die();
 }
 

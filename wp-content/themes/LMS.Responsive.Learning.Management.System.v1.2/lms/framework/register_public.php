@@ -67,6 +67,8 @@ function plugin_head_styles_scripts() {
 	$landingpagestickynav = ( dttheme_option("general","enable-landingpage-sticky-nav") ) ? "enable" : "disable";
 	$isResponsive = dttheme_option ( "mobile", "is-theme-responsive" ) ? "enable" : "disable";
 	
+	if(is_rtl()) $rtl = true; else $rtl = false;
+	
 	$pluginURL =  plugin_dir_url ( 'designthemes-core-features' );
 	
 	if( is_page_template('tpl-landingpage.php') ) $landingpage = true; else $landingpage = false;
@@ -84,6 +86,7 @@ function plugin_head_styles_scripts() {
 	echo "\n \t\t,skin:'".dttheme_option('appearance','skin')."'";
 	echo "\n \t\t,layout:'".dttheme_option('appearance','layout')."'";
 	echo "\n \t\t,isLandingPage:'".$landingpage."'";
+	echo "\n \t\t,isRTL:'".$rtl."'";
 	echo "\n \t\t,pluginURL:'".$pluginURL."'";
 	echo "\n \t\t,isResponsive:'{$isResponsive}'";
 	echo "\n \t\t,layout_pattern:'".dttheme_option('appearance','boxed-layout-pattern')."'";
@@ -94,6 +97,7 @@ function plugin_head_styles_scripts() {
 	wp_enqueue_script('modernizr-script', IAMD_FW_URL.'js/public/modernizr.min.js');
 	
 	wp_enqueue_script('jquery');
+	wp_enqueue_script('retina-script', IAMD_FW_URL.'js/public/retina.js',array(),false,true);
 	wp_enqueue_script('ui-totop-script', IAMD_FW_URL.'js/public/jquery.ui.totop.min.js',array(),false,true);
 	
 	wp_enqueue_script('easing-script', IAMD_FW_URL.'js/public/easing.js',array(),false,true);
@@ -782,6 +786,13 @@ function dttheme_subtitle_section($id=0,$type,$settings = array() ){
 						} elseif( is_post_type_archive('tribe_events') || is_tax('tribe_events_cat') || in_array('events-single', get_body_class()) || in_array('events-list', get_body_class()) || in_array('tribe-filter-live', get_body_class()) || in_array('tribe-events-week', get_body_class()) || in_array('tribe-events-day', get_body_class()) || in_array('tribe-events-map', get_body_class()) || in_array('tribe-events-photo', get_body_class()) || in_array('tribe-events-venue', get_body_class()) ) {
 		echo  				get_events_title();
 							if(!isset($disable_breadcrumb)) { new dttheme_events_breadcrumb; }
+						} elseif($type == 'dt_lessons') {
+							$dt_lesson_course = get_post_meta (get_the_ID(), "dt_lesson_course",true);
+							if(isset($dt_lesson_course) && $dt_lesson_course != '') {
+								$course_data = get_post($dt_lesson_course);
+								echo '<h1>'.$course_data->post_title.'</h1>';	
+							}
+							if(!isset($disable_breadcrumb)) { new dttheme_breadcrumb; }
 						} else {
 		echo "				<h1>{$title}</h1>";
 							if(!isset($disable_breadcrumb)) { new dttheme_breadcrumb; }
@@ -993,10 +1004,12 @@ class dttheme_breadcrumb {
 				$postType = get_post_type();
 
 				if($postType == 'post')	{
+					
 					$ID = $category[0]->cat_ID;
 					echo get_category_parents($ID, TRUE,$markup, FALSE );
 					
 				} else if($postType == 'dt_portfolios') {
+					
 					global $post;
 					$terms = get_the_term_list( $post->ID, 'portfolio_entries', '', '$$$', '' );
 					$terms =  array_filter(explode('$$$',$terms));
@@ -1005,12 +1018,53 @@ class dttheme_breadcrumb {
 				    endif;
 					
 				} else if($postType == 'product') {
+					
 					global $post;
 					$terms = get_the_term_list( $post->ID, 'product_cat', '', '$$$', '' );
 					$terms =  array_filter(explode('$$$',$terms));
 					if( !empty($terms)):
 						echo $terms[0].$markup;
 				    endif;
+					
+				} else if($postType == 'dt_lessons') {
+					
+					global $post;
+					$op_text = '';
+					$dt_lesson_course = get_post_meta ($post->ID, "dt_lesson_course",true);
+					if(isset($dt_lesson_course) && $dt_lesson_course != '') {
+						$course_data = get_post($dt_lesson_course);
+						$op_text .= '<a href="'.get_permalink($course_data->ID).'">'.$course_data->post_title.'</a>';
+						$op_text .= $markup;
+					}
+					
+					echo $op_text;
+					
+				} else if($postType == 'dt_quizes') {
+					
+					global $post;
+					$op_text = '';
+					$lesson_args = array('post_type' => 'dt_lessons', 'meta_key' => 'lesson-quiz', 'meta_value' => $post->ID );
+					$lessons = get_pages( $lesson_args );
+					if(isset($lessons[0])) {
+						$op_text .= '<a href="'.get_permalink($lessons[0]->ID).'">'.$lessons[0]->post_title.'</a>';
+						$op_text .= $markup;
+					}
+					echo $op_text;
+					
+				} else if($postType == 'dt_assignments') {
+					
+					global $post;
+					$op_text = '';
+					$dt_assignment_course = get_post_meta ($post->ID, "dt-assignment-course",true);
+					if(isset($dt_assignment_course) && $dt_assignment_course != '') {
+						$course_data = get_post($dt_assignment_course);
+						$op_text .= '<a href="'.get_permalink($course_data->ID).'">'.$course_data->post_title.'</a>';
+						$op_text .= $markup;
+					}
+					
+					echo $op_text;
+					
+					
 				} 
 			}
 		return;
@@ -1060,31 +1114,59 @@ class dttheme_breadcrumb {
 		}
 		
 		if(is_post_type_archive('product')){
-			return 'Products';
+			return __('Products','dt_themes');
 		}
 		
 		if(is_post_type_archive('lesson')){
-			return 'Lessons';
+			return __('Lessons','dt_themes');
 		}
 		
 		if(is_post_type_archive('course')){
-			return 'Courses';
+			return __('Courses','dt_themes');
 		}
 
 		if(is_post_type_archive('dt_courses')){
-			return 'Courses';
+			return __('Courses','dt_themes');
 		}
 
 		if(is_post_type_archive('dt_lessons')){
-			return 'Lessons';
+			return __('Lessons','dt_themes');
+		}
+		
+		if(is_post_type_archive('dt_quizes')){
+			return __('Quizes','dt_themes');
+		}
+
+		if(is_post_type_archive('dt_questions')){
+			return __('Questions','dt_themes');
+		}
+
+		if(is_post_type_archive('dt_assignments')){
+			return __('Assignments','dt_themes');
+		}
+
+		if(is_post_type_archive('dt_gradings')){
+			return __('Gradings','dt_themes');
 		}
 
 		if(is_post_type_archive('dt_teachers')){
-			return 'Teachers';
+			return __('Teachers','dt_themes');
 		}
 
 		if(is_post_type_archive('dt_portfolios')){
-			return 'Portfolio';
+			return __('Portfolio','dt_themes');
+		}
+		
+		if(is_post_type_archive('dt_certificates')){
+			return __('Certificates','dt_themes');
+		}
+		
+		if(in_array('learner-profile', get_body_class())) {
+			return __('Profile','dt_themes');
+		}
+
+		if(in_array('course-results', get_body_class())) {
+			return __('Results','dt_themes');
 		}
 
 	}
@@ -1248,11 +1330,11 @@ function dttheme_color_picker(){
 	}
 	
 	$colors = "";
-	foreach(getFolders(get_template_directory()."/skins") as $skin ):
+	foreach(getFolders(IAMD_TD."/skins") as $skin ):
 		$img = 	$skins_url.$skin.".jpg";
 		$colors .= '<li>';
 		$colors .= '<a id="'.$skin.'" href="" title="">';
-		$colors .= '<img src="'.$img.'" alt="color-'.$skin.'" title="'.$skin.'"/>';
+		$colors .= '<img src="'.$img.'" alt="color-'.$skin.'" title="'.$skin.'" width="30" height="30" />';
 		$colors .= '</a>';
 		$colors .= '</li>';
 	endforeach;
@@ -1261,14 +1343,14 @@ function dttheme_color_picker(){
 	
 	$str = '<!-- **DesignThemes Style Picker Wrapper** -->';
 	$str .= '<div class="dt-style-picker-wrapper">';
-	$str .= '	<a href="" title="" class="style-picker-ico"> <img src="'.IAMD_BASE_URL.'images/style-picker/picker-icon.png" alt="" title="" /> </a>';
+	$str .= '	<a href="" title="" class="style-picker-ico"> <img src="'.IAMD_BASE_URL.'images/style-picker/picker-icon.png" alt="" title="" width="50" height="50" /> </a>';
 	$str .= '	<div id="dt-style-picker">';
 	$str .= '   	<h2>'.__('Select Your Style','dt_themes').'</h2>';
 	
 	$str .= '       <h3>'.__('Choose your layout','dt_themes').'</h3>';
 	$str .= '		<ul class="layout-picker">';
-	$str .= '       	<li> <a id="fullwidth" href="" title="" class="selected"> <img src="'.IAMD_BASE_URL.'images/style-picker/fullwidth.jpg" alt="" title="" /> </a> </li>';
-	$str .= '       	<li> <a id="boxed" href="" title=""> <img src="'.IAMD_BASE_URL.'images/style-picker/boxed.jpg" alt="" title="" /> </a> </li>';
+	$str .= '       	<li> <a id="fullwidth" href="" title="" class="selected"> <img src="'.IAMD_BASE_URL.'images/style-picker/fullwidth.jpg" alt="" title="" width="71" height="49" /> </a> </li>';
+	$str .= '       	<li> <a id="boxed" href="" title=""> <img src="'.IAMD_BASE_URL.'images/style-picker/boxed.jpg" alt="" title="" width="71" height="49" /> </a> </li>';
 	$str .= '		</ul>';
 	$str .= '		<div class="hr"> </div>';
 	$str .= '		<div id="pattern-holder" style="display:none;">';
@@ -1318,7 +1400,7 @@ function dttheme_get_lesson_details( $lessons_hierarchy_array,  $lesson_id, $s2_
 				if ( current_user_can($s2_level) ){
 					$private_lesson = '';
 				} else {
-					$private_lesson = 'class="dt-hidden-lesson"';
+					$private_lesson = 'dt-hidden-lesson';
 				}
 			} else {
 				$private_lesson = '';
@@ -1338,7 +1420,27 @@ function dttheme_get_lesson_details( $lessons_hierarchy_array,  $lesson_id, $s2_
 				$lesson_terms = join( ", ", $lesson_terms );
 			}
 
-			$result .= '<li '.$private_lesson.'>';
+			$grade_chk = $grade_cls = '';
+			if(is_user_logged_in() && $private_lesson != 'dt-hidden-lesson') {
+				$user_id = get_current_user_id();
+				$lesson_id = $lesson->ID;
+				$course_id = get_post_meta ($lesson_id, "dt_lesson_course", true);
+				$quiz_id = get_post_meta ($lesson_id, "lesson-quiz", true);
+				if(!isset($quiz_id) || $quiz_id == '') $quiz_id = -1;
+
+				$dt_gradings = dt_get_user_gradings_array($course_id, $lesson_id, $quiz_id, $user_id);
+				$dt_grade_post = get_posts( $dt_gradings );
+				
+				$dt_grade_post_id = isset($dt_grade_post[0]->ID) ? $dt_grade_post[0]->ID : 0;
+				
+				$graded = get_post_meta ( $dt_grade_post_id, "graded",true);
+				if(isset($graded) && $graded != '') {
+					$grade_chk = '<div class="dt-sc-lesson-completed"> <span class="fa fa-check-circle"> </span> '.__('Completed', 'dt_themes').'</div>';
+					$grade_cls = ' dt-lesson-complete';
+				}
+			}
+
+			$result .= '<li class="'.$private_lesson.$grade_cls.'">';
 						if($private_lesson != '') {
 							$result .= '<div class="hidden-lesson-overlay"> </div>';
 						}
@@ -1349,6 +1451,8 @@ function dttheme_get_lesson_details( $lessons_hierarchy_array,  $lesson_id, $s2_
 								} else {
 									$result .= '<h2> <a href="'.get_permalink($lesson->ID).'" title="'.$lesson->post_title.'">'.$lesson->post_title.'</a> </h2>';
 								}
+								$result .= $grade_chk;
+								
 						$result .= '<div class="lesson-metadata">';
 								if($lesson_terms != '') { 
 									 $result .= '<p> <i class="fa fa-tags"> </i> '.$lesson_terms.' </p>';

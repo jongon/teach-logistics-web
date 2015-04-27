@@ -67,6 +67,14 @@ jQuery(document).ready(function($){
 		}
 	}
 	
+	if( isMobile || currentWidth < 767 ){
+		$('ul.sub-menu').each( function() {
+			if(!$(this).parents().hasClass('megamenu-child-container')) {
+				$(this).slideUp(400).slideDown(400).slideUp(400);
+			}
+		});
+	}
+	
 	//Menu Hover Start
 	function menuHover() {
 		$("li.menu-item-depth-0,li.menu-item-simple-parent ul li" ).hover(
@@ -174,37 +182,6 @@ jQuery(document).ready(function($){
     if( ($("ul.entry-gallery-post-slider").length) && ( $("ul.entry-gallery-post-slider li").length > 1 ) ){
 	  	$("ul.entry-gallery-post-slider").bxSlider({auto:false, video:true, useCSS:false, pager:'', autoHover:true, adaptiveHeight:true});
     }	
-    
-	/* Placeholder Script */
-	if(!Modernizr.input.placeholder){
-		$('[placeholder]').focus(function() {
-		
-			var input = $(this);
-			if( input.val() == input.attr('placeholder') ) {
-				input.val('');
-				input.removeClass('placeholder');
-			}
-			
-		}).blur(function() {
-			
-			var input = $(this);
-			if (input.val() === '' || input.val() === input.attr('placeholder')) {
-				input.addClass('placeholder');
-				input.val(input.attr('placeholder'));
-			}
-			
-		}).blur();
-			
-		$('[placeholder]').parents('form').submit(function() {
-			$(this).find('[placeholder]').each(function() {
-				var input = $(this);
-				if (input.val() == input.attr('placeholder')) {
-				  input.val('');
-				}
-			});
-		});
-	}
-
 
 	//Portfolio Overlay
 	if (Modernizr.touch) {
@@ -240,6 +217,7 @@ jQuery(document).ready(function($){
 	$('.wp-video').css('width', '100%');
 	
 	$("div.dt-video-wrap").fitVids();
+	$("div.course-video").fitVids();
 	
 
 	$("select").each(function(){
@@ -281,6 +259,10 @@ jQuery(document).ready(function($){
 	if( $(".apply-isotope").length ) {
 		$(".apply-isotope").isotope({itemSelector : '.column',transformsEnabled:false,masonry: { gutterWidth: 20} });
 	}	
+	
+	/* Lessons Child */
+	$('ol.dt-sc-lessons-list li ol li').has('ol').addClass('hassub');
+
 
 	$(window).load(function() {
 
@@ -361,8 +343,16 @@ jQuery(document).ready(function($){
 			
 			},
 	});
-
 	
+	//Certificate ajax load...	
+	$("a[data-gal^='prettyPhoto[certificate]']").prettyPhoto({
+		deeplinking: false,
+		default_width: '1150px',
+		default_height: '745px',
+		show_title: false,
+		theme: 'light_square',
+	});
+
 });
 
 //CUSTOM FIX...

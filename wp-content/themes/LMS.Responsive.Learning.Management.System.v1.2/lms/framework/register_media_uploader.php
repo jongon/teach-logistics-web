@@ -8,13 +8,20 @@
 function dttheme_image_upload_option(){
 	add_action('admin_head_media_upload_type_form', 'dttheme_html_uploader');
 	add_filter('flash_uploader', 'disable_flash_uploader');
-	
 	add_filter('media_upload_form_url', 'option_image_form_url', 10, 2);
-	
 	add_filter('media_upload_tabs', 'dttheme_disable_image_tabs');
 	add_filter('attachment_fields_to_edit', 'dttheme_image_attachment_option', 10, 2);
 }
 ### --- ****  dttheme_image_upload_option() *** --- ###
+
+
+function dttheme_coursemedia_upload_option(){
+	add_action('admin_head_media_upload_type_form', 'dttheme_html_uploader');
+	add_filter('flash_uploader', 'disable_flash_uploader');
+	add_filter('media_upload_form_url', 'course_option_form_url', 10, 2);
+	add_filter('media_upload_tabs', 'dttheme_disable_image_tabs');
+	add_filter('attachment_fields_to_edit', 'dttheme_course_attachment_option', 10, 2);
+}
 
 
 /** dttheme_html_uploader()
@@ -37,6 +44,7 @@ function dttheme_html_uploader(){
 <?php
 	}
 }
+
 ### --- ****  dttheme_html_uploader() *** --- ###
 
 
@@ -47,10 +55,16 @@ function dttheme_html_uploader(){
 function disable_flash_uploader($flash){
 	return false;
 }
+
 ### --- ****  disable_flash_uploader() *** --- ###
 
 function option_image_form_url($form_action_url, $type){
 	$form_action_url = $form_action_url.'&mytheme_upload_button=1';
+	return $form_action_url;
+}
+
+function course_option_form_url($form_action_url, $type){
+	$form_action_url = $form_action_url.'&dtcourse_upload_button=1';
 	return $form_action_url;
 }
 
@@ -94,4 +108,16 @@ function dttheme_image_attachment_option($form_fields, $post){
 	$form_fields['buttons'] = array( 'tr' => "\t\t<tr class='submit'><td></td><td class='savesend'>$send $delete</td></tr>\n" );
 	
 	return $form_fields;
-}?>
+}
+
+function dttheme_course_attachment_option($form_fields, $post){
+
+	if ( substr($post->post_mime_type, 0, 5) == 'image' ) {
+		//unset($form_fields['post_title'], $form_fields['image_alt'], $form_fields['post_excerpt'], $form_fields['post_content'], $form_fields['url'], $form_fields['menu_order'], $form_fields['image_url'], $form_fields['align'], $form_fields['image-size']);	
+		unset($form_fields['menu_order'], $form_fields['image_url'], $form_fields['align'], $form_fields['image-size']);	
+	}
+	
+	return $form_fields;
+}
+
+?>

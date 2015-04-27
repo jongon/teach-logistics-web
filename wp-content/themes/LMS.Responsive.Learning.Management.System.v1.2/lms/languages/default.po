@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LMS\n"
-"POT-Creation-Date: 2014-08-26 10:31+0530\n"
-"PO-Revision-Date: 2014-08-26 10:31+0530\n"
+"POT-Creation-Date: 2015-01-13 16:56+0530\n"
+"PO-Revision-Date: 2015-01-13 16:56+0530\n"
 "Last-Translator: Gowthama Siddharth S <gowtham@iamdesigning.com>\n"
 "Language-Team: Designthemes\n"
 "MIME-Version: 1.0\n"
@@ -66,42 +66,42 @@ msgstr ""
 msgid "Comment"
 msgstr ""
 
-#: ../footer.php:11
+#: ../footer.php:24 ../framework/theme_options/general.php:96
 msgid "Footer Logo"
 msgstr ""
 
-#: ../functions.php:6
+#: ../functions.php:7
 msgid "The quick brown fox jumps over the lazy dog"
 msgstr ""
 
-#: ../searchform.php:3 ../framework/register_public.php:1043
+#: ../searchform.php:3 ../framework/register_public.php:1097
 #: ../framework/theme_options/specialty-pages.php:10
 msgid "Search"
 msgstr ""
 
-#: ../tpl-blog.php:161 ../framework/loops/content-single.php:56
-#: ../framework/loops/content.php:46 ../framework/woocommerce/index.php:351
-#: ../framework/woocommerce/index.php:495
+#: ../tpl-blog.php:182 ../framework/loops/content-single.php:59
+#: ../framework/loops/content.php:57 ../framework/woocommerce/index.php:353
+#: ../framework/woocommerce/index.php:497
 msgid "Featured"
 msgstr ""
 
-#: ../tpl-blog.php:181 ../framework/loops/content-single.php:73
-#: ../framework/loops/content.php:63
+#: ../tpl-blog.php:202 ../framework/loops/content-single.php:76
+#: ../framework/loops/content.php:74
 msgid "View all posts by "
 msgstr ""
 
-#: ../tpl-blog.php:191 ../framework/loops/content-single.php:84
-#: ../framework/loops/content.php:71
+#: ../tpl-blog.php:212 ../framework/loops/content-single.php:87
+#: ../framework/loops/content.php:82
 msgid "<span class=\"fa fa-comments-o\"> </span> 0"
 msgstr ""
 
-#: ../tpl-blog.php:191 ../framework/loops/content-single.php:84
-#: ../framework/loops/content.php:71
+#: ../tpl-blog.php:212 ../framework/loops/content-single.php:87
+#: ../framework/loops/content.php:82
 msgid "<span class=\"fa fa-comments-o\"> </span> 1"
 msgstr ""
 
-#: ../tpl-blog.php:191 ../framework/loops/content-single.php:84
-#: ../framework/loops/content.php:71
+#: ../tpl-blog.php:212 ../framework/loops/content-single.php:87
+#: ../framework/loops/content.php:82
 msgid "<span class=\"fa fa-comments-o\"> </span> %"
 msgstr ""
 
@@ -121,21 +121,21 @@ msgstr ""
 msgid "Popular Courses"
 msgstr ""
 
-#: ../tpl-courses.php:69 ../tpl-portfolio.php:94
+#: ../tpl-courses.php:69 ../tpl-portfolio.php:104
 #: ../framework/theme_metaboxes/page_metabox.php:410
 #: ../framework/theme_metaboxes/page_metabox.php:542
 #: ../framework/theme_metaboxes/page_metabox.php:620
 msgid "All"
 msgstr ""
 
-#: ../tpl-courses.php:70
+#: ../tpl-courses.php:70 ../framework/loops/content-userdashboard.php:232
 msgid "Paid"
 msgstr ""
 
 #: ../tpl-courses.php:71 ../framework/courses_search_utils.php:140
-#: ../framework/courses_utils.php:182 ../framework/courses_utils.php:198
-#: ../framework/courses_utils.php:364 ../framework/courses_utils.php:380
-#: ../framework/loops/search-courses.php:99
+#: ../framework/courses_utils.php:220 ../framework/courses_utils.php:249
+#: ../framework/courses_utils.php:431 ../framework/courses_utils.php:460
+#: ../framework/loops/search-courses.php:101
 msgid "Free"
 msgstr ""
 
@@ -148,10 +148,11 @@ msgid "List"
 msgstr ""
 
 #: ../tpl-courses.php:86 ../tpl-landingpage.php:27 ../tpl-landingpage.php:58
-#: ../tpl-portfolio.php:199 ../framework/loops/content-event.php:12
+#: ../tpl-portfolio.php:211 ../framework/loops/content-event.php:12
 #: ../framework/loops/content-fullwidth-page.php:27
 #: ../framework/loops/content-page.php:26
-#: ../framework/loops/content-single.php:110
+#: ../framework/loops/content-single.php:113
+#: ../framework/loops/content-userdashboard.php:5
 msgid " Edit "
 msgstr ""
 
@@ -201,15 +202,31 @@ msgstr ""
 msgid "Email Id"
 msgstr ""
 
-#: ../tpl-login.php:105 ../framework/headers/header1.php:25
-#: ../framework/headers/header2.php:25 ../framework/headers/header3.php:85
-#: ../framework/headers/header4.php:77
+#: ../tpl-login.php:106
+msgid "Role"
+msgstr ""
+
+#: ../tpl-login.php:108
+msgid "Subscriber"
+msgstr ""
+
+#: ../tpl-login.php:109 ../framework/loops/content-userdashboard.php:193
+msgid "Teacher"
+msgstr ""
+
+#: ../tpl-login.php:114
+msgid "Student"
+msgstr ""
+
+#: ../tpl-login.php:120 ../framework/headers/header1.php:36
+#: ../framework/headers/header2.php:36 ../framework/headers/header3.php:99
+#: ../framework/headers/header4.php:91
 msgid "Register"
 msgstr ""
 
-#: ../tpl-welcome.php:55 ../framework/headers/header1.php:25
-#: ../framework/headers/header2.php:25 ../framework/headers/header3.php:85
-#: ../framework/headers/header4.php:77
+#: ../tpl-welcome.php:55 ../framework/headers/header1.php:36
+#: ../framework/headers/header2.php:36 ../framework/headers/header3.php:99
+#: ../framework/headers/header4.php:91
 msgid "Login"
 msgstr ""
 
@@ -247,16 +264,16 @@ msgstr ""
 msgid "Sorry, no members were found."
 msgstr ""
 
-#: ../framework/admin_utils.php:191
+#: ../framework/admin_utils.php:192
 msgid "Select Post"
 msgstr ""
 
-#: ../framework/admin_utils.php:227
+#: ../framework/admin_utils.php:228
 msgid "Select Product"
 msgstr ""
 
-#: ../framework/admin_utils.php:249 ../framework/admin_utils.php:457
-#: ../framework/admin_utils.php:579 ../framework/admin_utils.php:593
+#: ../framework/admin_utils.php:250 ../framework/admin_utils.php:458
+#: ../framework/admin_utils.php:580 ../framework/admin_utils.php:594
 #: ../framework/register_custom_attributes_in_menu.php:211
 #: ../framework/social_media.php:116
 #: ../framework/theme_metaboxes/page_metabox.php:34
@@ -269,33 +286,33 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
-#: ../framework/admin_utils.php:280
+#: ../framework/admin_utils.php:281
 #: ../framework/theme_widgets/recent_pages.php:29
 msgid "Select Page"
 msgstr ""
 
-#: ../framework/admin_utils.php:311 ../framework/admin_utils.php:335
+#: ../framework/admin_utils.php:312 ../framework/admin_utils.php:336
 msgid "Select Category"
 msgstr ""
 
-#: ../framework/admin_utils.php:555
+#: ../framework/admin_utils.php:556
 msgid "Pattern"
 msgstr ""
 
-#: ../framework/admin_utils.php:556
+#: ../framework/admin_utils.php:557
 msgid "Custom Background"
 msgstr ""
 
-#: ../framework/admin_utils.php:557 ../framework/social_media.php:102
+#: ../framework/admin_utils.php:558 ../framework/social_media.php:102
 #: ../framework/social_media.php:111
 msgid "None"
 msgstr ""
 
-#: ../framework/admin_utils.php:560
+#: ../framework/admin_utils.php:561
 msgid "Background Type"
 msgstr ""
 
-#: ../framework/admin_utils.php:617
+#: ../framework/admin_utils.php:618
 msgid "Select Widget Area"
 msgstr ""
 
@@ -402,6 +419,7 @@ msgid "Type"
 msgstr ""
 
 #: ../framework/class-tgm-plugin-activation.php:1300
+#: ../framework/loops/content-userdashboard.php:195
 msgid "Status"
 msgstr ""
 
@@ -525,7 +543,7 @@ msgstr ""
 #: ../framework/courses_search_utils.php:123
 #: ../framework/courses_search_utils.php:125
 #: ../framework/courses_search_utils.php:127
-#: ../framework/register_public.php:1315
+#: ../framework/register_public.php:1397
 msgid " mins "
 msgstr ""
 
@@ -538,88 +556,104 @@ msgid " hours "
 msgstr ""
 
 #: ../framework/courses_search_utils.php:170
-#: ../framework/courses_utils.php:239 ../framework/courses_utils.php:424
+#: ../framework/courses_utils.php:292 ../framework/courses_utils.php:506
 msgid "No Courses Found!"
 msgstr ""
 
-#: ../framework/courses_utils.php:135 ../framework/courses_utils.php:317
-#: ../framework/loops/search-courses.php:56
+#: ../framework/courses_utils.php:161 ../framework/courses_utils.php:373
+#: ../framework/loops/search-courses.php:58
 msgid "View Course"
 msgstr ""
 
-#: ../framework/courses_utils.php:207 ../framework/courses_utils.php:390
-#: ../framework/loops/search-courses.php:106
+#: ../framework/courses_utils.php:201 ../framework/courses_utils.php:230
+#: ../framework/courses_utils.php:412 ../framework/courses_utils.php:441
+msgid "Purchased Already"
+msgstr ""
+
+#: ../framework/courses_utils.php:204 ../framework/courses_utils.php:233
+#: ../framework/courses_utils.php:415 ../framework/courses_utils.php:444
+#: ../framework/register_public.php:1438
+msgid "Completed"
+msgstr ""
+
+#: ../framework/courses_utils.php:260 ../framework/courses_utils.php:472
+#: ../framework/register_public.php:1121 ../framework/register_public.php:1133
+#: ../framework/loops/search-courses.php:108
 msgid "Lessons"
 msgstr ""
 
-#: ../framework/register_admin.php:41
+#: ../framework/register_admin.php:44
 #: ../framework/theme_options/settings.php:116
 msgid "Save All"
 msgstr ""
 
-#: ../framework/register_admin.php:42
+#: ../framework/register_admin.php:45
 msgid "Saving ..."
 msgstr ""
 
-#: ../framework/register_admin.php:43
+#: ../framework/register_admin.php:46
 msgid "This will restore all of your options to default. Are you sure?"
 msgstr ""
 
-#: ../framework/register_admin.php:44
+#: ../framework/register_admin.php:47
 msgid ""
 "You are going to import the dummy data provided with the theme, kindly "
 "confirm?"
 msgstr ""
 
-#: ../framework/register_admin.php:45
+#: ../framework/register_admin.php:48
 msgid ""
 "Importing is disabled.. :), Please set Disable Import to NO in Buddha Panel "
 "General Settings"
 msgstr ""
 
-#: ../framework/register_admin.php:46
+#: ../framework/register_admin.php:49
 msgid "Click OK to backup your current saved options."
 msgstr ""
 
-#: ../framework/register_admin.php:47
+#: ../framework/register_admin.php:50
 msgid "Your options are backuped successfully"
 msgstr ""
 
-#: ../framework/register_admin.php:48
+#: ../framework/register_admin.php:51
 msgid "Backup Process not working"
 msgstr ""
 
-#: ../framework/register_admin.php:49
+#: ../framework/register_admin.php:52
 msgid ""
 "Warning: All of your current options will be replaced with the data from "
 "your last backup! Proceed?"
 msgstr ""
 
-#: ../framework/register_admin.php:50
+#: ../framework/register_admin.php:53
 msgid "Your options are restored from previous backup successfully"
 msgstr ""
 
-#: ../framework/register_admin.php:51
+#: ../framework/register_admin.php:54
 msgid "Restore Process not working"
 msgstr ""
 
-#: ../framework/register_admin.php:52
+#: ../framework/register_admin.php:55
 msgid "Click ok import options from the above textarea"
 msgstr ""
 
-#: ../framework/register_admin.php:53
+#: ../framework/register_admin.php:56
 msgid "Your options are imported successfully"
 msgstr ""
 
-#: ../framework/register_admin.php:54
+#: ../framework/register_admin.php:57
 msgid "Import Process not working"
 msgstr ""
 
-#: ../framework/register_admin.php:78
+#: ../framework/register_admin.php:58
+msgid "Are you sure to reset this grading ?"
+msgstr ""
+
+#: ../framework/register_admin.php:82
 msgid "Error: Options not saved, please try again."
 msgstr ""
 
-#: ../framework/register_admin.php:84 ../framework/register_admin.php:86
+#: ../framework/register_admin.php:88 ../framework/register_admin.php:90
 msgid "Options Saved."
 msgstr ""
 
@@ -755,12 +789,14 @@ msgstr ""
 #: ../framework/theme_options/general.php:57
 #: ../framework/theme_options/general.php:70
 #: ../framework/theme_options/general.php:101
-#: ../framework/theme_options/general.php:113
-#: ../framework/theme_options/general.php:125
-#: ../framework/theme_options/general.php:137
-#: ../framework/theme_options/general.php:149
-#: ../framework/theme_options/general.php:515
-#: ../framework/theme_options/general.php:538
+#: ../framework/theme_options/general.php:115
+#: ../framework/theme_options/general.php:161
+#: ../framework/theme_options/general.php:173
+#: ../framework/theme_options/general.php:185
+#: ../framework/theme_options/general.php:197
+#: ../framework/theme_options/general.php:209
+#: ../framework/theme_options/general.php:588
+#: ../framework/theme_options/general.php:611
 #: ../framework/theme_options/widgetarea.php:36
 #: ../framework/theme_options/widgetarea.php:55
 #: ../framework/theme_options/widgetarea.php:93
@@ -769,9 +805,9 @@ msgid "Remove"
 msgstr ""
 
 #: ../framework/register_custom_attributes_in_menu.php:270
-#: ../framework/register_media_uploader.php:78
-#: ../framework/theme_options/general.php:517
-#: ../framework/theme_options/general.php:540
+#: ../framework/register_media_uploader.php:92
+#: ../framework/theme_options/general.php:590
+#: ../framework/theme_options/general.php:613
 #: ../framework/theme_options/widgetarea.php:38
 #: ../framework/theme_options/widgetarea.php:57
 #: ../framework/theme_options/widgetarea.php:95
@@ -779,28 +815,28 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: ../framework/register_media_uploader.php:73
+#: ../framework/register_media_uploader.php:87
 msgid "Delete Permanently"
 msgstr ""
 
-#: ../framework/register_media_uploader.php:75
+#: ../framework/register_media_uploader.php:89
 msgid "Delete"
 msgstr ""
 
-#: ../framework/register_media_uploader.php:76
+#: ../framework/register_media_uploader.php:90
 #, php-format
 msgid "You are about to delete <strong>%s</strong>."
 msgstr ""
 
-#: ../framework/register_media_uploader.php:77
+#: ../framework/register_media_uploader.php:91
 msgid "Continue"
 msgstr ""
 
-#: ../framework/register_media_uploader.php:81
+#: ../framework/register_media_uploader.php:95
 msgid "Move to Trash"
 msgstr ""
 
-#: ../framework/register_media_uploader.php:82
+#: ../framework/register_media_uploader.php:96
 msgid "Undo"
 msgstr ""
 
@@ -813,21 +849,24 @@ msgstr ""
 msgid "All plugins installed and activated successfully. %s"
 msgstr ""
 
-#: ../framework/register_public.php:831 ../framework/utils.php:11
+#: ../framework/register_public.php:842 ../framework/register_public.php:1165
+#: ../framework/utils.php:11 ../framework/loops/content-userdashboard.php:170
+#: ../framework/loops/content-userdashboard.php:281
+#: ../framework/loops/content-userdashboard.php:326
 msgid "Profile"
 msgstr ""
 
-#: ../framework/register_public.php:831 ../framework/utils.php:11
+#: ../framework/register_public.php:842 ../framework/utils.php:11
 msgid "Member"
 msgstr ""
 
-#: ../framework/register_public.php:888
+#: ../framework/register_public.php:899
 msgid "Pingback:"
 msgstr ""
 
-#: ../framework/register_public.php:890 ../framework/register_public.php:916
-#: ../framework/theme_options/general.php:503
-#: ../framework/theme_options/general.php:530
+#: ../framework/register_public.php:901 ../framework/register_public.php:927
+#: ../framework/theme_options/general.php:576
+#: ../framework/theme_options/general.php:603
 #: ../framework/theme_options/widgetarea.php:31
 #: ../framework/theme_options/widgetarea.php:49
 #: ../framework/theme_options/widgetarea.php:88
@@ -835,90 +874,144 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: ../framework/register_public.php:914
+#: ../framework/register_public.php:925
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: ../framework/register_public.php:920
+#: ../framework/register_public.php:931
 msgid "Reply"
 msgstr ""
 
-#: ../framework/register_public.php:944 ../framework/register_public.php:1108
+#: ../framework/register_public.php:955 ../framework/register_public.php:1190
+#: ../framework/loops/content-userdashboard.php:27
+#: ../framework/loops/content-userdashboard.php:33
+#: ../framework/loops/content-userdashboard.php:38
 msgid "Home"
 msgstr ""
 
-#: ../framework/register_public.php:1021 ../framework/register_public.php:1031
+#: ../framework/register_public.php:1075 ../framework/register_public.php:1085
 msgid "Archive for Category: "
 msgstr ""
 
-#: ../framework/register_public.php:1036
+#: ../framework/register_public.php:1090
 msgid "Archive for Author: "
 msgstr ""
 
-#: ../framework/register_public.php:1039
+#: ../framework/register_public.php:1093
 msgid "Archive for Tag: "
 msgstr ""
 
-#: ../framework/register_public.php:1041
+#: ../framework/register_public.php:1095
 msgid "LOST"
 msgstr ""
 
-#: ../framework/register_public.php:1110
+#: ../framework/register_public.php:1117
+msgid "Products"
+msgstr ""
+
+#: ../framework/register_public.php:1125 ../framework/register_public.php:1129
+#: ../framework/theme_options/integration.php:10
+#: ../framework/theme_options/settings.php:48
+#: ../framework/theme_options/settings.php:66
+msgid "Courses"
+msgstr ""
+
+#: ../framework/register_public.php:1137
+msgid "Quizes"
+msgstr ""
+
+#: ../framework/register_public.php:1141
+msgid "Questions"
+msgstr ""
+
+#: ../framework/register_public.php:1145
+#: ../framework/loops/content-userdashboard.php:30
+#: ../framework/loops/content-userdashboard.php:35
+#: ../framework/loops/content-userdashboard.php:256
+#: ../framework/loops/content-userdashboard.php:303
+msgid "Assignments"
+msgstr ""
+
+#: ../framework/register_public.php:1149
+#: ../framework/loops/content-userdashboard.php:29
+#: ../framework/loops/content-userdashboard.php:246
+msgid "Gradings"
+msgstr ""
+
+#: ../framework/register_public.php:1153
+msgid "Teachers"
+msgstr ""
+
+#: ../framework/register_public.php:1157
+#: ../framework/theme_options/integration.php:9
+msgid "Portfolio"
+msgstr ""
+
+#: ../framework/register_public.php:1161
+#: ../framework/loops/content-userdashboard.php:58
+msgid "Certificates"
+msgstr ""
+
+#: ../framework/register_public.php:1169
+msgid "Results"
+msgstr ""
+
+#: ../framework/register_public.php:1192
 #: ../framework/theme_options/events.php:15
 #: ../framework/theme_options/settings.php:49
 #: ../framework/theme_options/settings.php:67
 msgid "Events"
 msgstr ""
 
-#: ../framework/register_public.php:1116
+#: ../framework/register_public.php:1198
 msgid "Events This Month"
 msgstr ""
 
-#: ../framework/register_public.php:1121
+#: ../framework/register_public.php:1203
 msgid "Events This Week"
 msgstr ""
 
-#: ../framework/register_public.php:1126
+#: ../framework/register_public.php:1208
 msgid "Events Today"
 msgstr ""
 
-#: ../framework/register_public.php:1131 ../framework/register_public.php:1136
-#: ../framework/register_public.php:1141 ../framework/register_public.php:1198
-#: ../framework/register_public.php:1203
+#: ../framework/register_public.php:1213 ../framework/register_public.php:1218
+#: ../framework/register_public.php:1223 ../framework/register_public.php:1280
+#: ../framework/register_public.php:1285
 msgid "Upcoming Events"
 msgstr ""
 
-#: ../framework/register_public.php:1183
+#: ../framework/register_public.php:1265
 #, php-format
 msgid "Events for %s"
 msgstr ""
 
-#: ../framework/register_public.php:1187
+#: ../framework/register_public.php:1269
 #, php-format
 msgid "Events for week of %s"
 msgstr ""
 
-#: ../framework/register_public.php:1191
+#: ../framework/register_public.php:1273
 msgid "Events for"
 msgstr ""
 
-#: ../framework/register_public.php:1196
+#: ../framework/register_public.php:1278
 msgid "Past Events"
 msgstr ""
 
-#: ../framework/register_public.php:1266
+#: ../framework/register_public.php:1348
 msgid "Select Your Style"
 msgstr ""
 
-#: ../framework/register_public.php:1268
+#: ../framework/register_public.php:1350
 msgid "Choose your layout"
 msgstr ""
 
-#: ../framework/register_public.php:1275
+#: ../framework/register_public.php:1357
 msgid "Patterns for Boxed Layout"
 msgstr ""
 
-#: ../framework/register_public.php:1282
+#: ../framework/register_public.php:1364
 msgid "Color scheme"
 msgstr ""
 
@@ -1447,55 +1540,83 @@ msgid "Course Archives"
 msgstr ""
 
 #: ../framework/sub-title.php:33
+msgid "Quizes Archives"
+msgstr ""
+
+#: ../framework/sub-title.php:36
+msgid "Questions Archives"
+msgstr ""
+
+#: ../framework/sub-title.php:39
+msgid "Assignments Archives"
+msgstr ""
+
+#: ../framework/sub-title.php:42
+msgid "Gradings Archives"
+msgstr ""
+
+#: ../framework/sub-title.php:45
+msgid "Certificates Archives"
+msgstr ""
+
+#: ../framework/sub-title.php:48
 #: ../framework/theme_options/specialty-pages.php:9
 msgid "Teacher Archives"
 msgstr ""
 
-#: ../framework/sub-title.php:63 ../framework/theme_options/woocommerce.php:17
+#: ../framework/sub-title.php:88 ../framework/theme_options/woocommerce.php:17
 msgid "Shop"
 msgstr ""
 
-#: ../framework/sub-title.php:70
+#: ../framework/sub-title.php:95
 msgid "Term Archives"
 msgstr ""
 
-#: ../framework/sub-title.php:73
+#: ../framework/sub-title.php:98
 msgid "Category Archives"
 msgstr ""
 
-#: ../framework/sub-title.php:76
+#: ../framework/sub-title.php:101
 msgid "Tag Archives"
 msgstr ""
 
-#: ../framework/sub-title.php:79
+#: ../framework/sub-title.php:104
 msgid "Monthly Archives"
 msgstr ""
 
-#: ../framework/sub-title.php:82
+#: ../framework/sub-title.php:107
 msgid "Yearly Archives"
 msgstr ""
 
-#: ../framework/sub-title.php:87
+#: ../framework/sub-title.php:112
 msgid "Author Archives"
 msgstr ""
 
-#: ../framework/sub-title.php:92
+#: ../framework/sub-title.php:117
 msgid "Search Result for "
 msgstr ""
 
-#: ../framework/sub-title.php:95
+#: ../framework/sub-title.php:120
 msgid "Lost "
 msgstr ""
 
-#: ../framework/theme_features.php:101
+#: ../framework/sub-title.php:123
+msgid "Learner Profile "
+msgstr ""
+
+#: ../framework/sub-title.php:126
+msgid "Course Results "
+msgstr ""
+
+#: ../framework/theme_features.php:142
 msgid "Header Menu"
 msgstr ""
 
-#: ../framework/theme_features.php:102
+#: ../framework/theme_features.php:143
 msgid "Footer Menu"
 msgstr ""
 
-#: ../framework/theme_features.php:103
+#: ../framework/theme_features.php:144
 msgid "Landing Page Menu"
 msgstr ""
 
@@ -1515,76 +1636,165 @@ msgstr ""
 msgid "Appears in the footer section of the site."
 msgstr ""
 
-#: ../framework/utils.php:941
+#: ../framework/utils.php:937
 msgid "About Me"
 msgstr ""
 
-#: ../framework/utils.php:944
+#: ../framework/utils.php:940
 msgid "Experience"
 msgstr ""
 
-#: ../framework/utils.php:945
+#: ../framework/utils.php:941 ../framework/loops/content-userdashboard.php:34
+#: ../framework/loops/content-userdashboard.php:293
 msgid "Courses Submitted"
 msgstr ""
 
-#: ../framework/utils.php:946
+#: ../framework/utils.php:942
 msgid "Specialist in"
 msgstr ""
 
-#: ../framework/utils.php:953
+#: ../framework/utils.php:949
 msgid "Know More"
 msgstr ""
 
-#: ../framework/utils.php:1006
+#: ../framework/utils.php:1002
 msgid "Prev"
 msgstr ""
 
-#: ../framework/utils.php:1068
+#: ../framework/utils.php:1064
 msgid "Next"
 msgstr ""
 
-#: ../framework/utils.php:1089 ../framework/utils.php:1102
+#: ../framework/utils.php:1085 ../framework/utils.php:1098
 msgid "Sub Course Type"
 msgstr ""
 
-#: ../framework/headers/header1.php:25 ../framework/headers/header2.php:25
-#: ../framework/headers/header3.php:85 ../framework/headers/header4.php:77
+#: ../framework/utils.php:1131
+msgid "Print"
+msgstr ""
+
+#: ../framework/headers/header1.php:36 ../framework/headers/header2.php:36
+#: ../framework/headers/header3.php:99 ../framework/headers/header4.php:91
 msgid "Login / Register Now"
 msgstr ""
 
-#: ../framework/headers/header1.php:37 ../framework/headers/header1.php:40
-#: ../framework/headers/header1.php:42 ../framework/headers/header2.php:37
-#: ../framework/headers/header2.php:40 ../framework/headers/header2.php:42
-#: ../framework/headers/header3.php:97 ../framework/headers/header3.php:100
-#: ../framework/headers/header3.php:102 ../framework/headers/header4.php:89
-#: ../framework/headers/header4.php:92 ../framework/headers/header4.php:94
+#: ../framework/headers/header1.php:48 ../framework/headers/header1.php:50
+#: ../framework/headers/header1.php:53 ../framework/headers/header1.php:55
+#: ../framework/headers/header2.php:48 ../framework/headers/header2.php:50
+#: ../framework/headers/header2.php:53 ../framework/headers/header2.php:55
+#: ../framework/headers/header3.php:111 ../framework/headers/header3.php:113
+#: ../framework/headers/header3.php:116 ../framework/headers/header3.php:118
+#: ../framework/headers/header4.php:103 ../framework/headers/header4.php:105
+#: ../framework/headers/header4.php:108 ../framework/headers/header4.php:110
 msgid "Welcome, "
 msgstr ""
 
-#: ../framework/headers/header1.php:45 ../framework/headers/header2.php:45
-#: ../framework/headers/header3.php:105 ../framework/headers/header4.php:97
+#: ../framework/headers/header1.php:58 ../framework/headers/header2.php:58
+#: ../framework/headers/header3.php:121 ../framework/headers/header4.php:113
 msgid "Logout"
 msgstr ""
 
-#: ../framework/headers/header1.php:54 ../framework/headers/header2.php:55
-#: ../framework/headers/header3.php:33 ../framework/headers/header4.php:25
+#: ../framework/headers/header1.php:67 ../framework/headers/header2.php:68
+#: ../framework/headers/header3.php:47 ../framework/headers/header4.php:39
 #: ../framework/theme_options/appearance.php:8
 msgid "Menu"
 msgstr ""
 
-#: ../framework/loops/content-single.php:84
+#: ../framework/loops/content-single.php:87
 msgid "<span class=\"fa fa-comments-o\"> </span>"
 msgstr ""
 
-#: ../framework/loops/search-courses.php:129
+#: ../framework/loops/content-userdashboard.php:28
+#: ../framework/loops/content-userdashboard.php:183
+msgid "My Courses"
+msgstr ""
+
+#: ../framework/loops/content-userdashboard.php:31
+#: ../framework/loops/content-userdashboard.php:36
+#: ../framework/loops/content-userdashboard.php:39
+#: ../framework/loops/content-userdashboard.php:266
+#: ../framework/loops/content-userdashboard.php:313
+#: ../framework/loops/content-userdashboard.php:338
+msgid "Edit Profile"
+msgstr ""
+
+#: ../framework/loops/content-userdashboard.php:66
+#: ../framework/loops/content-userdashboard.php:191
+msgid "#"
+msgstr ""
+
+#: ../framework/loops/content-userdashboard.php:67
+#: ../framework/loops/content-userdashboard.php:192
+msgid "Course"
+msgstr ""
+
+#: ../framework/loops/content-userdashboard.php:68
+msgid "Percentage"
+msgstr ""
+
+#: ../framework/loops/content-userdashboard.php:69
+msgid "Certificate"
+msgstr ""
+
+#: ../framework/loops/content-userdashboard.php:112
+msgid "No certificates found!"
+msgstr ""
+
+#: ../framework/loops/content-userdashboard.php:124
+msgid "Badges"
+msgstr ""
+
+#: ../framework/loops/content-userdashboard.php:150
+msgid " badge"
+msgstr ""
+
+#: ../framework/loops/content-userdashboard.php:159
+msgid "No Badges found!"
+msgstr ""
+
+#: ../framework/loops/content-userdashboard.php:172
+#: ../framework/loops/content-userdashboard.php:283
+#: ../framework/loops/content-userdashboard.php:328
+msgid "Username : "
+msgstr ""
+
+#: ../framework/loops/content-userdashboard.php:173
+#: ../framework/loops/content-userdashboard.php:284
+#: ../framework/loops/content-userdashboard.php:329
+msgid "First Name : "
+msgstr ""
+
+#: ../framework/loops/content-userdashboard.php:174
+#: ../framework/loops/content-userdashboard.php:285
+#: ../framework/loops/content-userdashboard.php:330
+msgid "Last Name : "
+msgstr ""
+
+#: ../framework/loops/content-userdashboard.php:175
+#: ../framework/loops/content-userdashboard.php:286
+#: ../framework/loops/content-userdashboard.php:331
+msgid "Display Name : "
+msgstr ""
+
+#: ../framework/loops/content-userdashboard.php:176
+#: ../framework/loops/content-userdashboard.php:287
+#: ../framework/loops/content-userdashboard.php:332
+msgid "Email Address : "
+msgstr ""
+
+#: ../framework/loops/content-userdashboard.php:194
+msgid "Price"
+msgstr ""
+
+#: ../framework/loops/search-courses.php:131
 msgid "No courses to load!"
 msgstr ""
 
-#: ../framework/loops/search-default.php:36
+#: ../framework/loops/search-default.php:43
 msgid "Nothing Found"
 msgstr ""
 
-#: ../framework/loops/search-default.php:37
+#: ../framework/loops/search-default.php:44
 msgid "Apologies, but no results were found for the requested archive."
 msgstr ""
 
@@ -1675,10 +1885,12 @@ msgstr ""
 #: ../framework/theme_options/general.php:56
 #: ../framework/theme_options/general.php:69
 #: ../framework/theme_options/general.php:100
-#: ../framework/theme_options/general.php:112
-#: ../framework/theme_options/general.php:124
-#: ../framework/theme_options/general.php:136
-#: ../framework/theme_options/general.php:148
+#: ../framework/theme_options/general.php:114
+#: ../framework/theme_options/general.php:160
+#: ../framework/theme_options/general.php:172
+#: ../framework/theme_options/general.php:184
+#: ../framework/theme_options/general.php:196
+#: ../framework/theme_options/general.php:208
 msgid "Upload"
 msgstr ""
 
@@ -1706,10 +1918,10 @@ msgstr ""
 #: ../framework/theme_metaboxes/post_metabox.php:17
 #: ../framework/theme_options/appearance.php:488
 #: ../framework/theme_options/buddypress.php:30
-#: ../framework/theme_options/courses.php:136
-#: ../framework/theme_options/courses.php:189
-#: ../framework/theme_options/courses.php:242
-#: ../framework/theme_options/courses.php:295
+#: ../framework/theme_options/courses.php:154
+#: ../framework/theme_options/courses.php:207
+#: ../framework/theme_options/courses.php:260
+#: ../framework/theme_options/courses.php:313
 #: ../framework/theme_options/events.php:18
 #: ../framework/theme_options/events.php:72
 #: ../framework/theme_options/events.php:126
@@ -1729,7 +1941,7 @@ msgstr ""
 
 #: ../framework/theme_metaboxes/page_metabox.php:263
 #: ../framework/theme_metaboxes/post_metabox.php:55
-#: ../framework/theme_options/courses.php:106
+#: ../framework/theme_options/courses.php:124
 #: ../framework/theme_options/specialty-pages.php:113
 msgid "Disable Every Where Sidebar Left"
 msgstr ""
@@ -1748,7 +1960,7 @@ msgstr ""
 
 #: ../framework/theme_metaboxes/page_metabox.php:301
 #: ../framework/theme_metaboxes/post_metabox.php:93
-#: ../framework/theme_options/courses.php:114
+#: ../framework/theme_options/courses.php:132
 #: ../framework/theme_options/specialty-pages.php:121
 msgid "Disable Every Where Sidebar Right"
 msgstr ""
@@ -2616,7 +2828,7 @@ msgid "Four Members per row"
 msgstr ""
 
 #: ../framework/theme_options/buddypress.php:51
-#: ../framework/theme_options/courses.php:345
+#: ../framework/theme_options/courses.php:363
 #: ../framework/theme_options/events.php:177
 #: ../framework/theme_options/woocommerce.php:208
 msgid "Warning"
@@ -2644,95 +2856,106 @@ msgid "General"
 msgstr ""
 
 #: ../framework/theme_options/courses.php:19
-msgid "Currency"
+msgid "Currency Symbol"
 msgstr ""
 
 #: ../framework/theme_options/courses.php:22
-msgid "Please set default currency"
+msgid ""
+"Please set default currency symbol which will be used in front end display"
 msgstr ""
 
 #: ../framework/theme_options/courses.php:27
-msgid "Currency Position"
+msgid "Currency Symbol Position"
 msgstr ""
 
 #: ../framework/theme_options/courses.php:39
-msgid "Please select curreny position to display"
+msgid "Please select curreny position to display in front end"
 msgstr ""
 
-#: ../framework/theme_options/courses.php:48
+#: ../framework/theme_options/courses.php:44
+msgid "Currency"
+msgstr ""
+
+#: ../framework/theme_options/courses.php:58
+msgid ""
+"Please select curreny your curreny symbol which will be used in s2member for "
+"payment."
+msgstr ""
+
+#: ../framework/theme_options/courses.php:66
 msgid "Archive Page"
 msgstr ""
 
-#: ../framework/theme_options/courses.php:54
+#: ../framework/theme_options/courses.php:72
 msgid "Post Layout"
 msgstr ""
 
-#: ../framework/theme_options/courses.php:55
+#: ../framework/theme_options/courses.php:73
 msgid "Choose the Course Archive page layout "
 msgstr ""
 
-#: ../framework/theme_options/courses.php:59
+#: ../framework/theme_options/courses.php:77
 #: ../framework/theme_options/woocommerce.php:32
 msgid "Two products per row."
 msgstr ""
 
-#: ../framework/theme_options/courses.php:59
+#: ../framework/theme_options/courses.php:77
 #: ../framework/theme_options/woocommerce.php:32
 msgid "Three products per row."
 msgstr ""
 
-#: ../framework/theme_options/courses.php:73
+#: ../framework/theme_options/courses.php:91
 msgid "Page Layout"
 msgstr ""
 
-#: ../framework/theme_options/courses.php:74
-#: ../framework/theme_options/courses.php:137
+#: ../framework/theme_options/courses.php:92
+#: ../framework/theme_options/courses.php:155
 msgid "Choose the Course page layout"
 msgstr ""
 
-#: ../framework/theme_options/courses.php:133
+#: ../framework/theme_options/courses.php:151
 msgid "Course Detail"
 msgstr ""
 
-#: ../framework/theme_options/courses.php:168
-#: ../framework/theme_options/courses.php:221
-#: ../framework/theme_options/courses.php:274
-#: ../framework/theme_options/courses.php:327
+#: ../framework/theme_options/courses.php:186
+#: ../framework/theme_options/courses.php:239
+#: ../framework/theme_options/courses.php:292
+#: ../framework/theme_options/courses.php:345
 msgid "Disable Sensei Course Every Where Sidebar Left"
 msgstr ""
 
-#: ../framework/theme_options/courses.php:176
-#: ../framework/theme_options/courses.php:229
-#: ../framework/theme_options/courses.php:282
-#: ../framework/theme_options/courses.php:335
+#: ../framework/theme_options/courses.php:194
+#: ../framework/theme_options/courses.php:247
+#: ../framework/theme_options/courses.php:300
+#: ../framework/theme_options/courses.php:353
 msgid "Disable Sensei Course Every Where Sidebar Right"
 msgstr ""
 
-#: ../framework/theme_options/courses.php:186
+#: ../framework/theme_options/courses.php:204
 msgid "Lesson Detail"
 msgstr ""
 
-#: ../framework/theme_options/courses.php:190
+#: ../framework/theme_options/courses.php:208
 msgid "Choose the Lesson page layout"
 msgstr ""
 
-#: ../framework/theme_options/courses.php:239
+#: ../framework/theme_options/courses.php:257
 msgid "Quiz Detail"
 msgstr ""
 
-#: ../framework/theme_options/courses.php:243
+#: ../framework/theme_options/courses.php:261
 msgid "Choose the Quiz page layout"
 msgstr ""
 
-#: ../framework/theme_options/courses.php:292
+#: ../framework/theme_options/courses.php:310
 msgid "Archive Pages"
 msgstr ""
 
-#: ../framework/theme_options/courses.php:296
+#: ../framework/theme_options/courses.php:314
 msgid "Choose the archieve page layout Style"
 msgstr ""
 
-#: ../framework/theme_options/courses.php:346
+#: ../framework/theme_options/courses.php:364
 msgid ""
 "You have to install and activate the Sensei plugin to use this module .."
 msgstr ""
@@ -2806,8 +3029,8 @@ msgid ""
 msgstr ""
 
 #: ../framework/theme_options/general.php:8
-#: ../framework/theme_options/general.php:455
-#: ../framework/theme_options/general.php:529
+#: ../framework/theme_options/general.php:528
+#: ../framework/theme_options/general.php:602
 msgid "Sociable"
 msgstr ""
 
@@ -2847,227 +3070,280 @@ msgid ""
 "online logo."
 msgstr ""
 
-#: ../framework/theme_options/general.php:80
+#: ../framework/theme_options/general.php:79
+#: ../framework/theme_options/general.php:124
+msgid "Width"
+msgstr ""
+
+#: ../framework/theme_options/general.php:81
+#: ../framework/theme_options/general.php:87
+#: ../framework/theme_options/general.php:126
+#: ../framework/theme_options/general.php:132
+msgid "px"
+msgstr ""
+
+#: ../framework/theme_options/general.php:85
+#: ../framework/theme_options/general.php:130
+msgid "Height"
+msgstr ""
+
+#: ../framework/theme_options/general.php:89
+msgid ""
+"If retina logo is uploaded, enter the standard logo width and height in "
+"above respective boxes."
+msgstr ""
+
+#: ../framework/theme_options/general.php:105
+msgid ""
+"Upload a footer logo for your theme, or specify the image address of your "
+"online footer logo."
+msgstr ""
+
+#: ../framework/theme_options/general.php:110
+msgid "Footer Retina Logo"
+msgstr ""
+
+#: ../framework/theme_options/general.php:119
+msgid ""
+"Upload a retina footer logo for your theme, or specify the image address of "
+"your online footer logo."
+msgstr ""
+
+#: ../framework/theme_options/general.php:134
+msgid ""
+"If footer retina logo is uploaded, enter the standard footer logo width and "
+"height in above respective boxes."
+msgstr ""
+
+#: ../framework/theme_options/general.php:140
 msgid "Favicon"
 msgstr ""
 
-#: ../framework/theme_options/general.php:83
+#: ../framework/theme_options/general.php:143
 msgid "Enable Favicon"
 msgstr ""
 
-#: ../framework/theme_options/general.php:96
+#: ../framework/theme_options/general.php:156
 msgid "Custom Favicon"
 msgstr ""
 
-#: ../framework/theme_options/general.php:104
+#: ../framework/theme_options/general.php:164
 msgid "Upload a favicon for your theme, or specify the oneline URL for favicon"
 msgstr ""
 
-#: ../framework/theme_options/general.php:108
+#: ../framework/theme_options/general.php:168
 msgid "Apple iPhone Icon"
 msgstr ""
 
-#: ../framework/theme_options/general.php:116
+#: ../framework/theme_options/general.php:176
 msgid ""
 "Upload your custom iPhone icon (57px by 57px), or specify the oneline URL "
 "for favicon"
 msgstr ""
 
-#: ../framework/theme_options/general.php:120
+#: ../framework/theme_options/general.php:180
 msgid "Apple iPhone Retina Icon"
 msgstr ""
 
-#: ../framework/theme_options/general.php:128
+#: ../framework/theme_options/general.php:188
 msgid ""
 "Upload your custom iPhone retina icon (114px by 114px), or specify the "
 "oneline URL for favicon"
 msgstr ""
 
-#: ../framework/theme_options/general.php:132
+#: ../framework/theme_options/general.php:192
 msgid "Apple iPad Icon"
 msgstr ""
 
-#: ../framework/theme_options/general.php:140
+#: ../framework/theme_options/general.php:200
 msgid ""
 "Upload your custom iPad icon (72px by 72px), or specify the oneline URL for "
 "favicon"
 msgstr ""
 
-#: ../framework/theme_options/general.php:144
+#: ../framework/theme_options/general.php:204
 msgid "Apple iPad Retina Icon"
 msgstr ""
 
-#: ../framework/theme_options/general.php:152
+#: ../framework/theme_options/general.php:212
 msgid ""
-"Upload your custom iPad retina icon (114px by 114px), or specify the oneline "
+"Upload your custom iPad retina icon (144px by 144px), or specify the oneline "
 "URL for favicon"
 msgstr ""
 
-#: ../framework/theme_options/general.php:157
+#: ../framework/theme_options/general.php:217
 msgid "Others"
 msgstr ""
 
-#: ../framework/theme_options/general.php:160
+#: ../framework/theme_options/general.php:220
 msgid "Enable Retina Support"
 msgstr ""
 
-#: ../framework/theme_options/general.php:168
+#: ../framework/theme_options/general.php:228
 msgid ""
 "YES! to enable retina support, and the retina.js library would automatically "
 "try and find with @2x.png extension "
 msgstr ""
 
-#: ../framework/theme_options/general.php:173
+#: ../framework/theme_options/general.php:233
 msgid "Enable Sticky Navigation"
 msgstr ""
 
-#: ../framework/theme_options/general.php:184
+#: ../framework/theme_options/general.php:244
 msgid "YES! to enable sticky navigation."
 msgstr ""
 
-#: ../framework/theme_options/general.php:190
+#: ../framework/theme_options/general.php:250
 msgid "Enable Sticky Navigation For Landing Page"
 msgstr ""
 
-#: ../framework/theme_options/general.php:201
+#: ../framework/theme_options/general.php:261
 msgid "YES! to enable sticky navigation in landing page."
 msgstr ""
 
-#: ../framework/theme_options/general.php:208
+#: ../framework/theme_options/general.php:268
 msgid "Globally Disable Comments on Pages"
 msgstr ""
 
-#: ../framework/theme_options/general.php:217
+#: ../framework/theme_options/general.php:277
 msgid ""
 "YES! to disable comments on all the pages. This will globally override your "
 "\"Allow comments\" option under your page \"Discussion\" settings. "
 msgstr ""
 
-#: ../framework/theme_options/general.php:223
+#: ../framework/theme_options/general.php:283
 msgid "Globally Disable Comments on Posts"
 msgstr ""
 
-#: ../framework/theme_options/general.php:232
+#: ../framework/theme_options/general.php:292
 msgid ""
 "YES! to disable comments on all the posts. This will globally override your "
 "\"Allow comments\" option under your post \"Discussion\" settings. "
 msgstr ""
 
-#: ../framework/theme_options/general.php:237
+#: ../framework/theme_options/general.php:297
 msgid "Globally Disable Comments on Portfolios"
 msgstr ""
 
-#: ../framework/theme_options/general.php:246
+#: ../framework/theme_options/general.php:306
 msgid "Enable/ Disable comments on portfolio pages."
 msgstr ""
 
-#: ../framework/theme_options/general.php:251
+#: ../framework/theme_options/general.php:311
 msgid "Globally Disable Comments on Teachers"
 msgstr ""
 
-#: ../framework/theme_options/general.php:260
+#: ../framework/theme_options/general.php:320
 msgid "Enable/ Disable comments on teacher pages."
 msgstr ""
 
-#: ../framework/theme_options/general.php:265
+#: ../framework/theme_options/general.php:325
 msgid "Globally Disable Comments on Courses"
 msgstr ""
 
-#: ../framework/theme_options/general.php:274
+#: ../framework/theme_options/general.php:334
 msgid "Enable/ Disable comments on course pages."
 msgstr ""
 
-#: ../framework/theme_options/general.php:278
+#: ../framework/theme_options/general.php:338
 msgid "Globally Disable Comments on Lessons"
 msgstr ""
 
-#: ../framework/theme_options/general.php:286
+#: ../framework/theme_options/general.php:346
 msgid "Enable/ Disable comments on lessons pages."
 msgstr ""
 
-#: ../framework/theme_options/general.php:290
+#: ../framework/theme_options/general.php:350
 msgid "Globally Disable Ratings on Courses"
 msgstr ""
 
-#: ../framework/theme_options/general.php:298
+#: ../framework/theme_options/general.php:358
 msgid "Enable/ Disable ratings on courses pages."
 msgstr ""
 
-#: ../framework/theme_options/general.php:302
+#: ../framework/theme_options/general.php:362
 msgid "Globally Disable Breadcrumb"
 msgstr ""
 
-#: ../framework/theme_options/general.php:310
+#: ../framework/theme_options/general.php:370
 msgid "Enable/ Disable breadcrumbs for all pages here."
 msgstr ""
 
-#: ../framework/theme_options/general.php:315
+#: ../framework/theme_options/general.php:375
 msgid "Breadcrumb Delimiter"
 msgstr ""
 
-#: ../framework/theme_options/general.php:322
+#: ../framework/theme_options/general.php:382
 msgid "This is the symbol that will appear in between your breadcrumbs"
 msgstr ""
 
-#: ../framework/theme_options/general.php:327
+#: ../framework/theme_options/general.php:387
 msgid "Disable Breadcrumb Search Box"
 msgstr ""
 
-#: ../framework/theme_options/general.php:334
+#: ../framework/theme_options/general.php:394
 msgid "Check if you want to disable search box in the breadcrumb :)"
 msgstr ""
 
-#: ../framework/theme_options/general.php:340
+#: ../framework/theme_options/general.php:400
 msgid "Disable browser custom scroll"
 msgstr ""
 
-#: ../framework/theme_options/general.php:347
+#: ../framework/theme_options/general.php:407
 msgid "Check if you do not want disable the browser custom scrollbar :)"
 msgstr ""
 
-#: ../framework/theme_options/general.php:352
+#: ../framework/theme_options/general.php:412
 msgid "Disable Style Picker"
 msgstr ""
 
-#: ../framework/theme_options/general.php:358
+#: ../framework/theme_options/general.php:418
 msgid "YES! to hide the front end style picker"
 msgstr ""
 
-#: ../framework/theme_options/general.php:362
+#: ../framework/theme_options/general.php:423
+msgid "Globally disable placeholder images"
+msgstr ""
+
+#: ../framework/theme_options/general.php:430
+msgid "Check if you do not want to diaplay placeholder images"
+msgstr ""
+
+#: ../framework/theme_options/general.php:435
 msgid "Disable import dummy content"
 msgstr ""
 
-#: ../framework/theme_options/general.php:369
+#: ../framework/theme_options/general.php:442
 msgid "YES! to hide Import Dummy Data button from the Adminpanel"
 msgstr ""
 
-#: ../framework/theme_options/general.php:373
+#: ../framework/theme_options/general.php:446
 msgid "Phone Number"
 msgstr ""
 
-#: ../framework/theme_options/general.php:379
+#: ../framework/theme_options/general.php:452
 msgid "Specify phone number which is shown at top of header style 3"
 msgstr ""
 
-#: ../framework/theme_options/general.php:382
+#: ../framework/theme_options/general.php:455
 msgid "Email id"
 msgstr ""
 
-#: ../framework/theme_options/general.php:388
+#: ../framework/theme_options/general.php:461
 msgid "Specify email id which is shown at top of header style 3"
 msgstr ""
 
-#: ../framework/theme_options/general.php:391
+#: ../framework/theme_options/general.php:464
 msgid "Google Font Subset"
 msgstr ""
 
-#: ../framework/theme_options/general.php:397
+#: ../framework/theme_options/general.php:470
 msgid ""
 "Specify which subsets should be downloaded. Multiple subsets should be "
 "separated with coma"
 msgstr ""
 
-#: ../framework/theme_options/general.php:402
+#: ../framework/theme_options/general.php:475
 msgid ""
 "Some of the fonts in the Google Font Directory supports multiple scripts "
 "(like Latin and Cyrillic for example). In order to specify which subsets "
@@ -3075,42 +3351,42 @@ msgid ""
 "a complete list of available fonts and font subsets please see"
 msgstr ""
 
-#: ../framework/theme_options/general.php:407
+#: ../framework/theme_options/general.php:480
 msgid "Mailchimp API KEY"
 msgstr ""
 
-#: ../framework/theme_options/general.php:413
+#: ../framework/theme_options/general.php:486
 msgid "Paste your mailchimp api key that will be used by the mailchimp widget."
 msgstr ""
 
-#: ../framework/theme_options/general.php:419
+#: ../framework/theme_options/general.php:492
 msgid "Select Mailchimp List"
 msgstr ""
 
-#: ../framework/theme_options/general.php:440
+#: ../framework/theme_options/general.php:513
 msgid ""
 "Select your mailchip list id, which will be used in newsletter shortcode."
 msgstr ""
 
-#: ../framework/theme_options/general.php:460
+#: ../framework/theme_options/general.php:533
 msgid "Show Sociable"
 msgstr ""
 
-#: ../framework/theme_options/general.php:469
+#: ../framework/theme_options/general.php:542
 msgid "Add New Sociable"
 msgstr ""
 
-#: ../framework/theme_options/general.php:472
+#: ../framework/theme_options/general.php:545
 msgid "Manage Social Icons here which will be displayed in Header Type 4"
 msgstr ""
 
-#: ../framework/theme_options/general.php:507
-#: ../framework/theme_options/general.php:534
+#: ../framework/theme_options/general.php:580
+#: ../framework/theme_options/general.php:607
 msgid "Sociable Icon"
 msgstr ""
 
-#: ../framework/theme_options/general.php:510
-#: ../framework/theme_options/general.php:535
+#: ../framework/theme_options/general.php:583
+#: ../framework/theme_options/general.php:608
 msgid "Sociable Link"
 msgstr ""
 
@@ -3120,16 +3396,6 @@ msgstr ""
 
 #: ../framework/theme_options/integration.php:8
 msgid "Page"
-msgstr ""
-
-#: ../framework/theme_options/integration.php:9
-msgid "Portfolio"
-msgstr ""
-
-#: ../framework/theme_options/integration.php:10
-#: ../framework/theme_options/settings.php:48
-#: ../framework/theme_options/settings.php:66
-msgid "Courses"
 msgstr ""
 
 #: ../framework/theme_options/integration.php:17
@@ -3309,6 +3575,12 @@ msgstr ""
 
 #: ../framework/theme_options/pagebuilder.php:59
 msgid "Keep page builder active in above selected post types"
+msgstr ""
+
+#: ../framework/theme_options/pagebuilder.php:73
+msgid ""
+"Please activate \"DesignThemes Core Features Plugin\" to get the Page "
+"Builder options."
 msgstr ""
 
 #: ../framework/theme_options/responsive.php:6
@@ -3669,8 +3941,11 @@ msgid "Two gallery items per row."
 msgstr ""
 
 #: ../framework/theme_options/specialty-pages.php:42
-#: ../framework/theme_options/specialty-pages.php:43
 msgid "Three gallery items per row."
+msgstr ""
+
+#: ../framework/theme_options/specialty-pages.php:43
+msgid "Four gallery items per row."
 msgstr ""
 
 #: ../framework/theme_options/specialty-pages.php:47
@@ -3876,7 +4151,7 @@ msgstr ""
 msgid "No.of posts to show:"
 msgstr ""
 
-#: ../framework/theme_widgets/courses_widgets.php:119
+#: ../framework/theme_widgets/courses_widgets.php:120
 msgid "No Course Entries found"
 msgstr ""
 
@@ -3955,7 +4230,7 @@ msgstr ""
 msgid "Display title only or title &amp; excerpt"
 msgstr ""
 
-#: ../framework/theme_widgets/portfolio_widgets.php:129
+#: ../framework/theme_widgets/portfolio_widgets.php:134
 msgid "No Portfolio Entries found"
 msgstr ""
 
@@ -3979,7 +4254,7 @@ msgstr ""
 msgid "by"
 msgstr ""
 
-#: ../framework/theme_widgets/recent_posts.php:101
+#: ../framework/theme_widgets/recent_posts.php:102
 msgid "No Posts found"
 msgstr ""
 
@@ -4027,13 +4302,13 @@ msgstr ""
 msgid "No public Tweets found"
 msgstr ""
 
-#: ../framework/woocommerce/index.php:345
-#: ../framework/woocommerce/index.php:490
+#: ../framework/woocommerce/index.php:347
+#: ../framework/woocommerce/index.php:492
 msgid "Sale!"
 msgstr ""
 
-#: ../framework/woocommerce/index.php:347
-#: ../framework/woocommerce/index.php:492
+#: ../framework/woocommerce/index.php:349
+#: ../framework/woocommerce/index.php:494
 msgid "Out of Stock"
 msgstr ""
 

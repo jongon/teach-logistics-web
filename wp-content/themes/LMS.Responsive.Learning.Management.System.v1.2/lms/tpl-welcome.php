@@ -47,7 +47,7 @@ get_header();
 			while( have_posts() ):
 				the_post();
 				if( is_user_logged_in() ) {
-					get_template_part( 'framework/loops/content', 'page' );
+					get_template_part( 'framework/loops/content', 'userdashboard' );
 				} else {
 					$link = dttheme_get_page_permalink_by_its_template('tpl-login.php');
 					$link = !empty( $link ) ? $link : home_url();

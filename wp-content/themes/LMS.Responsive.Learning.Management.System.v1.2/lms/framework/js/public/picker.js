@@ -4,6 +4,7 @@ jQuery(document).ready(function($){
   var $picker_container = jQuery("div.dt-style-picker-wrapper"),
       $theme_url = mytheme_urls.theme_base_url,
       $fw_url = mytheme_urls.framework_base_url,
+	  $rtl = mytheme_urls.isRTL,
       $patterns_url = $fw_url+"theme_options/images/patterns/";
   
   //Applying Cookies
@@ -23,15 +24,30 @@ jQuery(document).ready(function($){
   }else{
 	$("ul.color-picker a:first").addClass("selected");
   }
+
+	if($rtl == true) {
   
-  if ( $.cookie('lms-control-open') === '1' ) {
-	  $picker_container.animate({left: 0});
-	  $('a.style-picker-ico').removeClass('control-open');
-  } else {
-    $picker_container.animate( { left: -230 } );
-    $('a.style-picker-ico').addClass('control-open');
-  }
+		if ( $.cookie('lms-control-open') === '1' ) {
+			$picker_container.animate({left: -230});
+			$('a.style-picker-ico').addClass('control-open');
+		} else {
+			$picker_container.animate( { left: 0 } );
+			$('a.style-picker-ico').removeClass('control-open');
+		}
   
+	} else {
+  
+		if ( $.cookie('lms-control-open') === '1' ) {
+			$picker_container.animate({right: -230});
+			$('a.style-picker-ico').addClass('control-open');
+		} else {
+			$picker_container.animate( { right: 0 } );
+			$('a.style-picker-ico').removeClass('control-open');
+		}
+  
+	}
+	
+	
   //1. Applying Layout & patterns
   if($.cookie("lms_layout") === "boxed"){
 	  
@@ -52,14 +68,29 @@ jQuery(document).ready(function($){
   //Picker On/Off
   $("a.style-picker-ico").click(function(e){
     var $this = $(this);	
+
+	if($rtl == true) {
     
-    if($this.hasClass('control-open')){
-      $picker_container.animate({left: 0},function(){$this.removeClass('control-open');});
-      $.cookie('lms-control-open', 1, { path: '/' });	
-    }else{
-      $picker_container.animate({left: -230},function(){$this.addClass('control-open');});
-      $.cookie('lms-control-open', 0, { path: '/' });
+		if($this.hasClass('control-open')){
+			$picker_container.animate({right: 0},function(){$this.removeClass('control-open');});
+			$.cookie('lms-control-open', 1, { path: '/' });	
+		}else{
+			$picker_container.animate({right: -230},function(){$this.addClass('control-open');});
+			$.cookie('lms-control-open', 0, { path: '/' });
+		}
+		
+	} else {
+		
+		if($this.hasClass('control-open')){
+			$picker_container.animate({left: 0},function(){$this.removeClass('control-open');});
+			$.cookie('lms-control-open', 1, { path: '/' });	
+		}else{
+			$picker_container.animate({left: -230},function(){$this.addClass('control-open');});
+			$.cookie('lms-control-open', 0, { path: '/' });
+		}
+		
 	}
+	
 	e.preventDefault();
    });//Picker On/Off end
 

@@ -6,6 +6,9 @@ add_action('admin_enqueue_scripts', 'dttheme_admin_panel_scripts');
 if (isset($_GET['mytheme_upload_button']) || isset($_POST['mytheme_upload_button']) && (isset($_GET['page']) && $_GET['page'] == 'parent')) :
 	add_action('admin_init', 'dttheme_image_upload_option');
 endif;
+if (isset($_GET['dtcourse_upload_button']) || isset($_POST['dtcourse_upload_button']) && (isset($_GET['page']) && $_GET['page'] == 'parent')) :
+	add_action('admin_init', 'dttheme_coursemedia_upload_option');
+endif;
 ## End hook
 
 function dttheme_admin_panel_scripts() {
@@ -51,7 +54,8 @@ function dttheme_admin_panel_scripts() {
 		'restoreFailure' => __('Restore Process not working', 'dt_themes'),
 		'importMsg' => __('Click ok import options from the above textarea', 'dt_themes'),
 		'importSuccess' => __('Your options are imported successfully', 'dt_themes'),
-		'importFailure' => __('Import Process not working', 'dt_themes')));
+		'importFailure' => __('Import Process not working', 'dt_themes'),
+		'resetGrade' => __('Are you sure to reset this grading ?', 'dt_themes')));
 }
 
 function dttheme_admin_options_init() {

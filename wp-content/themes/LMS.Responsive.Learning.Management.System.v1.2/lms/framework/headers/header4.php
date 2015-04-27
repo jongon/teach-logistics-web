@@ -3,16 +3,30 @@
             
                 <!-- container start -->
                 <div class="container">
-                    <div id="logo"><?php
+                    <div id="logo">
+					
+						<?php
                         if( dttheme_option('general', 'logo') ):
                             $url = dttheme_option('general', 'logo-url');
-                            $url = !empty( $url ) ? $url : IAMD_BASE_URL."images/logo.png"; ?>
+                            $url = !empty( $url ) ? $url : IAMD_BASE_URL."images/logo.png";
+                            
+                            $retina_url = dttheme_option('general','retina-logo-url');
+                            $retina_url = !empty($retina_url) ? $retina_url : IAMD_BASE_URL."images/logo@2x.png";
+                            
+                            $width = dttheme_option('general','retina-logo-width');
+                            $width = !empty($width) ? $width."px;" : "98px";
+                            
+                            $height = dttheme_option('general','retina-logo-height');
+                            $height = !empty($height) ? $height."px;" : "99px";?>
                             <a href="<?php echo home_url();?>" title="<?php echo dttheme_blog_title();?>">
-                                <img src="<?php echo $url;?>" alt="<?php echo dttheme_blog_title(); ?>" title="<?php echo dttheme_blog_title(); ?>" />
+                                <img class="normal_logo" src="<?php echo $url;?>" alt="<?php echo dttheme_blog_title(); ?>" title="<?php echo dttheme_blog_title(); ?>" />
+                                <img class="retina_logo" src="<?php echo $retina_url;?>" alt="<?php echo dttheme_blog_title();?>" title="<?php echo dttheme_blog_title(); ?>" style="width:<?php echo $width;?>; height:<?php echo $height;?>;"/>
                             </a><?php
-                        else: ?>
-                            <h2><a href="<?php echo home_url();?>" title="<?php echo dttheme_blog_title();?>"><?php echo do_shortcode(get_option('blogname')); ?></a></h2><?php 
-                        endif;?></div>
+                        else:?>
+                            <h2><a href="<?php echo home_url();?>" title="<?php echo dttheme_blog_title();?>"><?php echo do_shortcode(get_option('blogname')); ?></a></h2><?php
+                        endif;?>
+                    
+                   </div>
                 </div><!-- container end -->
 
                 <!-- **Main Menu Wrapper** -->
@@ -87,6 +101,8 @@
                                             $link = $login_welcome_page['link'];
                                             $title =  get_the_title($page);
                                             echo '<li><a href="'.$link.'">'.get_avatar( $current_user->ID, 30).'<span>'.__('Welcome, ', 'dt_themes').'&nbsp;'.$current_user->display_name.' | </span>'.'</a></li>';
+										elseif(!is_null($welcome)):
+											echo '<li><a href="'.$welcome.'">'.get_avatar( $current_user->ID, 30).'<span>'.__('Welcome, ', 'dt_themes').'&nbsp;'.$current_user->display_name.' | </span>'.'</a></li>';
                                         endif;
                                     elseif(!is_null($welcome)):
                                         echo '<li><a href="'.$welcome.'">'.get_avatar( $current_user->ID, 30).'<span>'.__('Welcome, ', 'dt_themes').'&nbsp;'.$current_user->display_name.' | </span>'.'</a></li>';

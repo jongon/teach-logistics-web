@@ -1,4 +1,10 @@
 <?php
+#Sensei Support
+add_action( 'after_setup_theme', 'dt_theme_sensei_support' );
+function dt_theme_sensei_support() {
+	add_theme_support( 'sensei' );
+}
+
 #Before main content
 add_action( 'sensei_before_main_content', 'dt_sensei_before_main_content', 10);
 if( !function_exists('dt_sensei_before_main_content') ) {

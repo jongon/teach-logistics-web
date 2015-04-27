@@ -102,6 +102,21 @@ get_header();
 							<label><?php _e('Email Id','dt_themes');?><span class="required"> * </span> </label> 
 							<input type="email" name="user_email"  class="input" value="" size="20" required="required" />
 						</p>
+						<p>
+							<label><?php _e('Role','dt_themes');?><span class="required"> * </span> </label> 
+                            <select name="role" id="role">
+                                <option value="subscriber"><?php echo __('Subscriber', 'dt_themes'); ?></option>
+                                <option value="teacher"><?php echo __('Teacher', 'dt_themes'); ?></option>
+                                <?php 
+								$status = dttheme_is_plugin_active('s2member/s2member.php');
+								if($status) {
+								?>
+                                    <option value="s2member_level1"><?php echo __('Student', 'dt_themes'); ?></option>
+                                <?php
+								}
+								?>
+                            </select>
+						</p>
 						<p class="submit alignleft"><input type="submit" class="button-primary" value="<?php _e('Register','dt_themes');?>" /></p>
 					</form>
 				</div><!-- Registration Form End -->

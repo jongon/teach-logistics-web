@@ -118,5 +118,149 @@ jQuery(document).ready(function($){
 		});
 	
 	}
+		
+	$( 'body' ).delegate( '#dt-sc-dashboard-user-courses .pagination a', 'click', function(){
+			
+		var curr_page = $(this).text();	
+		if($(this).hasClass('dt-prev'))
+			curr_page = parseInt($(this).attr('cpage'))-1;
+		else if($(this).hasClass('dt-next'))
+			curr_page = parseInt($(this).attr('cpage'))+1;
+		else			
+			curr_page = parseInt(curr_page);
+			
+		jQuery.ajax({
+			type: "POST",
+			url: mytheme_urls.ajaxurl,
+			data:
+			{
+				action: 'dt_dashboard_user_courses',
+				curr_page: curr_page
+			},
+			beforeSend: function(){
+				$('#dt-sc-ajax-load-image').show();
+			},
+			error: function (xhr, status, error) {
+				$('#dt-sc-dashboard-user-courses').html('Something went wrong!');
+			},
+			success: function (response) {
+				$('#dt-sc-dashboard-user-courses').html(response);
+			},
+			complete: function(){
+				$('#dt-sc-ajax-load-image').hide();
+			} 
+		});
+
+		return false;
+		
+	});
+	
+	$( 'body' ).delegate( '#dt-sc-dashboard-teacher-courses .pagination a', 'click', function(){
+			
+		var curr_page = $(this).text();	
+		if($(this).hasClass('dt-prev'))
+			curr_page = parseInt($(this).attr('cpage'))-1;
+		else if($(this).hasClass('dt-next'))
+			curr_page = parseInt($(this).attr('cpage'))+1;
+		else			
+			curr_page = parseInt(curr_page);
+			
+		jQuery.ajax({
+			type: "POST",
+			url: mytheme_urls.ajaxurl,
+			data:
+			{
+				action: 'dt_dashboard_teacher_courses',
+				curr_page: curr_page
+			},
+			beforeSend: function(){
+				$('#dt-sc-ajax-load-image').show();
+			},
+			error: function (xhr, status, error) {
+				$('#dt-sc-dashboard-teacher-courses').html('Something went wrong!');
+			},
+			success: function (response) {
+				$('#dt-sc-dashboard-teacher-courses').html(response);
+			},
+			complete: function(){
+				$('#dt-sc-ajax-load-image').hide();
+			} 
+		});
+
+		return false;
+		
+	});
+	
+	$( 'body' ).delegate( '#dt-sc-dashboard-user-assignments .pagination a', 'click', function(){
+			
+		var curr_page = $(this).text();	
+		if($(this).hasClass('dt-prev'))
+			curr_page = parseInt($(this).attr('cpage'))-1;
+		else if($(this).hasClass('dt-next'))
+			curr_page = parseInt($(this).attr('cpage'))+1;
+		else			
+			curr_page = parseInt(curr_page);
+			
+		jQuery.ajax({
+			type: "POST",
+			url: mytheme_urls.ajaxurl,
+			data:
+			{
+				action: 'dt_dashboard_user_assignments',
+				curr_page: curr_page
+			},
+			beforeSend: function(){
+				$('#dt-sc-ajax-load-image').show();
+			},
+			error: function (xhr, status, error) {
+				$('#dt-sc-dashboard-user-assignments').html('Something went wrong!');
+			},
+			success: function (response) {
+				$('#dt-sc-dashboard-user-assignments').html(response);
+			},
+			complete: function(){
+				$('#dt-sc-ajax-load-image').hide();
+			} 
+		});
+
+		return false;
+		
+	});
+	
+	$( 'body' ).delegate( '#dt-sc-dashboard-teacher-assignments .pagination a', 'click', function(){
+			
+		var curr_page = $(this).text();	
+		if($(this).hasClass('dt-prev'))
+			curr_page = parseInt($(this).attr('cpage'))-1;
+		else if($(this).hasClass('dt-next'))
+			curr_page = parseInt($(this).attr('cpage'))+1;
+		else			
+			curr_page = parseInt(curr_page);
+			
+		jQuery.ajax({
+			type: "POST",
+			url: mytheme_urls.ajaxurl,
+			data:
+			{
+				action: 'dt_dashboard_teacher_assignments',
+				curr_page: curr_page
+			},
+			beforeSend: function(){
+				$('#dt-sc-ajax-load-image').show();
+			},
+			error: function (xhr, status, error) {
+				$('#dt-sc-dashboard-teacher-assignments').html('Something went wrong!');
+			},
+			success: function (response) {
+				$('#dt-sc-dashboard-teacher-assignments').html(response);
+			},
+			complete: function(){
+				$('#dt-sc-ajax-load-image').hide();
+			} 
+		});
+
+		return false;
+		
+	});
   
 });

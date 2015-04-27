@@ -109,6 +109,7 @@ function dttheme_default_option() {
 		
 	$courses = array (
 		'currency' => '$',
+		'currency-s2member' => 'USD'
 	);
 			
 	$data = array(

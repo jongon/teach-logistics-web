@@ -6,7 +6,7 @@
     #If bbPress is installed and we're on a bbPress page.
     elseif ( function_exists( 'is_bbpress' ) && is_bbpress() ):
         dttheme_bpress_subtitle();
-    elseif ( is_page() && !is_front_page() ):
+    elseif ( is_page() ):
         global $post;
         dttheme_subtitle_section( $post->ID, 'page' );
 	elseif( is_post_type_archive('tribe_events') ):
@@ -29,6 +29,21 @@
     elseif( is_post_type_archive('dt_lessons') ):
 		$title = __("Lesson Archives",'dt_themes');
 		dttheme_custom_subtitle_section( $title, "courses-bg");
+    elseif( is_post_type_archive('dt_quizes') ):
+		$title = __("Quizes Archives",'dt_themes');
+		dttheme_custom_subtitle_section( $title, "courses-bg");
+    elseif( is_post_type_archive('dt_questions') ):
+		$title = __("Questions Archives",'dt_themes');
+		dttheme_custom_subtitle_section( $title, "courses-bg");
+    elseif( is_post_type_archive('dt_assignments') ):
+		$title = __("Assignments Archives",'dt_themes');
+		dttheme_custom_subtitle_section( $title, "courses-bg");
+    elseif( is_post_type_archive('dt_gradings') ):
+		$title = __("Gradings Archives",'dt_themes');
+		dttheme_custom_subtitle_section( $title, "courses-bg");
+    elseif( is_post_type_archive('dt_certificates') ):
+		$title = __("Certificates Archives",'dt_themes');
+		dttheme_custom_subtitle_section( $title, "courses-bg");
     elseif( is_post_type_archive('dt_teachers') ):
 		$title = __("Teacher Archives",'dt_themes');
 		dttheme_custom_subtitle_section( $title, 'dark-bg');
@@ -44,6 +59,16 @@
                 dttheme_subtitle_section( $post->ID, 'dt_courses' );
             }elseif(  $post_type === "dt_lessons"  ) {
                 dttheme_subtitle_section( $post->ID, 'dt_lessons' );
+            }elseif(  $post_type === "dt_quizes"  ) {
+                dttheme_subtitle_section( $post->ID, 'dt_quizes' );
+            }elseif(  $post_type === "dt_questions"  ) {
+                dttheme_subtitle_section( $post->ID, 'dt_questions' );
+            }elseif(  $post_type === "dt_assignments"  ) {
+                dttheme_subtitle_section( $post->ID, 'dt_assignments' );
+            }elseif(  $post_type === "dt_gradings"  ) {
+                dttheme_subtitle_section( $post->ID, 'dt_gradings' );	
+            }elseif(  $post_type === "dt_certificates"  ) {
+                dttheme_subtitle_section( $post->ID, 'dt_certificates' );				
             }elseif(  $post_type === "course"  ) {
                 dttheme_subtitle_section( $post->ID, 'course' );
             }elseif(  $post_type === "lesson"  ) {
@@ -94,4 +119,10 @@
     elseif( is_404() ):
         $title  = __("Lost ",'dt_themes');
         dttheme_custom_subtitle_section( $title, " subtitle-for-404");
+	elseif(in_array('learner-profile', get_body_class())):
+        $title  = __("Learner Profile ",'dt_themes');
+        dttheme_custom_subtitle_section( $title, " learner-profile");
+	elseif(in_array('course-results', get_body_class())):
+        $title  = __("Course Results ",'dt_themes');
+        dttheme_custom_subtitle_section( $title, " course-results");
     endif; ?>

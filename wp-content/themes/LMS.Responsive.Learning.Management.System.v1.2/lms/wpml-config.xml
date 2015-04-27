@@ -5,6 +5,7 @@
 		<custom-field action="copy">_teacher_settings</custom-field>
 		<custom-field action="copy">_course_settings</custom-field>
 		<custom-field action="copy">_lesson_settings</custom-field>
+		<custom-field action="copy">_quiz_settings</custom-field>
         <custom-field action="translate">_seo_title</custom-field>
         <custom-field action="translate">_seo_keywords</custom-field>
         <custom-field action="translate">_seo_description</custom-field>
@@ -15,6 +16,12 @@
 		<custom-type translate="1">dt_teachers</custom-type>
 		<custom-type translate="1">dt_courses</custom-type>
 		<custom-type translate="1">dt_lessons</custom-type>
+		<custom-type translate="1">dt_gradings</custom-type>
+		<custom-type translate="1">dt_certificates</custom-type>
+		<custom-type translate="1">dt_assignments</custom-type>
+		<custom-type translate="1">dt_payments</custom-type>
+		<custom-type translate="1">dt_questions</custom-type>
+		<custom-type translate="1">dt_quizes</custom-type>
     </custom-types>    
 
     <taxonomies>
