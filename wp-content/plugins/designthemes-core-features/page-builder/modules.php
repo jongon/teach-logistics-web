@@ -72,72 +72,72 @@ $slider_types = array('LayerSlider' => 'Layer Slider', 'RevolutionSlider' => 'Re
 
 /*  Start of Columns Definition */
 
-$dtthemes_columns['full_width'] = array( 
+$dtthemes_columns['full_width'] = array(
 		'name' => __('1 Column', 'dt_themes'),
 		'type' => 'column',
 	);
-$dtthemes_columns['one_half'] = array( 
+$dtthemes_columns['one_half'] = array(
 		'name' => __('1/2 Column', 'dt_themes'),
 		'type' => 'column',
 	);
-$dtthemes_columns['one_third'] = array( 
+$dtthemes_columns['one_third'] = array(
 		'name' => __('1/3 Column', 'dt_themes'),
 		'type' => 'column',
 	);
-$dtthemes_columns['one_fourth'] = array( 
+$dtthemes_columns['one_fourth'] = array(
 		'name' => __('1/4 Column', 'dt_themes'),
 		'type' => 'column',
 	);
-$dtthemes_columns['one_fifth'] = array( 
+$dtthemes_columns['one_fifth'] = array(
 		'name' => __('1/5 Column', 'dt_themes'),
 		'type' => 'column',
 	);
-$dtthemes_columns['one_sixth'] = array( 
+$dtthemes_columns['one_sixth'] = array(
 		'name' => __('1/6 Column', 'dt_themes'),
 		'type' => 'column',
 	);
-$dtthemes_columns['two_third'] = array( 
+$dtthemes_columns['two_third'] = array(
 		'name' => __('2/3 Column', 'dt_themes'),
 		'type' => 'column',
 	);
-$dtthemes_columns['two_fifth'] = array( 
+$dtthemes_columns['two_fifth'] = array(
 		'name' => __('2/5 Column', 'dt_themes'),
 		'type' => 'column',
 	);
-$dtthemes_columns['two_sixth'] = array( 
+$dtthemes_columns['two_sixth'] = array(
 		'name' => __('2/6 Column', 'dt_themes'),
 		'type' => 'column',
 	);
-$dtthemes_columns['three_fourth'] = array( 
+$dtthemes_columns['three_fourth'] = array(
 		'name' => __('3/4 Column', 'dt_themes'),
 		'type' => 'column',
 	);
-$dtthemes_columns['three_fifth'] = array( 
+$dtthemes_columns['three_fifth'] = array(
 		'name' => __('3/5 Column', 'dt_themes'),
 		'type' => 'column',
 	);
-$dtthemes_columns['three_sixth'] = array( 
+$dtthemes_columns['three_sixth'] = array(
 		'name' => __('3/6 Column', 'dt_themes'),
 		'type' => 'column',
 	);
-$dtthemes_columns['four_fifth'] = array( 
+$dtthemes_columns['four_fifth'] = array(
 		'name' => __('4/5 Column', 'dt_themes'),
 		'type' => 'column',
 	);
-$dtthemes_columns['four_sixth'] = array( 
+$dtthemes_columns['four_sixth'] = array(
 		'name' => __('4/6 Column', 'dt_themes'),
 		'type' => 'column',
 	);
-$dtthemes_columns['five_sixth'] = array( 
+$dtthemes_columns['five_sixth'] = array(
 		'name' => __('5/6 Column', 'dt_themes'),
 		'type' => 'column',
 	);
-$dtthemes_columns['resizable'] = array( 
+$dtthemes_columns['resizable'] = array(
 		'name' => __('Resizable Column', 'dt_themes') ,
 		'type' => 'column',
 	);
 
-$dtthemes_columns['fullwidth_section'] = array( 
+$dtthemes_columns['fullwidth_section'] = array(
 	'name' => __('Fullwidth Section', 'dt_themes'),
 	'type' => 'section',
 	'options' => array(
@@ -197,7 +197,7 @@ $dtthemes_columns['fullwidth_section'] = array(
 	)
 );
 
-$dtthemes_columns['fullwidth_video'] = array( 
+$dtthemes_columns['fullwidth_video'] = array(
 	'name' => __('Fullwidth Section Video', 'dt_themes'),
 	'type' => 'section',
 	'options' => array(
@@ -261,7 +261,7 @@ $dt_modules['general']['doshortcode_anycontent'] = array(
 		)
 	)
 );
-											 
+
 $dt_modules['general']['doshortcode_accordion_framed'] = array(
 	'name' => __('Accordion Framed', 'dt_themes'),
 	'tooltip' => 'Add Accordion Framed Module',
@@ -273,19 +273,19 @@ $dt_modules['general']['doshortcode_accordion_framed'] = array(
 			'is_content' => true,
 			'default_value' => '[dt_sc_accordion_group]<br>
 							[dt_sc_toggle_framed title="Accordion 1"]<br>
-							
+
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.<br>
-							
+
 							[/dt_sc_toggle_framed]<br>
 							[dt_sc_toggle_framed title="Accordion 2"]<br>
-							
+
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.<br>
-							
+
 							[/dt_sc_toggle_framed]<br>
 							[dt_sc_toggle_framed title="Accordion 3"]<br>
-							
+
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.<br>
-							
+
 							[/dt_sc_toggle_framed]<br>
 						[/dt_sc_accordion_group]'
 		)
@@ -303,19 +303,19 @@ $dt_modules['general']['doshortcode_accordion_default'] = array(
 			'is_content' => true,
 			'default_value' => '[dt_sc_accordion_group]<br>
 							[dt_sc_toggle title="Accordion 1"]<br>
-							
+
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.<br>
-							
+
 							[/dt_sc_toggle]<br>
 							[dt_sc_toggle title="Accordion 2"]<br>
-							
+
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.<br>
-							
+
 							[/dt_sc_toggle]<br>
 							[dt_sc_toggle title="Accordion 3"]<br>
-							
+
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.<br>
-							
+
 							[/dt_sc_toggle]<br>
 						[/dt_sc_accordion_group]'
 		)
@@ -795,19 +795,19 @@ $dt_modules['general']['tabs_horizontal'] = array(
 			'type' => 'wp_editor',
 			'is_content' => true,
 			'default_value' => '[dt_sc_tab title="Tab 1"]<br>
-							
+
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.<br>
-							
+
 							[/dt_sc_tab]<br>
 							[dt_sc_tab title="Tab 2"]<br>
-							
+
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.<br>
-							
+
 							[/dt_sc_tab]<br>
 							[dt_sc_tab title="Tab 3"]<br>
-							
+
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.<br>
-							
+
 							[/dt_sc_tab]'
 		)
 	)
@@ -823,19 +823,19 @@ $dt_modules['general']['tabs_vertical'] = array(
 			'type' => 'wp_editor',
 			'is_content' => true,
 			'default_value' => '[dt_sc_tab title="Tab 1"]<br>
-							
+
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.<br>
-							
+
 							[/dt_sc_tab]<br>
 							[dt_sc_tab title="Tab 2"]<br>
-							
+
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.<br>
-							
+
 							[/dt_sc_tab]<br>
 							[dt_sc_tab title="Tab 3"]<br>
-							
+
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.<br>
-							
+
 							[/dt_sc_tab]'
 		)
 	)
@@ -851,19 +851,19 @@ $dt_modules['general']['doshortcode_toggledefault'] = array(
 			'type' => 'wp_editor',
 			'is_content' => true,
 			'default_value' => '[dt_sc_toggle title="Toggle 1"]<br>
-							
+
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.<br>
-							
+
 							[/dt_sc_toggle]<br>
 							[dt_sc_toggle title="Toggle 2"]<br>
-							
+
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.<br>
-							
+
 							[/dt_sc_toggle]<br>
 							[dt_sc_toggle title="Toggle 3"]<br>
-							
+
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.<br>
-							
+
 						[/dt_sc_toggle]'
 		)
 	)
@@ -879,19 +879,19 @@ $dt_modules['general']['doshortcode_toggleframed'] = array(
 			'type' => 'wp_editor',
 			'is_content' => true,
 			'default_value' => '[dt_sc_toggle_framed title="Toggle 1"]<br>
-							
+
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.<br>
-							
+
 							[/dt_sc_toggle_framed]<br>
 							[dt_sc_toggle_framed title="Toggle 2"]<br>
-							
+
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.<br>
-							
+
 							[/dt_sc_toggle_framed]<br>
 							[dt_sc_toggle_framed title="Toggle 3"]<br>
-							
+
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.<br>
-							
+
 						[/dt_sc_toggle_framed]'
 		)
 	)
@@ -963,7 +963,7 @@ $dt_modules['general']['testimonial'] = array(
 			'title' => __('Role', 'dt_themes'),
 			'type' => 'text',
 			'default_value' => 'Role Comes Here'
-		),	
+		),
 		'type' => array(
 			'title' => __('Type', 'dt_themes'),
 			'type' => 'select',
@@ -1129,8 +1129,8 @@ $dt_modules['unique']['courses_search'] = array(
 		'title' => array(
 			'title' => __('Title', 'dt_themes'),
 			'type' => 'text',
-			'default_value' => __('Search Courses', 'dt_themes'),
-		),		
+			'default_value' => __('Buscar Temas', 'dt_themes'),
+		),
 		'post_per_page' => array(
 			'title' => __('Posts Per Page', 'dt_themes'),
 			'type' => 'text',
@@ -1140,7 +1140,7 @@ $dt_modules['unique']['courses_search'] = array(
 );
 
 if(function_exists('dttheme_is_plugin_active') && dttheme_is_plugin_active('woothemes-sensei/woothemes-sensei.php')) {
-	
+
 	$dt_modules['unique']['courses_sensei'] = array(
 		'name' => __('Courses - Sensei', 'dt_themes'),
 		'tooltip' => __('Use this module to add courses', 'dt_themes'),
@@ -1321,7 +1321,7 @@ $dt_modules['unique']['donutchart_large'] = array(
 );
 
 if(function_exists('dttheme_is_plugin_active') && dttheme_is_plugin_active('the-events-calendar/the-events-calendar.php')) {
-	
+
 	$dt_modules['unique']['events'] = array(
 		'name' => __('Events', 'dt_themes'),
 		'tooltip' => __('Use this module to add events list or carousel', 'dt_themes'),
@@ -1794,7 +1794,7 @@ $dt_modules['others']['address'] = array(
 			'title' => __('Line 4', 'dt_themes'),
 			'type' => 'text',
 			'default_value' => ''
-		),		
+		),
 	)
 );
 
@@ -1807,7 +1807,7 @@ $dt_modules['others']['phone'] = array(
 			'title' => __('Phone', 'dt_themes'),
 			'type' => 'text',
 			'default_value' => '+1 200 258 2145'
-		),		
+		),
 	)
 );
 
@@ -1820,7 +1820,7 @@ $dt_modules['others']['mobile'] = array(
 			'title' => __('Mobile', 'dt_themes'),
 			'type' => 'text',
 			'default_value' => '+91 99941 49897'
-		),		
+		),
 	)
 );
 
@@ -1833,7 +1833,7 @@ $dt_modules['others']['fax'] = array(
 			'title' => __('Fax', 'dt_themes'),
 			'type' => 'text',
 			'default_value' => '+1 100 458 2345'
-		),		
+		),
 	)
 );
 
@@ -1846,7 +1846,7 @@ $dt_modules['others']['email'] = array(
 			'title' => __('Email', 'dt_themes'),
 			'type' => 'text',
 			'default_value' => 'yourname@somemail.com'
-		),		
+		),
 	)
 );
 
@@ -1859,7 +1859,7 @@ $dt_modules['others']['web'] = array(
 			'title' => __('URL', 'dt_themes'),
 			'type' => 'text',
 			'default_value' => 'http://www.google.com'
-		),		
+		),
 	)
 );
 

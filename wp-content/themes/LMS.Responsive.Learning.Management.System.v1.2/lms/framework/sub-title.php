@@ -66,15 +66,15 @@
             }elseif(  $post_type === "dt_assignments"  ) {
                 dttheme_subtitle_section( $post->ID, 'dt_assignments' );
             }elseif(  $post_type === "dt_gradings"  ) {
-                dttheme_subtitle_section( $post->ID, 'dt_gradings' );	
+                dttheme_subtitle_section( $post->ID, 'dt_gradings' );
             }elseif(  $post_type === "dt_certificates"  ) {
-                dttheme_subtitle_section( $post->ID, 'dt_certificates' );				
+                dttheme_subtitle_section( $post->ID, 'dt_certificates' );
             }elseif(  $post_type === "course"  ) {
                 dttheme_subtitle_section( $post->ID, 'course' );
             }elseif(  $post_type === "lesson"  ) {
                 dttheme_subtitle_section( $post->ID, 'lesson' );
             }elseif(  $post_type === "quiz"  ) {
-                dttheme_subtitle_section( $post->ID, 'quiz' );				
+                dttheme_subtitle_section( $post->ID, 'quiz' );
             }elseif(  $post_type === "dt_portfolios"  ) {
                 dttheme_subtitle_section( $post->ID, 'dt_portfolios' );
 			} elseif( in_array('events-single', get_body_class()) ) {
@@ -89,7 +89,7 @@
                 $icon = "fa-shopping-cart";
                 dttheme_custom_subtitle_section( $title, " subtitle-for-single-product");
 			}
-        endif; 
+        endif;
     elseif( is_tax() ):
         $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
         $title = __("Term Archives",'dt_themes');
@@ -114,10 +114,10 @@
 	elseif(in_array('events-archive', get_body_class())):
 		dttheme_custom_subtitle_section( '', "events-bg");
     elseif( is_search() ):
-        $title  = __("Search Result for ",'dt_themes').get_search_query();
+        $title  = __("Resultados de busqueda para ",'dt_themes').get_search_query();
         dttheme_custom_subtitle_section( $title, " subtitle-for-search");
     elseif( is_404() ):
-        $title  = __("Lost ",'dt_themes');
+        $title  = __("Perdido ",'dt_themes');
         dttheme_custom_subtitle_section( $title, " subtitle-for-404");
 	elseif(in_array('learner-profile', get_body_class())):
         $title  = __("Learner Profile ",'dt_themes');

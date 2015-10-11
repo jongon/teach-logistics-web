@@ -21,7 +21,7 @@
 
 
 	#Custom Widgets for Sidebars
-	$widgets_sidebars = dttheme_option('widgetarea','sidebars');
+	$widgets_sidebars = dttheme_wp_kses(dttheme_option('widgetarea','sidebars'));
 	$widgets_sidebars = is_array($widgets_sidebars) ? array_unique($widgets_sidebars) : array();
     $widgets_sidebars = array_filter($widgets_sidebars);
     foreach ($widgets_sidebars as $key => $value) {
@@ -281,7 +281,7 @@
 
 
 	#Custom Mega Menu Sidebars
-	$widgets = dttheme_option('widgetarea','megamenu');
+	$widgets = dttheme_wp_kses(dttheme_option('widgetarea','megamenu'));
 	$widgets = is_array($widgets) ? array_unique($widgets) : array();
     $widgets = array_filter($widgets);
     foreach ($widgets as $key => $value) {

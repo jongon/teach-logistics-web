@@ -15,14 +15,14 @@
         	<?php $integration_general = array( 
 					array(
 						"title"=>		__('Add Code Inside the &lt;head&gt','dt_themes'),
-						"tooltip"=>		__('Any code you place here will appear in the head section of every page of your site. This is useful when you need to add javascript or css to all pages.','dt_themes'),
+						"tooltip"=>		__('You can add javascript code here which will appear in header section of every page. Note script tag will be added automatically.','dt_themes'),
 						"textarea"=>	"header-code",
 						"checkbox"=>	"enable-header-code",
 						"label"=>		__('Enable Header Code','dt_themes')
 					),
 					array(
 						"title"=>		__('Add Code above &lt;/body&gt;','dt_themes'),
-						"tooltip"=>		__('You can paste your Google Analytics or other website tracking codes in this box. This will be automatically added above the &lt;/body&gt; tag.','dt_themes'), 
+						"tooltip"=>		__('You can add javascript code here which will appear in body section of every page. Note script tag will be added automatically.','dt_themes'),
 						"textarea"=>	"body-code",
 						"checkbox"=>	"enable-body-code",
 						"label"=>		__('Enable Body Code','dt_themes')

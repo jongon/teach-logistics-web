@@ -100,15 +100,15 @@ class MY_Course_Widget extends WP_Widget {
 					echo "<h6><a href='".get_permalink()."'>{$title}</a></h6>";
 					$course_settings = get_post_meta(get_the_ID(), '_course_settings');
 					
-					$starting_price = get_post_meta(get_the_ID(), 'starting-price', true);
+					$starting_price = dttheme_wp_kses(get_post_meta(get_the_ID(), 'starting-price', true));
 					
 					if($starting_price != ''):
 						echo '<span class="dt-sc-course-price">
 									<span class="amount">';
 										if(dttheme_option('dt_course','currency-position') == 'after-price') 
-											echo $starting_price.dttheme_option('dt_course','currency'); 
+											echo $starting_price.dttheme_wp_kses(dttheme_option('dt_course','currency')); 
 										else
-											echo dttheme_option('dt_course','currency').$starting_price; 
+											echo dttheme_wp_kses(dttheme_option('dt_course','currency')).$starting_price; 
 							echo '</span>
 							</span>';
 					endif;

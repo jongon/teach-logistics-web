@@ -2,7 +2,7 @@
 	#Top code section
 	$dttheme_options = get_option(IAMD_THEME_SETTINGS);
 	$dttheme_integration = $dttheme_options['integration'];
-	if(isset($dttheme_integration['enable-single-post-top-code']))	echo stripslashes($dttheme_integration['single-post-top-code']);
+	if(isset($dttheme_integration['enable-single-post-top-code']))	echo dttheme_wp_kses(stripslashes($dttheme_integration['single-post-top-code']));
 	#Top code section
 
 	$tpl_default_settings = get_post_meta( $post->ID, '_dt_post_settings', TRUE );
@@ -60,5 +60,5 @@ endif;?>
 <?php
 	#Bottom code section 
 	$dttheme_integration = $dttheme_options['integration'];
-	if(isset($dttheme_integration['enable-single-post-bottom-code']))	echo stripslashes($dttheme_integration['single-post-bottom-code']);
+	if(isset($dttheme_integration['enable-single-post-bottom-code']))	echo dttheme_wp_kses(stripslashes($dttheme_integration['single-post-bottom-code']));
 get_footer(); ?>

@@ -2,7 +2,7 @@
 function dt_theme_bbpress_title(){
 	global $bp;
 	$doctitle = "";
-	$separator = dttheme_option ( 'seo', 'title-delimiter' );
+	$separator = dttheme_wp_kses(dttheme_option ( 'seo', 'title-delimiter' ));
 	$id = 0;
 
 	if ( !empty( $bp->displayed_user->fullname ) ) {
@@ -58,7 +58,7 @@ function dt_theme_bbpress_title(){
 function dttheme_public_title() {
 	global $post;
 	$doctitle = '';
-	$separator = dttheme_option ( 'seo', 'title-delimiter' );
+	$separator = dttheme_wp_kses(dttheme_option ( 'seo', 'title-delimiter' ));
 	$split = true;
 
 	$args = array (
@@ -299,7 +299,7 @@ function show_twitter($arg = 'post') {
 	if (! empty ( $twitter )) :
 		$layout = dttheme_option ( 'integration', "{$arg}-twitter-layout" );
 		$lang = dttheme_option ( 'integration', "{$arg}-twitter-lang" );
-		$username = dttheme_option ( 'integration', "{$arg}-twitter-username" );
+		$username = dttheme_wp_kses(dttheme_option ( 'integration', "{$arg}-twitter-username" ));
 		$output .= do_shortcode ( "[twitter layout='{$layout}' lang='{$lang}' username='{$username}' /]" );
 		echo $output;
 	endif;
@@ -350,7 +350,7 @@ function show_delicious($arg = 'post') {
 	$delicious = dttheme_option ( 'integration', "{$arg}-delicious" );
 	$output = "";
 	if (! empty ( $delicious )) :
-		$text = dttheme_option ( 'integration', "{$arg}-delicious-text" );
+		$text = dttheme_wp_kses(dttheme_option ( 'integration', "{$arg}-delicious-text" ));
 		$output .= do_shortcode ( "[delicious text='{$text}' /]" );
 		echo $output;
 	endif;
@@ -703,9 +703,8 @@ function dttheme_load_basic_css() {
 	
 	wp_enqueue_style ( 'lms-default', get_stylesheet_uri () );
 	
-	if(is_rtl()) wp_enqueue_style ( 'rtl', IAMD_BASE_URL . 'rtl.css');
-	
 	wp_enqueue_style ( 'custom-font-awesome', IAMD_BASE_URL . 'css/font-awesome.min.css' );
+	//wp_enqueue_style ( 'custom-font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' );
 
 	if(dttheme_is_plugin_active('woothemes-sensei/woothemes-sensei.php')) wp_enqueue_style('sensei', IAMD_BASE_URL.'sensei/css/style.css');
 	
@@ -1121,8 +1120,8 @@ function dt_generate_certificate() {
 		
 			$post_id = get_the_ID(); 
 			$background_image = get_post_meta ( $post_id, 'background-image', TRUE );
-			$custom_class = get_post_meta ( $post_id, 'custom-class', TRUE );
-			$custom_css = get_post_meta ( $post_id, 'custom-css', TRUE );
+			$custom_class = dttheme_wp_kses(get_post_meta ( $post_id, 'custom-class', TRUE ));
+			$custom_css = dttheme_wp_kses(get_post_meta ( $post_id, 'custom-css', TRUE ));
 			
 			$enable_print = get_post_meta ( $post_id, 'enable-print', TRUE );
 			

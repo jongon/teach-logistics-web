@@ -155,7 +155,7 @@
                         <div class="clear"></div>
                         <h6><?php _e('Custom Favicon','dt_themes');?></h6>
                           <div class="image-preview-container">
-                            <input id="mytheme-favicon" name="mytheme[general][favicon-url]" type="text" class="uploadfield" 
+                            <input id="mytheme-favicon" name="mytheme[general][favicon-url]" type="text" class="uploadfield"  readonly="readonly"
                                 value="<?php echo  dttheme_option('general','favicon-url');?>" />
                             <input type="button" value="<?php _e('Upload','dt_themes');?>" class="upload_image_button" />
                             <input type="button" value="<?php _e('Remove','dt_themes');?>" class="upload_image_reset" />
@@ -167,7 +167,7 @@
                         <div class="clear"></div>
                         <h6><?php _e('Apple iPhone Icon','dt_themes');?></h6>
                         <div class="image-preview-container">
-                          <input id="mytheme-apple-icon" name="mytheme[general][apple-favicon]" type="text" class="uploadfield"
+                          <input id="mytheme-apple-icon" name="mytheme[general][apple-favicon]" type="text" class="uploadfield" readonly="readonly"
                             value="<?php echo dttheme_option('general','apple-favicon');?>"/>
                             <input type="button" value="<?php _e('Upload','dt_themes');?>" class="upload_image_button" />
                             <input type="button" value="<?php _e('Remove','dt_themes');?>" class="upload_image_reset" />
@@ -179,7 +179,7 @@
                         <div class="clear"></div>
                         <h6><?php _e('Apple iPhone Retina Icon','dt_themes');?></h6>
                         <div class="image-preview-container">
-                          <input id="mytheme-apple-icon" name="mytheme[general][apple-retina-favicon]" type="text" class="uploadfield"
+                          <input id="mytheme-apple-icon" name="mytheme[general][apple-retina-favicon]" type="text" class="uploadfield" readonly="readonly"
                             value="<?php echo dttheme_option('general','apple-retina-favicon');?>"/>
                             <input type="button" value="<?php _e('Upload','dt_themes');?>" class="upload_image_button" />
                             <input type="button" value="<?php _e('Remove','dt_themes');?>" class="upload_image_reset" />
@@ -191,7 +191,7 @@
                         <div class="clear"></div>
                         <h6><?php _e('Apple iPad Icon','dt_themes');?></h6>
                         <div class="image-preview-container">
-                          <input id="mytheme-apple-icon" name="mytheme[general][apple-ipad-favicon]" type="text" class="uploadfield"
+                          <input id="mytheme-apple-icon" name="mytheme[general][apple-ipad-favicon]" type="text" class="uploadfield" readonly="readonly"
                             value="<?php echo dttheme_option('general','apple-ipad-favicon');?>"/>
                             <input type="button" value="<?php _e('Upload','dt_themes');?>" class="upload_image_button" />
                             <input type="button" value="<?php _e('Remove','dt_themes');?>" class="upload_image_reset" />
@@ -203,11 +203,11 @@
                         <div class="clear"></div>
                         <h6><?php _e('Apple iPad Retina Icon','dt_themes');?></h6>
                         <div class="image-preview-container">
-                          <input id="mytheme-apple-icon" name="mytheme[general][apple-ipad-retina-favicon]" type="text" class="uploadfield"
+                          <input id="mytheme-apple-icon" name="mytheme[general][apple-ipad-retina-favicon]" type="text" class="uploadfield" readonly="readonly"
                             value="<?php echo dttheme_option('general','apple-ipad-retina-favicon');?>"/>
                             <input type="button" value="<?php _e('Upload','dt_themes');?>" class="upload_image_button" />
                             <input type="button" value="<?php _e('Remove','dt_themes');?>" class="upload_image_reset" />
-                            <?php dttheme_adminpanel_image_preview(dttheme_option('general','apple-ipad-retina-favicon'),false,'apple-touch-icon-114x114.png');?>
+                            <?php dttheme_adminpanel_image_preview(dttheme_option('general','apple-ipad-retina-favicon'),false,'apple-touch-icon-144x144.png');?>
                         </div>
                         <p class="note"><?php _e('Upload your custom iPad retina icon (144px by 144px), or specify the oneline URL for favicon','dt_themes');?></p>
 

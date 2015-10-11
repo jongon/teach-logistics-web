@@ -35,13 +35,13 @@
 					if( array_key_exists("oembed-url", $tpl_default_settings) )
 						echo wp_oembed_get($tpl_default_settings['oembed-url']);
 					elseif( array_key_exists("self-hosted-url", $tpl_default_settings) )
-						echo apply_filters( 'the_content', $tpl_default_settings['self-hosted-url'] );
+						echo wp_video_shortcode( array('src' => $post_meta['self-hosted-url']) );
 				echo "</div>";
 			  elseif( $format === "audio" && (array_key_exists('oembed-url', $tpl_default_settings) || array_key_exists('self-hosted-url', $tpl_default_settings)) ):
 			  		if( array_key_exists("oembed-url", $tpl_default_settings) ):
 						echo wp_oembed_get($tpl_default_settings['oembed-url']);
 			  		elseif( array_key_exists("self-hosted-url", $tpl_default_settings) ):
-						echo apply_filters( 'the_content', $tpl_default_settings['self-hosted-url'] );
+						echo wp_audio_shortcode( array('src' => $post_meta['self-hosted-url']) );
 					endif;
 			 elseif(!array_key_exists("disable-featured-image", $tpl_default_settings)):
 			 ?>

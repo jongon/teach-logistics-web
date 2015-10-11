@@ -6,6 +6,14 @@ define('IAMD_IMPORTER_URL',IAMD_FW.'wordpress-importer/');
 define('IAMD_THEME_SETTINGS', 'mytheme');
 define('IAMD_SAMPLE_FONT', __('The quick brown fox jumps over the lazy dog','dt_themes') );
 
+$user_id = get_current_user_id();
+if($user_id > 0) {
+	$user_info = get_userdata($user_id);
+	foreach($user_info -> roles as $role) {	$user_role = $role; }
+	define('IAMD_USER_ROLE', strtolower($user_role));
+}
+
+
 /* Define IAMD_THEME_NAME
  * Objective:	
  *		Used to show theme name where ever needed( eg: in widgets title ar the back-end).

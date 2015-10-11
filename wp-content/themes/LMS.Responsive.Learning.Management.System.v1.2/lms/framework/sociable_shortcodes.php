@@ -161,7 +161,7 @@ function dt_sc_social($attrs, $content=null,$shortcodename="") {
 			foreach($dttheme_options['social'] as $social):
 				$link = $social['link'];
 				$icon = $social['icon'];
-				$out .= "<li><a href='{$link}' target='_blank'>";
+				$out .= '<li><a href="'.esc_url($link).'" target="_blank">';
 				$out .= '<span class="fa '.$icon.'"></span>';
 				$out .= "</a></li>"; 
 			endforeach;

@@ -102,8 +102,9 @@
 			 			$post_class .= " all-sort ";?>
 			 			<div class="dt-sc-sorting-container">
 			 				<a href="#" class="active-sort" title="" data-filter=".all-sort"><?php _e('All','dt_themes');?></a>
-			 				<?php foreach( $categories as $category ): ?>
-			 					<a href='#' data-filter=".<?php echo $category->category_nicename;?>-sort"><?php echo $category->cat_name;?></a>
+			 				<?php foreach( $categories as $category ): 
+								$cat_name = str_replace(' ', '-', $category->cat_name); ?>
+			 					<a href='#' data-filter=".<?php echo $cat_name; ?>-sort"><?php echo $category->cat_name;?></a>
 			 				<?php endforeach;?>
 			 			</div>
 			<?php 	endif;
@@ -147,7 +148,8 @@
                         	$item_categories = get_the_terms( $the_id, 'portfolio_entries' );
                         	if(is_object($item_categories) || is_array($item_categories)):
                         		foreach ($item_categories as $category):
-                        			$sort .= $category->slug.'-sort ';
+									$cat_slug = str_replace(' ', '-', $category->name);
+                        			$sort .= $cat_slug.'-sort ';
                         		endforeach;
                             endif;
                          endif;?>

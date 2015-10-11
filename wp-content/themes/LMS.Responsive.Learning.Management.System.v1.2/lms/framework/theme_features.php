@@ -23,13 +23,9 @@
 		add_theme_support('custom-header', $hargs);
 		// END of Custom Header Feature
 		
-		
 		# Now Theme supports WooCommerce
 		add_theme_support('woocommerce');
 		
-		# Now Theme supports Sensei Plugin
-		add_theme_support('sensei');
-
 		// Add theme support for Translation
 		load_theme_textdomain('dt_themes', IAMD_TD.'/languages');
 
@@ -129,7 +125,9 @@
 
 if (!function_exists('dttheme_activation_function')) {
 	function dttheme_activation_function($oldname, $oldtheme=false) {
-		update_option(IAMD_THEME_SETTINGS, dttheme_default_option());
+		if(!in_array($oldname, array('LMS', 'LMS Child'))) {
+			update_option(IAMD_THEME_SETTINGS, dttheme_default_option());
+		}
 	}
 	add_action("after_switch_theme", "dttheme_activation_function", 10 , 2);
 }

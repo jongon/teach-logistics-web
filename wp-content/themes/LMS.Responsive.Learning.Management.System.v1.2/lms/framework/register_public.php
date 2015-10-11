@@ -66,11 +66,12 @@ function plugin_head_styles_scripts() {
 	$stickynav = ( dttheme_option("general","enable-sticky-nav") ) ? "enable" : "disable";
 	$landingpagestickynav = ( dttheme_option("general","enable-landingpage-sticky-nav") ) ? "enable" : "disable";
 	$isResponsive = dttheme_option ( "mobile", "is-theme-responsive" ) ? "enable" : "disable";
-	
+	$retina_support = ( dttheme_option("general","enable-retina") ) ? "enable" : "disable";
+
 	if(is_rtl()) $rtl = true; else $rtl = false;
-	
+
 	$pluginURL =  plugin_dir_url ( 'designthemes-core-features' );
-	
+
 	if( is_page_template('tpl-landingpage.php') ) $landingpage = true; else $landingpage = false;
 
 	echo "\n <script type='text/javascript'>\n\t";
@@ -88,23 +89,25 @@ function plugin_head_styles_scripts() {
 	echo "\n \t\t,isLandingPage:'".$landingpage."'";
 	echo "\n \t\t,isRTL:'".$rtl."'";
 	echo "\n \t\t,pluginURL:'".$pluginURL."'";
+	if(defined('ICL_LANGUAGE_CODE')) echo "\n \t\t,lang:'".ICL_LANGUAGE_CODE."'";
 	echo "\n \t\t,isResponsive:'{$isResponsive}'";
 	echo "\n \t\t,layout_pattern:'".dttheme_option('appearance','boxed-layout-pattern')."'";
 	echo "\n\t};\n";
 	echo " </script>\n";
-	
+
 	#Theme urls for Style Picker End
 	wp_enqueue_script('modernizr-script', IAMD_FW_URL.'js/public/modernizr.min.js');
-	
+
 	wp_enqueue_script('jquery');
-	wp_enqueue_script('retina-script', IAMD_FW_URL.'js/public/retina.js',array(),false,true);
+	if($retina_support == 'enable')	wp_enqueue_script('retina-script', IAMD_FW_URL.'js/public/retina.js',array(),false,true);
+
 	wp_enqueue_script('ui-totop-script', IAMD_FW_URL.'js/public/jquery.ui.totop.min.js',array(),false,true);
-	
+
 	wp_enqueue_script('easing-script', IAMD_FW_URL.'js/public/easing.js',array(),false,true);
 	wp_enqueue_script('smartresize-script', IAMD_FW_URL.'js/public/jquery.smartresize.js',array(),false,true);
-	
+
 	wp_enqueue_script('prettyphoto-script', IAMD_FW_URL.'js/public/jquery.prettyPhoto.js',array(),false,true);
-	
+
 	wp_enqueue_script('nicescroll-script', IAMD_FW_URL.'js/public/jquery.nicescroll.min.js',array(),false,true);
 
 	if($landingpage == true) {
@@ -112,25 +115,25 @@ function plugin_head_styles_scripts() {
 	} elseif( dttheme_option("general","enable-sticky-nav") ) {
 		wp_enqueue_script('sticky-nav', IAMD_FW_URL.'js/public/jquery.sticky.js',array(),false,true);
 	}
-	
+
 	wp_enqueue_script('isotope-script', IAMD_FW_URL.'js/public/jquery.isotope.min.js',array(),false,true);
-	
+
 	wp_enqueue_script('fitvids-script', IAMD_FW_URL.'js/public/jquery.fitvids.js',array(),false,true);
 	wp_enqueue_script('bx-script', IAMD_FW_URL.'js/public/jquery.bxslider.js',array(),false,true);
-	
-	#Theme Picker 		
+
+	#Theme Picker
 	if( dttheme_option("general","disable-picker") === NULL  && !is_user_logged_in() ):
 		wp_enqueue_script('theme-cookies', IAMD_FW_URL.'js/public/jquery.cookie.js',array(),false,true);
 		wp_enqueue_script('theme-picker', IAMD_FW_URL.'js/public/picker.js',array(),false,true);
 	endif;
-	
+
 	wp_enqueue_script('toucheffects-script', IAMD_FW_URL.'js/public/toucheffects.js',array(),false,true);
 	wp_enqueue_script('tablesorter-script', IAMD_FW_URL.'js/public/jquery.tablesorter.min.js',array(),false,true);
 	if($landingpage) {
 		wp_enqueue_script('scrollto-script', IAMD_FW_URL.'js/public/jquery.scrollTo.js',array(),false,true);
 		wp_enqueue_script('onepagenav-script', IAMD_FW_URL.'js/public/jquery.nav.js',array(),false,true);
 	}
-	
+
 	wp_enqueue_script('ajaxcourses-script', IAMD_FW_URL.'js/public/ajax-courses.js',array(),false,true);
    	wp_enqueue_script('custom-script', IAMD_FW_URL.'js/public/custom.js',array(),false,true);
 }
@@ -169,9 +172,9 @@ function dttheme_seo_meta() {
 			if ((get_option ( 'page_on_front' ) != 0) && (get_option ( 'page_on_front' ) == $post->ID)) :
 				$meta_description = get_post_meta($post->ID, '_seo_description', true);;
 			else:
-				$meta_description = dttheme_option('onepage','seo-desc');	
-			endif;	
-		
+				$meta_description = dttheme_option('onepage','seo-desc');
+			endif;
+
 		elseif (is_page()) :
 			$meta_description = get_post_meta($post->ID, '_seo_description', true);
 			if (empty($meta_description) && dttheme_option('seo', 'auto_generate_desc')) :
@@ -212,9 +215,9 @@ function dttheme_seo_meta() {
 			if ((get_option ( 'page_on_front' ) != 0) && (get_option ( 'page_on_front' ) == $post->ID)) :
 				$meta_keywords = get_post_meta($post->ID, '_seo_keywords', true);;
 			else:
-				$meta_keywords = dttheme_option('onepage','seo-keyword');	
+				$meta_keywords = dttheme_option('onepage','seo-keyword');
 			endif;
-			
+
 		elseif (is_page()) :
 			$meta_keywords = get_post_meta($post->ID, '_seo_keywords', true);
 			#post
@@ -326,7 +329,7 @@ function dttheme_appearance_load_fonts() {
 	$custom_fonts = array();
 	$output = "";
 
-	$subset = dttheme_option('general', 'google-font-subset');
+	$subset = dttheme_wp_kses(dttheme_option('general', 'google-font-subset'));
 	if ($subset) {
 		$subset = strtolower(str_replace(' ', '', $subset));
 	}
@@ -397,7 +400,7 @@ function dttheme_appearance_load_fonts() {
 		$font = implode(":300,400,400italic,700|", $custom_fonts);
 		$font .= ":300,400,400italic,700|";
 	endif;
-	
+
 	if (!empty($font)) :
 		$protocol = is_ssl() ? 'https' : 'http';
 		$query_args = array('family' => $font, 'subset' => $subset);
@@ -414,7 +417,7 @@ add_action('wp_head', 'dttheme_appearance_css', 9);
  **/
 function dttheme_appearance_css() {
 	$output = NULL;
-	
+
 	#Layout Section
 	if(dttheme_option("appearance","layout") == "boxed"):
 		if(dttheme_option("appearance","bg-type") == "bg-patterns"):
@@ -425,8 +428,8 @@ function dttheme_appearance_css() {
 			$pattern_color =  dttheme_option("appearance","boxed-layout-pattern-color");
 			$output .= "body { ";
 				if(!empty($pattern))
-					$output .= "background-image:url('".IAMD_FW_URL."theme_options/images/patterns/{$pattern}');"; 
-						
+					$output .= "background-image:url('".IAMD_FW_URL."theme_options/images/patterns/{$pattern}');";
+
 				$output .= "background-repeat:$pattern_repeat;";
 				if(empty($disable_color)){
 					if(!empty($pattern_opacity)){
@@ -437,7 +440,7 @@ function dttheme_appearance_css() {
 					}
 				}
 			$output .= "}\r\t";
-		
+
 		elseif(dttheme_option("appearance","bg-type") == "bg-custom"):
 			$bg = dttheme_option("appearance","boxed-layout-bg");
 			$bg_repeat = dttheme_option("appearance","boxed-layout-bg-repeat");
@@ -451,9 +454,9 @@ function dttheme_appearance_css() {
 				$output .= "background-repeat:$bg_repeat;";
 				$output .= "background-position:$bg_position;";
 			}
-			
+
 			if(empty($disable_color)){
-				if(!empty($bg_opacity)){	
+				if(!empty($bg_opacity)){
 					$color = hex2rgb($bg_color);
 					$output .= "background-color:rgba($color[0],$color[1],$color[2],$bg_opacity);";
 				}else{
@@ -470,7 +473,7 @@ function dttheme_appearance_css() {
 	if (empty($disable_menu)) :
 		$font_type = dttheme_option("appearance", "menu-font-type");
 		$style = dttheme_option("appearance","menu-standard-font-style");
-		
+
 		if( !empty($font_type) ){
 		#Menu Font: Standard
 			$font = dttheme_option("appearance","menu-standard-font");
@@ -482,14 +485,14 @@ function dttheme_appearance_css() {
 		$size = dttheme_option("appearance", "menu-font-size");
 		$primary_color = dttheme_option("appearance", "menu-primary-color");
 		$secondary_color = dttheme_option("appearance", "menu-secondary-color");
-		
+
 		if (!empty($font) || (!empty($primary_color) and $primary_color != "#") || !empty($size)) :
-		
+
 			$output .= "#main-menu ul.menu li a, #main-menu ul li.menu-item-simple-parent ul li a { ";
 				if (!empty($font)) { $output .= "font-family:{$font},sans-serif; ";	}
-				
+
 				if (!empty($primary_color) && ($primary_color != '#')) { $output .= "color:{$primary_color}; "; }
-				
+
 				if (!empty($size) and ($size > 0)) { $output .= "font-size:{$size}px; "; }
 
 				if( !empty( $style ) ){ $output .= "font-style: {$style}"; }
@@ -505,11 +508,11 @@ function dttheme_appearance_css() {
 		  $output .= "}\r\t";
 		  $output .= "#main-menu > ul > li.current_page_item, #main-menu > ul > li.current_page_ancestor, #main-menu > ul > li.current-menu-item, #main-menu > ul > li.current-menu-ancestor, ul.dt-sc-tabs-frame li a.current, #main-menu ul li.menu-item-simple-parent ul, .megamenu-child-container{ border-top-color:{$secondary_color}}\r\t";
 		endif;
-		
+
 		$menu_border_color = dttheme_option("appearance", "menu-border-color");
-		
+
 		$output .= "#main-menu > ul > li.current_page_item > a, #main-menu > ul > li.current_page_ancestor > a, #main-menu > ul > li.current-menu-item > a, #main-menu > ul > li.current-menu-ancestor > a, #main-menu > ul > li.current_page_item > a:hover, #main-menu > ul > li.current_page_ancestor > a:hover, #main-menu > ul > li.current-menu-item > a:hover, #main-menu > ul > li.current-menu-ancestor > a:hover, #main-menu > ul > li.current_page_item:hover > a, #main-menu > ul > li.current_page_ancestor:hover > a, #main-menu > ul > li.current-menu-item:hover > a, #main-menu > ul > li.current-menu-ancestor:hover > a { border: 2px solid $menu_border_color; }";
-		
+
 	endif; #Menu Section End
 
 	#Body Section
@@ -521,7 +524,7 @@ function dttheme_appearance_css() {
 		if( !empty($font_type) ){
 		#Body Font: Standard
 			$body_font = dttheme_option("appearance","body-standard-font");
-			
+
 		} else {
 		#Body Font: Google
 			$body_font = dttheme_option("appearance", "body-font");
@@ -541,7 +544,7 @@ function dttheme_appearance_css() {
 			if (!empty($body_font_color) && ($body_font_color != '#')) { $output .= "color:{$body_font_color}; "; }
 
 			if (!empty($body_font_size)) {	$output .= "font-size:{$body_font_size}px; "; }
-			
+
 			if( !empty( $style ) ){ $output .= "font-style: {$style}";	}
 			$output .= "}\r\t";
 		endif;
@@ -560,15 +563,15 @@ function dttheme_appearance_css() {
 		#Footer Title
 		$font_type = dttheme_option("appearance", "footer-title-font-type");
 		$style = dttheme_option("appearance","footer-title-standard-font-style");
-		
+
 		if( !empty($font_type) ){
 			#Footer Title Font : Standard Font
 			$footer_title_font = dttheme_option("appearance","footer-title-standard-font");
 		} else {
-			#Footer Title Font : Google Font	
-			$footer_title_font = dttheme_option("appearance", "footer-title-font");		
+			#Footer Title Font : Google Font
+			$footer_title_font = dttheme_option("appearance", "footer-title-font");
 		}
-		
+
 		$footer_title_font_color = dttheme_option("appearance", "footer-title-font-color");
 		$footer_title_font_size = dttheme_option("appearance", "footer-font-size");
 		$footer_primary_color = dttheme_option("appearance", "footer-primary-color");
@@ -583,7 +586,7 @@ function dttheme_appearance_css() {
 			if (!empty($footer_title_font_color) && ($footer_title_font_color != '#')) {	$output .= "color:{$footer_title_font_color}; ";	}
 
 			if (!empty($footer_title_font_size)) {	$output .= "font-size:{$footer_title_font_size}px; ";	}
-			
+
 			if( !empty( $style ) ){ $output .= "font-style: {$style}";	}
 			$output .= "}\r\t";
 		endif;
@@ -597,7 +600,7 @@ function dttheme_appearance_css() {
 				$output .= "#footer h1 a:hover, #footer h2 a:hover, #footer h3 a:hover, #footer h4 a:hover, #footer h5 a:hover, #footer h6 a:hover, #footer .widget ul li a:hover, #footer .widget.widget_recent_entries .entry-metadata .tags a:hover, #footer .categories a:hover, #footer .copyright .copyright-info a:hover, #footer .widget a:hover { color:{$footer_secondary_color}; }";
 			}
 		endif;
-		
+
 		#Footer Content
 		$font_type = dttheme_option("appearance","footer-content-font-type");
 		$style = dttheme_option("appearance","footer-content-standard-font-style");
@@ -605,32 +608,32 @@ function dttheme_appearance_css() {
 			#Footer Title Font : Standard Font
 			$footer_content_font = dttheme_option("appearance","footer-content-standard-font");
 		} else {
-			#Footer Title Font : Google Font	
-			$footer_content_font = dttheme_option("appearance", "footer-content-font");		
+			#Footer Title Font : Google Font
+			$footer_content_font = dttheme_option("appearance", "footer-content-font");
 		}
-		
+
 		$footer_content_font_color = dttheme_option("appearance", "footer-content-font-color");
 		$footer_content_font_size = dttheme_option("appearance", "footer-content-font-size");
-		
+
 		if (!empty($footer_content_font) || (!empty($footer_content_font_color) and $footer_content_font_color != "#") || !empty($footer_content_font_size)) :
 			$output .= "#footer .widget.widget_recent_entries .entry-metadata .author, #footer .widget.widget_recent_entries .entry-meta .date, #footer label, #footer .widget ul li, #footer .widget ul li:hover, .copyright, #footer .widget.widget_recent_entries .entry-metadata .tags, #footer .categories, #footer .widget p {";
-			
+
 			if (!empty($footer_content_font)) {	$output .= "font-family:{$footer_content_font} !important; ";	}
 
 			if (!empty($footer_content_font_color) && ($footer_content_font_color != '#')) {	$output .= "color:{$footer_content_font_color} !important; ";	}
 
 			if (!empty($footer_content_font_size)) {	$output .= "font-size:{$footer_content_font_size}px !important; ";	}
-			
+
 			if( !empty( $style ) ){ $output .= "font-style: {$style}";	}
 
 			$output .= "}\r\t";
-		
+
 		endif;
-		
+
 		if (!empty($footer_bg_color) and $footer_bg_color != "#") {		$output .= "#footer .footer-widgets-wrapper { background: $footer_bg_color; }";	}
 
 		if (!empty($copyright_bg_color) and $copyright_bg_color != "#") {	$output .= "#footer .copyright { background: $copyright_bg_color; }"; }
-	
+
 	endif; #Footer Section End
 
 	#Typography Settings
@@ -639,7 +642,7 @@ function dttheme_appearance_css() {
 		for ($i = 1; $i <= 6; $i++) :
 			$font_type = dttheme_option("appearance", "H{$i}-font-type");
 			$style = dttheme_option("appearance","H{$i}-standard-font-style");
-			
+
 			if( !empty($font_type) ){
 			#Menu Font: Standard
 				$font = dttheme_option("appearance","H{$i}-standard-font");
@@ -647,7 +650,7 @@ function dttheme_appearance_css() {
 			#Menu Font: Google
 				$font = dttheme_option("appearance", "H{$i}-font");
 			}
-			
+
 			$color = dttheme_option("appearance", "H{$i}-font-color");
 			$size = dttheme_option("appearance", "H{$i}-size");
 
@@ -656,7 +659,7 @@ function dttheme_appearance_css() {
 				if (!empty($font)) {	$output .= "font-family:{$font}; ";	}
 
 				if (!empty($color) && ($color != '#')) {	$output .= "color:{$color}; ";	}
-				
+
 				if (!empty($size)) { $output .= "font-size:{$size}px; "; }
 
 				$output .= "}\r\t";
@@ -703,7 +706,7 @@ function dttheme_appearance_css() {
 	#custom CSS
 	if (dttheme_option('integration', 'enable-custom-css')) :
 		$css = dttheme_option('integration', 'custom-css');
-		$output .= stripcslashes($css);
+		$output .= dttheme_wp_kses(stripcslashes($css));
 	endif; #custom CSS eND
 
 	if (!empty($output)) :
@@ -725,16 +728,16 @@ function dttheme_slider_section($post_id) {
 			$id = isset( $tpl_default_settings['layerslider_id'])? $tpl_default_settings['layerslider_id'] : "";
 			$slider = !empty($id) ? do_shortcode("[layerslider id='{$id}']") : "";
 			echo $slider;
-			
+
 		elseif ($tpl_default_settings['slider_type'] === "revolutionslider") :
 			$id = isset($tpl_default_settings['revolutionslider_id']) ? $tpl_default_settings['revolutionslider_id'] : "";
 			$slider = !empty($id) ? do_shortcode("[rev_slider $id]") : "";
 			echo $slider;
-			
+
 		elseif( $tpl_default_settings['slider_type'] === "imageonly" ):
 			$img = '';
 			$img = isset($tpl_default_settings['slider-image']) ? '<div id="slider-container"><img src="'.$tpl_default_settings['slider-image'].'" alt=""/></div>' : '';
-			
+
 			if(isset($tpl_default_settings['slider-shortcode'])) {
 				$img .= '<div id="slider-search-container">';
 				$img .= do_shortcode($tpl_default_settings['slider-shortcode']);
@@ -750,7 +753,7 @@ function dttheme_slider_section($post_id) {
 
 
 function dttheme_subtitle_section($id=0,$type,$settings = array() ){
-	
+
 	if( $id > 0 ){
 
 		$title = get_the_title($id);
@@ -774,23 +777,23 @@ function dttheme_subtitle_section($id=0,$type,$settings = array() ){
 
 	$disable_breadcrumb = dttheme_option('general','disable-breadcrumb-globally');
 	$disable_breadcrumb_searchbox = dttheme_option('general','disable-breadcrumb-searchbox');
-		
-	if ( !array_key_exists('disable_breadcrumb_section', $settings) ) :		
-	
+
+	if ( !array_key_exists('disable_breadcrumb_section', $settings) ) :
+
 		echo '<!-- ** Breadcrumb Section ** -->';
 		echo '<section class="main-title-section-wrapper">';
 		echo '	<div class="container">';
 		echo '		<div class="main-title-section">';
 						if ( is_front_page() && is_home() ) {
 		echo "				<h1>".get_bloginfo('description')."</h1>";
-						} elseif( is_post_type_archive('tribe_events') || is_tax('tribe_events_cat') || in_array('events-single', get_body_class()) || in_array('events-list', get_body_class()) || in_array('tribe-filter-live', get_body_class()) || in_array('tribe-events-week', get_body_class()) || in_array('tribe-events-day', get_body_class()) || in_array('tribe-events-map', get_body_class()) || in_array('tribe-events-photo', get_body_class()) || in_array('tribe-events-venue', get_body_class()) ) {
+						} elseif( is_post_type_archive('tribe_events') || is_tax('tribe_events_cat') || in_array('events-single', get_body_class()) || in_array('events-list', get_body_class()) || in_array('tribe-filter-live', get_body_class()) || in_array('tribe-events-week', get_body_class()) || in_array('tribe-events-day', get_body_class()) || in_array('tribe-events-map', get_body_class()) || in_array('tribe-events-photo', get_body_class()) || in_array('tribe-events-venue', get_body_class()) || in_array('single-tribe_organizer', get_body_class()) ) {
 		echo  				get_events_title();
 							if(!isset($disable_breadcrumb)) { new dttheme_events_breadcrumb; }
 						} elseif($type == 'dt_lessons') {
 							$dt_lesson_course = get_post_meta (get_the_ID(), "dt_lesson_course",true);
 							if(isset($dt_lesson_course) && $dt_lesson_course != '') {
 								$course_data = get_post($dt_lesson_course);
-								echo '<h1>'.$course_data->post_title.'</h1>';	
+								echo '<h1>'.$course_data->post_title.'</h1>';
 							}
 							if(!isset($disable_breadcrumb)) { new dttheme_breadcrumb; }
 						} else {
@@ -805,20 +808,20 @@ function dttheme_subtitle_section($id=0,$type,$settings = array() ){
 		}
 		echo '	</div>';
 		echo '</section><!-- ** Breadcrumb Section End ** -->';
-	
-	endif;	
+
+	endif;
 }
 
 function dttheme_custom_subtitle_section( $title, $class){
 	$disable_breadcrumb = dttheme_option('general','disable-breadcrumb-globally');
 	$disable_breadcrumb_searchbox = dttheme_option('general','disable-breadcrumb-searchbox');
-	
+
 	echo '<section class="main-title-section-wrapper">';
 	echo '	<div class="container">';
-	echo '		<div class="main-title-section">';	
+	echo '		<div class="main-title-section">';
 					if ( is_front_page() && is_home() ) {
 	echo "				<h1>".get_bloginfo('description')."</h1>";
-					} elseif( is_post_type_archive('tribe_events') || is_tax('tribe_events_cat') || in_array('events-single', get_body_class()) || in_array('events-list', get_body_class()) || in_array('tribe-filter-live', get_body_class()) || in_array('tribe-events-week', get_body_class()) || in_array('tribe-events-day', get_body_class()) || in_array('tribe-events-map', get_body_class()) || in_array('tribe-events-photo', get_body_class()) || in_array('tribe-events-venue', get_body_class()) ) {
+					} elseif( is_post_type_archive('tribe_events') || is_tax('tribe_events_cat') || in_array('events-single', get_body_class()) || in_array('events-list', get_body_class()) || in_array('tribe-filter-live', get_body_class()) || in_array('tribe-events-week', get_body_class()) || in_array('tribe-events-day', get_body_class()) || in_array('tribe-events-map', get_body_class()) || in_array('tribe-events-photo', get_body_class()) || in_array('tribe-events-venue', get_body_class()) || in_array('single-tribe_organizer', get_body_class()) ) {
 	echo  				get_events_title();
 						if(!isset($disable_breadcrumb)) { new dttheme_events_breadcrumb; }
 					} else {
@@ -837,7 +840,7 @@ function dttheme_custom_subtitle_section( $title, $class){
 
 function dttheme_bpress_subtitle(){
 	global $bp;
-	
+
 	if ( !empty( $bp->displayed_user->fullname ) ) { // looking at a user or self
 		$title =  bp_current_component() === "profile" ? __("Profile","dt_themes") : __("Member","dt_themes");
 		$subtitle = strip_tags( $bp->displayed_user->userdata->display_name );
@@ -857,7 +860,7 @@ function dttheme_bpress_subtitle(){
 		dttheme_subtitle_section( $bp->pages->activate->id , 'page' );
 	}elseif( function_exists('bp_is_members_component') ){
 		bp_current_component();
-	}	
+	}
 }
 
 /** dttheme_excerpt()
@@ -866,12 +869,12 @@ function dttheme_bpress_subtitle(){
  **/
 function dttheme_excerpt($limit = NULL) {
 	$limit = !empty($limit) ? $limit : 10;
-	
-	
+
+
 
 	$excerpt = explode(' ', get_the_excerpt(), $limit);
 	$excerpt = array_filter($excerpt);
-	
+
 	if (!empty($excerpt)) {
 		if (count($excerpt) >= $limit) {
 			array_pop($excerpt);
@@ -944,27 +947,27 @@ class dttheme_breadcrumb {
 	var $options;
 
 	function dttheme_breadcrumb(){
-		
+
 		$delimiter =  'fa '.dttheme_option('general', 'breadcrumb-delimiter');
 		$this->options = array( 'before' => "<span class='${delimiter}' > ",'after' => ' </span>');
 		$markup = $this->options['before'].$this->options['after'];
-		
+
 		global $post;
-		
-		echo '<div class="breadcrumb">				
-					<a href="'.home_url().'">'.__('Home','dt_themes').'</a>';
-				
+
+		echo '<div class="breadcrumb">
+					<a href="'.home_url().'">'.__('Inicio','dt_themes').'</a>';
+
 			if( !is_front_page() && !is_home()) {
 				echo $markup;
 			}
-			
+
 			$output = $this->simple_breadcrumb_case($post);
 
 		if ( is_page() || is_single() ) {
 			echo "<span class='current'>";
 					the_title();
 			echo "</span>";
-			
+
 		}elseif( $output !== NULL ){
 			echo "<span class='current'>".$output."</span>";
 		}else {
@@ -974,60 +977,60 @@ class dttheme_breadcrumb {
 		}
 		echo "</div><!-- ** breadcrumb - End -->";
 	}
-	
+
 	function simple_breadcrumb_case($der_post){
 		$markup = $this->options['before'].$this->options['after'];
 		if (is_page()){
 			 if($der_post->post_parent) {
-				 $my_query = get_post($der_post->post_parent);			 
+				 $my_query = get_post($der_post->post_parent);
 				 $this->simple_breadcrumb_case($my_query);
 				 $link = '<a href="'.get_permalink($my_query->ID).'">';
 				 $link .= ''. get_the_title($my_query->ID) . '</a>'. $markup;
 				 echo $link;
 			 }
-		return;	 	
-		} 
+		return;
+		}
 
 		if(is_single()){
 			$category = get_the_category();
 			if (is_attachment()){
-				$my_query = get_post($der_post->post_parent);			 
+				$my_query = get_post($der_post->post_parent);
 				$category = get_the_category($my_query->ID);
 				if( isset($category[0])) {
 					$ID = $category[0]->cat_ID;
 					echo get_category_parents($ID, TRUE, $markup, FALSE );
 					previous_post_link("%link $markup");
 				}
-				
-				
+
+
 			}else{
 				$postType = get_post_type();
 
 				if($postType == 'post')	{
-					
+
 					$ID = $category[0]->cat_ID;
 					echo get_category_parents($ID, TRUE,$markup, FALSE );
-					
+
 				} else if($postType == 'dt_portfolios') {
-					
+
 					global $post;
 					$terms = get_the_term_list( $post->ID, 'portfolio_entries', '', '$$$', '' );
 					$terms =  array_filter(explode('$$$',$terms));
 					if( !empty($terms)):
 						echo $terms[0].$markup;
 				    endif;
-					
+
 				} else if($postType == 'product') {
-					
+
 					global $post;
 					$terms = get_the_term_list( $post->ID, 'product_cat', '', '$$$', '' );
 					$terms =  array_filter(explode('$$$',$terms));
 					if( !empty($terms)):
 						echo $terms[0].$markup;
 				    endif;
-					
+
 				} else if($postType == 'dt_lessons') {
-					
+
 					global $post;
 					$op_text = '';
 					$dt_lesson_course = get_post_meta ($post->ID, "dt_lesson_course",true);
@@ -1036,11 +1039,11 @@ class dttheme_breadcrumb {
 						$op_text .= '<a href="'.get_permalink($course_data->ID).'">'.$course_data->post_title.'</a>';
 						$op_text .= $markup;
 					}
-					
+
 					echo $op_text;
-					
+
 				} else if($postType == 'dt_quizes') {
-					
+
 					global $post;
 					$op_text = '';
 					$lesson_args = array('post_type' => 'dt_lessons', 'meta_key' => 'lesson-quiz', 'meta_value' => $post->ID );
@@ -1050,9 +1053,9 @@ class dttheme_breadcrumb {
 						$op_text .= $markup;
 					}
 					echo $op_text;
-					
+
 				} else if($postType == 'dt_assignments') {
-					
+
 					global $post;
 					$op_text = '';
 					$dt_assignment_course = get_post_meta ($post->ID, "dt-assignment-course",true);
@@ -1061,11 +1064,11 @@ class dttheme_breadcrumb {
 						$op_text .= '<a href="'.get_permalink($course_data->ID).'">'.$course_data->post_title.'</a>';
 						$op_text .= $markup;
 					}
-					
+
 					echo $op_text;
-					
-					
-				} 
+
+
+				}
 			}
 		return;
 		}
@@ -1076,7 +1079,7 @@ class dttheme_breadcrumb {
 		}
 
 		if(is_category()){
-			$category = get_the_category(); 
+			$category = get_the_category();
 			$i = $category[0]->cat_ID;
 			$parent = $category[0]-> category_parent;
 			if($parent > 0 && $category[0]->cat_name == single_cat_title("", false)){
@@ -1092,35 +1095,35 @@ class dttheme_breadcrumb {
 
 		if(is_tag()){ return __("Archive for Tag: ",'dt_themes').single_tag_title('',FALSE); }
 
-		if(is_404()){ return __("LOST",'dt_themes'); }
+		if(is_404()){ return __("Perdido",'dt_themes'); }
 
-		if(is_search()){ return __("Search",'dt_themes'); }	
+		if(is_search()){ return __("Busqueda",'dt_themes'); }
 
 		if(is_year()){ return get_the_time('Y'); }
 
 		if(is_month()){
 			$k_year = get_the_time('Y');
 			echo "<a href='".get_year_link($k_year)."'>".$k_year."</a>".$markup;
-			return get_the_time('F'); 
+			return get_the_time('F');
 		}
 
-		if(is_day() || is_time()){ 
+		if(is_day() || is_time()){
 			$k_year = get_the_time('Y');
 			$k_month = get_the_time('m');
 			$k_month_display = get_the_time('F');
 			echo "<a href='".get_year_link($k_year)."'>".$k_year."</a>".$markup;
 			echo "<a href='".get_month_link($k_year, $k_month)."'>".$k_month_display."</a>".$markup;
-		return get_the_time('jS (l)'); 
+		return get_the_time('jS (l)');
 		}
-		
+
 		if(is_post_type_archive('product')){
 			return __('Products','dt_themes');
 		}
-		
+
 		if(is_post_type_archive('lesson')){
 			return __('Lessons','dt_themes');
 		}
-		
+
 		if(is_post_type_archive('course')){
 			return __('Courses','dt_themes');
 		}
@@ -1132,7 +1135,7 @@ class dttheme_breadcrumb {
 		if(is_post_type_archive('dt_lessons')){
 			return __('Lessons','dt_themes');
 		}
-		
+
 		if(is_post_type_archive('dt_quizes')){
 			return __('Quizes','dt_themes');
 		}
@@ -1156,11 +1159,11 @@ class dttheme_breadcrumb {
 		if(is_post_type_archive('dt_portfolios')){
 			return __('Portfolio','dt_themes');
 		}
-		
+
 		if(is_post_type_archive('dt_certificates')){
 			return __('Certificates','dt_themes');
 		}
-		
+
 		if(in_array('learner-profile', get_body_class())) {
 			return __('Profile','dt_themes');
 		}
@@ -1173,7 +1176,7 @@ class dttheme_breadcrumb {
 }
 
 class dttheme_events_breadcrumb {
-	
+
 	var $options;
 
 	function dttheme_events_breadcrumb() {
@@ -1193,58 +1196,58 @@ class dttheme_events_breadcrumb {
 
 
 		if( tribe_is_month() && !is_tax() ) {
-			
+
 			echo $markup;
 			echo '<span class="current">'.__('Events This Month', 'dt_themes').'</span>';
-			
+
 		} elseif( class_exists('TribeEventsPro') && tribe_is_week() ) {
-			
+
 			echo $markup;
 			echo '<span class="current">'.__('Events This Week', 'dt_themes').'</span>';
-			
+
 		} elseif( class_exists('TribeEventsPro') && tribe_is_day() ) {
-			
+
 			echo $markup;
 			echo '<span class="current">'.__('Events Today', 'dt_themes').'</span>';
-			
+
 		} elseif( class_exists('TribeEventsPro') && tribe_is_map() ) {
-			
+
 			echo $markup;
 			echo '<span class="current">'.__('Upcoming Events', 'dt_themes').'</span>';
-	
+
 		} elseif( class_exists('TribeEventsPro') && tribe_is_photo() ) {
-			
+
 			echo $markup;
 			echo '<span class="current">'.__('Upcoming Events', 'dt_themes').'</span>';
-	
+
 		} elseif( tribe_is_list_view() ) {
-			
+
 			echo $markup;
 			echo '<span class="current">'.__('Upcoming Events', 'dt_themes').'</span>';
-			
+
 		} elseif (is_single()) {
-	
+
 			echo $markup;
 			$post_title = $wp_query->post->post_title;
 			echo '<span class="current">'.$post_title.'</span>';
-					
-		} elseif( tribe_is_month() && is_tax() ) { 
-		
+
+		} elseif( tribe_is_month() && is_tax() ) {
+
 			$term_slug = $wp_query->query_vars['tribe_events_cat'];
 			$term = get_term_by('slug', $term_slug, 'tribe_events_cat');
 			$name = $term->name;
-		
+
 			echo $markup;
 			echo '<span class="current">'.$name.'</span>';
-	
-		} elseif( is_tag() ) { 
+
+		} elseif( is_tag() ) {
 
 			echo $markup;
 			echo '<span class="current">'.single_tag_title('',FALSE).'</span>';
-			
+
 		}
-		
-		echo '</div>';			
+
+		echo '</div>';
 
 
 	}
@@ -1261,50 +1264,50 @@ function get_events_title() {
 
 
 		if( tribe_is_month() && !is_tax() ) {
-			
+
 			$title = sprintf( __( 'Events for %s', 'tribe-events-calendar' ), date_i18n( 'F Y', strtotime( tribe_get_month_view_date() ) ) );
-			
+
 		} elseif( class_exists('TribeEventsPro') && tribe_is_week() ) {
-			
+
 			$title = sprintf( __('Events for week of %s', 'tribe-events-calendar-pro'), date_i18n( $date_format, strtotime( tribe_get_first_week_day($wp_query->get('start_date') ) ) ) );
-			
+
 		} elseif( class_exists('TribeEventsPro') && tribe_is_day() ) {
-			
+
 			$title = __( 'Events for', 'tribe-events-calendar-pro' ) . ' ' . date_i18n( $date_format, strtotime( $wp_query->get('start_date') ) );
-			
+
 		} elseif( class_exists('TribeEventsPro') && (tribe_is_map() || tribe_is_photo()) ) {
-		
+
 			if( tribe_is_past() ) {
 				$title = __( 'Past Events', 'tribe-events-calendar-pro' );
 			} else {
 				$title = __( 'Upcoming Events', 'tribe-events-calendar-pro' );
 			}
-	
+
 		} elseif( tribe_is_list_view() ) {
-			
+
 			$title = __('Upcoming Events', 'dt_themes');
-			
+
 		} elseif (is_single()) {
-			
+
 			$title = $wp_query->post->post_title;
-					
-		} elseif( tribe_is_month() && is_tax() ) { 
-	
+
+		} elseif( tribe_is_month() && is_tax() ) {
+
 			$term_slug = $wp_query->query_vars['tribe_events_cat'];
 			$term = get_term_by('slug', $term_slug, 'tribe_events_cat');
 			$name = $term->name;
-		
+
 			$title = $name;
-	
-		} elseif( is_tag() ) { 
-	
+
+		} elseif( is_tag() ) {
+
 			$name = 'Tag Archives';
 			$title = $name;
 
 		}
-		
+
 		echo '<h1>'.$title.'</h1>';
-	
+
 }
 
 
@@ -1316,19 +1319,19 @@ function dttheme_color_picker(){
 
 	$patterns_url = IAMD_FW_URL."theme_options/images/pattern/";
 	$skins_url = IAMD_BASE_URL."images/style-picker/";
-	
+
 	$patterns = "";
 	$patterns_array =  dttheme_listImage(TEMPLATEPATH."/images/style-picker/patterns/");
-	
+
 	foreach($patterns_array as $k => $v){
 		$img = 	IAMD_BASE_URL."images/style-picker/patterns/".$k;
 		$patterns .= '<li>';
 		$patterns .= "<a data-image='{$k}' href='' title=''>";
 		$patterns .= "<img src='$img' alt='$v' title='$v' width='30' height='30' />";
 		$patterns .= '</a>';
-		$patterns .= '</li>'; 
+		$patterns .= '</li>';
 	}
-	
+
 	$colors = "";
 	foreach(getFolders(IAMD_TD."/skins") as $skin ):
 		$img = 	$skins_url.$skin.".jpg";
@@ -1338,15 +1341,15 @@ function dttheme_color_picker(){
 		$colors .= '</a>';
 		$colors .= '</li>';
 	endforeach;
-	
 
-	
+
+
 	$str = '<!-- **DesignThemes Style Picker Wrapper** -->';
 	$str .= '<div class="dt-style-picker-wrapper">';
 	$str .= '	<a href="" title="" class="style-picker-ico"> <img src="'.IAMD_BASE_URL.'images/style-picker/picker-icon.png" alt="" title="" width="50" height="50" /> </a>';
 	$str .= '	<div id="dt-style-picker">';
 	$str .= '   	<h2>'.__('Select Your Style','dt_themes').'</h2>';
-	
+
 	$str .= '       <h3>'.__('Choose your layout','dt_themes').'</h3>';
 	$str .= '		<ul class="layout-picker">';
 	$str .= '       	<li> <a id="fullwidth" href="" title="" class="selected"> <img src="'.IAMD_BASE_URL.'images/style-picker/fullwidth.jpg" alt="" title="" width="71" height="49" /> </a> </li>';
@@ -1360,20 +1363,20 @@ function dttheme_color_picker(){
 	$str .= '			</ul>';
 	$str .= '			<div class="hr"> </div>';
 	$str .= '		</div>';
-	
+
 	$str .= '		<h3>'.__('Color scheme','dt_themes').'</h3>';
 	$str .= '		<ul class="color-picker">';
 	$str .= 		$colors;
 	$str .= '		</ul>';
-	
+
 	$str .= '	</div>';
 	$str .= '</div><!-- **DesignThemes Style Picker Wrapper - End** -->';
-	
+
 echo $str;
 }
 
 function dttheme_get_lesson_details( $lessons_hierarchy_array,  $lesson_id, $s2_level ) {
-	
+
 	$result = '';
 	$j = 1;
 	if(isset($lessons_hierarchy_array[$lesson_id])) {
@@ -1382,9 +1385,9 @@ function dttheme_get_lesson_details( $lessons_hierarchy_array,  $lesson_id, $s2_
 			$lesson_meta_data = get_post_meta($lesson->ID, '_lesson_settings');
 			$lesson_teacher = $lesson_duration = '';
 			$private_lesson = !empty($lesson_meta_data[0]['private-lesson']) ? $lesson_meta_data[0]['private-lesson'] : '';
-			
+
 			$lesson_teacher = get_post_meta ( $lesson->ID, "lesson-teacher",true);
-			
+
 			if($lesson_teacher != '') {
 				$teacher_data = get_post($lesson_teacher);
 				if($private_lesson != '') {
@@ -1397,7 +1400,7 @@ function dttheme_get_lesson_details( $lessons_hierarchy_array,  $lesson_id, $s2_
 				$lesson_duration .= '<p> <i class="fa fa-clock-o"> </i>'.$lesson_meta_data[0]['lesson-duration']. __(' mins ', 'dt_themes').'</p>';
 			}
 			if(isset($lesson_meta_data[0]['private-lesson']) && $lesson_meta_data[0]['private-lesson'] != '') {
-				if ( current_user_can($s2_level) ){
+				if ( IAMD_USER_ROLE == 's2member_level2' || IAMD_USER_ROLE == 's2member_level3' || IAMD_USER_ROLE == 's2member_level4' || current_user_can($s2_level) ){
 					$private_lesson = '';
 				} else {
 					$private_lesson = 'dt-hidden-lesson';
@@ -1405,7 +1408,7 @@ function dttheme_get_lesson_details( $lessons_hierarchy_array,  $lesson_id, $s2_
 			} else {
 				$private_lesson = '';
 			}
-			
+
 			$terms = get_the_terms($lesson->ID,'lesson_complexity');
 			$lesson_terms = '';
 			if(isset($terms) && !empty($terms)) {
@@ -1430,9 +1433,9 @@ function dttheme_get_lesson_details( $lessons_hierarchy_array,  $lesson_id, $s2_
 
 				$dt_gradings = dt_get_user_gradings_array($course_id, $lesson_id, $quiz_id, $user_id);
 				$dt_grade_post = get_posts( $dt_gradings );
-				
+
 				$dt_grade_post_id = isset($dt_grade_post[0]->ID) ? $dt_grade_post[0]->ID : 0;
-				
+
 				$graded = get_post_meta ( $dt_grade_post_id, "graded",true);
 				if(isset($graded) && $graded != '') {
 					$grade_chk = '<div class="dt-sc-lesson-completed"> <span class="fa fa-check-circle"> </span> '.__('Completed', 'dt_themes').'</div>';
@@ -1452,28 +1455,28 @@ function dttheme_get_lesson_details( $lessons_hierarchy_array,  $lesson_id, $s2_
 									$result .= '<h2> <a href="'.get_permalink($lesson->ID).'" title="'.$lesson->post_title.'">'.$lesson->post_title.'</a> </h2>';
 								}
 								$result .= $grade_chk;
-								
+
 						$result .= '<div class="lesson-metadata">';
-								if($lesson_terms != '') { 
+								if($lesson_terms != '') {
 									 $result .= '<p> <i class="fa fa-tags"> </i> '.$lesson_terms.' </p>';
 								}
 								$result .= $lesson_duration.$lesson_teacher.'
 							   </div>
 							</div>
-							
+
 							<div class="dt-sc-clear"></div>
 							<div class="dt-sc-hr-invisible-small"></div>
-							
+
 							<section class="lesson-details">
 								'.$lesson->post_excerpt.'
 							</section>
 						</article>';
 				$result .= dttheme_get_lesson_details( $lessons_hierarchy_array,  $lesson->ID, $s2_level );
 			$result .= '</li>';
-			
+
 			$j++;
 		}
-		$result .= '</ol>';	
+		$result .= '</ol>';
 	}
 
 	return $result;
@@ -1493,4 +1496,95 @@ function dttheme_get_page_permalink_by_its_template( $temlplate ) {
 		$permalink = get_permalink( $login_page->ID );
 	}
 	return $permalink;
+}
+
+global $dt_allowed_html_tags;
+$dt_allowed_html_tags = array(
+	'a' => array('class' => array(), 'href' => array(), 'title' => array(), 'target' => array()),
+	'abbr' => array('title' => array()),
+	'address' => array(),
+	'area' => array('shape' => array(), 'coords' => array(), 'href' => array(), 'alt' => array()),
+	'article' => array(),
+	'aside' => array(),
+	'audio' => array('autoplay' => array(), 'controls' => array(), 'loop' => array(), 'muted' => array(), 'preload' => array(), 'src' => array()),
+	'b' => array(),
+	'base' => array('href' => array(), 'target' => array()),
+	'bdi' => array(),
+	'bdo' => array('dir' => array()),
+	'blockquote' => array('cite' => array()),
+	'br' => array(),
+	'button' => array('autofocus' => array(), 'disabled' => array(), 'form' => array(), 'formaction' => array(), 'formenctype' => array(), 'formmethod' => array(), 'formnovalidate' => array(), 'formtarget' => array(), 'name' => array(), 'type' => array(), 'value' => array()),
+	'canvas' => array('height' => array(), 'width' => array()),
+	'caption' => array('align' => array()),
+	'cite' => array(),
+	'code' => array(),
+	'col' => array(),
+	'colgroup' => array(),
+	'datalist' => array('id' => array()),
+	'dd' => array(),
+	'del' => array('cite' => array(), 'datetime' => array()),
+	'details' => array('open' => array()),
+	'dfn' => array(),
+	'dialog' => array('open' => array()),
+	'div' => array('class' => array(), 'id' => array(), 'align' => array()),
+	'dl' => array(),
+	'dt' => array(),
+	'em' => array(),
+	'embed' => array('height' => array(), 'src' => array(), 'type' => array(), 'width' => array()),
+	'fieldset' => array('disabled' => array(), 'form' => array(), 'name' => array()),
+	'figcaption' => array(),
+	'figure' => array(),
+	'form' => array('accept' => array(), 'accept-charset' => array(), 'action' => array(), 'autocomplete' => array(), 'enctype' => array(), 'method' => array(), 'name' => array(), 'novalidate' => array(), 'target' => array(), 'id' => array(), 'class' => array()),
+	'h1' => array('class' => array()), 'h2' => array('class' => array()), 'h3' => array('class' => array()), 'h4' => array('class' => array()), 'h5' => array('class' => array()), 'h6' => array('class' => array()),
+	'hr' => array(),
+	'i' => array('class' => array()),
+	'iframe' => array('name' => array(), 'seamless' => array(), 'src' => array(), 'srcdoc' => array(), 'width' => array()),
+	'img' => array('alt' => array(), 'crossorigin' => array(), 'height' => array(), 'ismap' => array(), 'src' => array(), 'usemap' => array(), 'width' => array()),
+	'input' => array('align' => array(), 'alt' => array(), 'autocomplete' => array(), 'autofocus' => array(), 'checked' => array(), 'disabled' => array(), 'form' => array(), 'formaction' => array(), 'formenctype' => array(), 'formmethod' => array(), 'formnovalidate' => array(), 'formtarget' => array(), 'height' => array(), 'list' => array(), 'max' => array(), 'maxlength' => array(), 'min' => array(), 'multiple' => array(), 'name' => array(), 'pattern' => array(), 'placeholder' => array(), 'readonly' => array(), 'required' => array(), 'size' => array(), 'src' => array(), 'step' => array(), 'type' => array(), 'value' => array(), 'width' => array(), 'id' => array(), 'class' => array()),
+	'ins' => array('cite' => array(), 'datetime' => array()),
+	'label' => array('for' => array(), 'form' => array()),
+	'legend' => array('align' => array()),
+	'li' => array('type' => array(), 'value' => array(), 'class' => array()),
+	'link' => array('crossorigin' => array(), 'href' => array(), 'hreflang' => array(), 'media' => array(), 'rel' => array(), 'sizes' => array(), 'type' => array()),
+	'main' => array(),
+	'map' => array('name' => array()),
+	'mark' => array(),
+	'menu' => array('label' => array(), 'type' => array()),
+	'menuitem' => array('checked' => array(), 'command' => array(), 'default' => array(), 'disabled' => array(), 'icon' => array(), 'label' => array(), 'radiogroup' => array(), 'type' => array()),
+	'meta' => array('charset' => array(), 'content' => array(), 'http-equiv' => array(), 'name' => array()),
+	'object' => array('form' => array(), 'height' => array(), 'name' => array(), 'type' => array(), 'usemap' => array(), 'width' => array()),
+	'ol' => array('class' => array(), 'reversed' => array(), 'start' => array(), 'type' => array()),
+	'p' => array('class' => array()),
+	'q' => array('cite' => array()),
+	'section' => array(),
+	'select' => array('autofocus' => array(), 'disabled' => array(), 'form' => array(), 'multiple' => array(), 'name' => array(), 'required' => array(), 'size' => array()),
+	'small' => array(),
+	'source' => array('media' => array(), 'src' => array(), 'type' => array()),
+	'span' => array('class' => array()),
+	'strong' => array(),
+	'style' => array('media' => array(), 'scoped' => array(), 'type' => array()),
+	'sub' => array(),
+	'sup' => array(),
+	'table' => array('sortable' => array()),
+	'tbody' => array(),
+	'td' => array('colspan' => array(), 'headers' => array()),
+	'textarea' => array('autofocus' => array(), 'cols' => array(), 'disabled' => array(), 'form' => array(), 'maxlength' => array(), 'name' => array(), 'placeholder' => array(), 'readonly' => array(), 'required' => array(), 'rows' => array(), 'wrap' => array()),
+	'tfoot' => array(),
+	'th' => array('abbr' => array(), 'colspan' => array(), 'headers' => array(), 'rowspan' => array(), 'scope' => array(), 'sorted' => array()),
+	'thead' => array(),
+	'time' => array('datetime' => array()),
+	'title' => array(),
+	'tr' => array(),
+	'track' => array('default' => array(), 'kind' => array(), 'label' => array(), 'src' => array(), 'srclang' => array()),
+	'u' => array(),
+	'ul' => array('class' => array()),
+	'var' => array(),
+	'video' => array('autoplay' => array(), 'controls' => array(), 'height' => array(), 'loop' => array(), 'muted' => array(), 'muted' => array(), 'poster' => array(), 'preload' => array(), 'src' => array(), 'width' => array()),
+	'wbr' => array(),
+);
+
+function dttheme_wp_kses($content) {
+	global $dt_allowed_html_tags;
+	$data = wp_kses($content, $dt_allowed_html_tags);
+	return $data;
 }

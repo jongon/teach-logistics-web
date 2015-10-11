@@ -92,7 +92,7 @@ jQuery(document).ready(function($){
 		
 		$.ajax({
 			type: "POST",
-			url: mytheme_urls.framework_base_url + 'courses_utils.php',
+			url: mytheme_urls.url + '/wp-content/themes/lms/framework/courses_utils.php',
 			data:
 			{
 				post_id: postid,
@@ -101,7 +101,8 @@ jQuery(document).ready(function($){
 				courses_type: courses_type,
 				offset: offset,
 				curr_page: curr_page,
-				course_page_type: course_page_type
+				course_page_type: course_page_type,
+				lang: mytheme_urls.lang
 			},
 			beforeSend: function(){
 				$('#dt-sc-ajax-load-image').show();

@@ -13,6 +13,12 @@ $coursetype = isset($_REQUEST['coursetype']) ? $_REQUEST['coursetype'] : '';
 $subcoursetype = isset($_REQUEST['subcoursetype']) ? $_REQUEST['subcoursetype'] : '';
 $webinar = isset($_REQUEST['webinar']) ? $_REQUEST['webinar'] : '';
 
+if(defined('ICL_LANGUAGE_CODE') && !empty($_REQUEST['lang']))
+{
+	global $sitepress;
+	$sitepress->switch_lang($_REQUEST['lang'], true);
+}
+
 $wp_query = new WP_Query();
 
 if(isset($searchtext))
@@ -66,7 +72,7 @@ $courses_args = array(
 	's' => $searchtext,
 	'tax_query' => $tax_query,
 	'meta_query' => $meta_query,
-	'order_by' => 'published'
+	'order_by' => 'published',
 );
 
 echo '<div class="dt-sc-clear"></div>
@@ -130,12 +136,12 @@ if( $wp_query->have_posts() ):
 			$duration = '';
 		}
 
-		$starting_price = get_post_meta(get_the_ID(), 'starting-price', true);
+		$starting_price = dttheme_wp_kses(get_post_meta(get_the_ID(), 'starting-price', true));
 		if($starting_price != ''): 
 			if(dttheme_option('dt_course','currency-position') == 'after-price') 
-				$cost =  $starting_price.dttheme_option('dt_course','currency'); 
+				$cost =  $starting_price.dttheme_wp_kses(dttheme_option('dt_course','currency')); 
 			else
-				$cost = dttheme_option('dt_course','currency').$starting_price; 
+				$cost = dttheme_wp_kses(dttheme_option('dt_course','currency')).$starting_price; 
 		else:
 			$cost = __('Free', 'dt_themes'); 
 		endif;	

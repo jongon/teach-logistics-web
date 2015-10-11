@@ -205,9 +205,9 @@ body.no-js #buddypress form#whats-new-form textarea {
 }
 #buddypress form#whats-new-form #whats-new-options select {
 	max-width: 200px;
-	/*margin-top: 12px;*/
+	/*margin-top: 12px;
+	margin-left:10px;*/
 	display:inline-block;
-	margin-left:10px;
 }
 #buddypress form#whats-new-form #whats-new-options { height:85px !important; }
 #buddypress form#whats-new-form #whats-new-submit {

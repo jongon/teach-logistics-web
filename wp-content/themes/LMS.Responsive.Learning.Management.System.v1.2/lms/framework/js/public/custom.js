@@ -67,14 +67,6 @@ jQuery(document).ready(function($){
 		}
 	}
 	
-	if( isMobile || currentWidth < 767 ){
-		$('ul.sub-menu').each( function() {
-			if(!$(this).parents().hasClass('megamenu-child-container')) {
-				$(this).slideUp(400).slideDown(400).slideUp(400);
-			}
-		});
-	}
-	
 	//Menu Hover Start
 	function menuHover() {
 		$("li.menu-item-depth-0,li.menu-item-simple-parent ul li" ).hover(

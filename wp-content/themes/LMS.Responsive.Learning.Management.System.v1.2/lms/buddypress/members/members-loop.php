@@ -1,7 +1,7 @@
 <?php 
 	$dt_bp_data = dttheme_option("bp");
 	$dt_bp_data = is_array( $dt_bp_data ) ? $dt_bp_data  : array();
-	$dt_per_page = array_key_exists("members-per-page", $dt_bp_data) ? $dt_bp_data["members-per-page"] : 10;
+	$dt_per_page = array_key_exists("members-per-page", $dt_bp_data) ? dttheme_wp_kses($dt_bp_data["members-per-page"]) : 10;
 	$dt_per_page - intval($dt_per_page);?>
 
 <?php do_action( 'bp_before_members_loop' ); ?>

@@ -1,0 +1,56 @@
+.social-icon_footer ul {
+	width: auto;
+	height: auto;
+	float: left;
+	list-style: none;
+	margin: 8px 0px;
+}
+.social-icon_footer ul li {
+	width: auto;
+	height: auto;
+	float: left;
+	padding-left: 8px;
+}
+.social-icon_footer ul li a {
+	text-decoration: none;
+}
+.social-icon_footer .icon_facebook {
+	background: url(../img/icon_facebook.png) no-repeat;
+	width: 31px;
+	height: 31px;
+	float: left;
+}
+.social-icon_footer .icon_facebook:hover {
+	background: url(../img/icon_facebook_h.png) no-repeat;
+	cursor: pointer;
+}
+.social-icon_footer .icon_g-plus {
+	background: url(../img/icon_g-plus.png) no-repeat;
+	width: 31px;
+	height: 31px;
+	float: left;
+}
+.social-icon_footer .icon_g-plus:hover {
+	background: url(../img/icon_g-plus_h.png) no-repeat;
+	cursor: pointer;
+}
+.social-icon_footer .icon_twitter {
+	background: url(../img/icon_twitter.png) no-repeat;
+	width: 31px;
+	height: 31px;
+	float: left;
+}
+.social-icon_footer .icon_twitter:hover {
+	background: url(../img/icon_twitter_h.png) no-repeat;
+	cursor: pointer;
+}
+.social-icon_footer .icon_pinterest {
+	background: url(../img/icon_pinterest.png) no-repeat;
+	width: 31px;
+	height: 31px;
+	float: left;
+}
+.social-icon_footer .icon_pinterest:hover {
+	background: url(../img/icon_pinterest_h.png) no-repeat;
+	cursor: pointer;
+}

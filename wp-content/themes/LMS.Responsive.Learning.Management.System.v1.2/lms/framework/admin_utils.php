@@ -28,7 +28,7 @@ function dttheme_option($key1, $key2 = '') {
  * To return my theme default options to store in database.
  */
 function dttheme_default_option() {
-	
+
 	$general = array(
 				"logo" => "true",
 				"enable-favicon" => "true",
@@ -46,7 +46,7 @@ function dttheme_default_option() {
 				"h4-phoneno" => "+ 123 456 7890",
 				"h4-emailid" => get_option('admin_email'),
 				"copyright-text" => 'Copyright &copy; 2014 LMS Theme All Rights Reserved | <a href="http://themeforest.net/user/designthemes" title=""> Design Themes </a>');
-				
+
 	$appearance = array("disable-menu-settings" => "true","disable-typography-settings" => "true","disable-boddy-settings" => "true","skin" => "orange" , "header_type" =>"header1");
 
 	$integration = array(
@@ -70,17 +70,17 @@ function dttheme_default_option() {
 			"page-pintrest-layout" => "none");
 
 	$mobile = array ("is-theme-responsive" => "true");
-	
+
 	$social = array ( 'social-1'=>array('icon'=>'fa-flickr','link'=>'#'), 'social-2'=>array('icon'=>'fa-google','link'=>'#'), 'social-3'=>array('icon'=>'fa-facebook','link'=>'#'));
 
-	$seo = array ( "title-delimiter" => "|", 
+	$seo = array ( "title-delimiter" => "|",
 			"post-title-format" => array ( "blog_title", "post_title" ),
 			"page-title-format" => array ( "blog_title", "post_title" ),
 			"archive-page-title-format" => array ( "blog_title", "date"	),
 			"category-page-title-format" => array (	"blog_title", "category_title" ),
 			"tag-page-title-format" => array ( "blog_title", "tag"),
 			"search-page-title-format" => array ( "blog_title", "search" ),
-			"404-page-title-format" => array ( "blog_title"));	
+			"404-page-title-format" => array ( "blog_title"));
 
 	$specialty = array (
 			"archives-layout" => "with-right-sidebar",
@@ -92,8 +92,8 @@ function dttheme_default_option() {
 			"search-post-layout" => "one-column",
 			"404-layout" => "content-full-width",
 			"404-message" => "<h2> 404! </h2>
-<h3> The page you are looking for is Not Found! </h3>
-<p>Etiam sit amet orci eget eros faucibus tincidunt. Duis kalam <br> stefen kajas in the enter leo. Sed fringilla mauris sit amet nibh.  </p>");
+<h3> ¡La página que esta buscando no ha sido encontrada! </h3>
+<p></p>");
 
 	$woo = array(
 		"shop-product-per-page" => "10",
@@ -101,17 +101,17 @@ function dttheme_default_option() {
 		"product-layout" => "with-left-sidebar",
 		"product-category-layout" => "content-full-width",
 		"product-tag-layout" => "content-full-width");
-			
+
 	$pagebuilder = array (
 		'page' => 'page',
 		'enable-pagebuilder' => false
 	);
-		
+
 	$courses = array (
 		'currency' => '$',
 		'currency-s2member' => 'USD'
 	);
-			
+
 	$data = array(
 		"general" => $general,
 		"appearance" => $appearance,
@@ -122,8 +122,8 @@ function dttheme_default_option() {
 		"specialty" => $specialty,
 		"dt_course" => $courses,
 		"pagebuilder" => $pagebuilder,
-		"woo" => $woo);		
-					
+		"woo" => $woo);
+
 	return $data;
 }
 // # --- **** dttheme_default_option() *** --- ###
@@ -156,7 +156,7 @@ function dttheme_adminpanel_tooltip($tooltip) {
 function dttheme_adminpanel_image_preview($src, $backend = true, $default = "no-image.jpg") {
 	$default = ($backend) ? IAMD_FW_URL . "theme_options/images/" . $default : IAMD_BASE_URL . "images/" . $default;
 	$src = !empty($src) ? $src : $default;
-	
+
 	$output = "<div class='bpanel-option-help'>\n";
 	$output .= "<a href='' title='' class='a_image_preivew'> <img src='" . IAMD_FW_URL . "theme_options/images/image-preview.png' alt='' title='' /> </a>\n";
 	$output .= "\r<div class='bpanel-option-help-tooltip imagepreview'>\n";
@@ -178,9 +178,9 @@ function dttheme_adminpanel_image_preview($src, $backend = true, $default = "no-
 function dttheme_postlist($id, $selected, $class = "mytheme_select") {
 	global $post;
 	$args = array (
-			'numberposts' => - 1 
+			'numberposts' => - 1
 	);
-	
+
 	$name = explode ( ",", $id );
 	if (count ( $name ) > 1) {
 		$name = "[{$name[0]}][{$name[1]}]";
@@ -214,9 +214,9 @@ function dttheme_productlist($id, $selected, $class = "mytheme_select") {
 	global $post;
 	$args = array (
 			'numberposts' => - 1,
-			'post_type' => 'product' 
+			'post_type' => 'product'
 	);
-	
+
 	$name = explode ( ",", $id );
 	if (count ( $name ) > 1) {
 		$name = "[{$name[0]}][{$name[1]}]";
@@ -249,7 +249,7 @@ function dttheme_product_taxonomy_list($id, $selected = '', $class = "mytheme_se
 	$output = "<select name='{$name}' class='{$class}'>";
 	$output .= "<option value=''>" . __ ( 'Select', 'dt_themes' ) . "</option>";
 	$cats = get_categories ( "taxonomy={$taxonomy}&hide_empty=0" );
-	
+
 	foreach ( $cats as $cat ) :
 		$id = esc_attr ( $cat->term_id );
 		$title = esc_html ( $cat->name );
@@ -257,7 +257,7 @@ function dttheme_product_taxonomy_list($id, $selected = '', $class = "mytheme_se
 	endforeach
 	;
 	$output .= "</select>\n";
-	
+
 	return $output;
 }
 
@@ -359,17 +359,17 @@ function dttheme_listImage($dir) {
 			'jpg',
 			'jpeg',
 			'gif',
-			'png' 
+			'png'
 	);
-	
+
 	if (is_dir ( $dir )) {
 		$handle = opendir ( $dir );
 		while ( false !== ($dirname = readdir ( $handle )) ) {
-			
+
 			if ($dirname != "." && $dirname != "..") {
 				$parts = explode ( '.', $dirname );
 				$ext = strtolower ( $parts [count ( $parts ) - 1] );
-				
+
 				if (in_array ( $ext, $icon_types )) {
 					$option = $parts [count ( $parts ) - 2];
 					$sociables [$dirname] = str_replace ( ' ', '', $option );
@@ -378,7 +378,7 @@ function dttheme_listImage($dir) {
 		}
 		closedir ( $handle );
 	}
-	
+
 	return $sociables;
 }
 // # --- **** dttheme_listImage() *** --- ###
@@ -389,9 +389,9 @@ function dttheme_listImage($dir) {
  * Returns selection box.
  */
 function dttheme_sociables_selection($name = '', $selected = "") {
-	
+
 	$sociables =  array('fa-delicious' => 'Delicious', 'fa-dribbble' => 'Dribbble', 'fa-deviantart' => 'Deviantart', 'fa-digg' => 'Digg', 'fa-flickr' => 'Flickr', 'fa-twitter' => 'Twitter', 'fa-weibo' => 'Weibo', 'fa-youtube' => 'Youtube', 'fa-facebook' => 'Facebook', 'fa-google-plus' => 'Google Plus', 'fa-google' => 'Google', 'fa-pinterest' => 'Pinterest', 'fa-reddit' => 'Reddit', 'fa-yahoo' => 'Yahoo', 'fa-vimeo-square' => 'Vimeo', 'fa-stumbleupon' => 'Stumble Upon', 'fa-linkedin' => 'Linkedin', 'fa-skype' => 'Skype', 'fa-tumblr' => 'Tumblr');
-	
+
 	$name = ! empty ( $name ) ? "name='mytheme[social][{$name}][icon]'" : '';
 	$out = "<select class='social-select' {$name}>"; // ame attribute will be added to this by jQuery menuAdd()
 	foreach ( $sociables as $key => $value ) :
@@ -401,7 +401,7 @@ function dttheme_sociables_selection($name = '', $selected = "") {
 	endforeach;
 	$out .= "</select>";
 	return $out;
-	
+
 }
 // # --- **** dttheme_sociables_selection() *** --- ###
 
@@ -417,15 +417,15 @@ function dttheme_sociables_selection($name = '', $selected = "") {
  */
 function dttheme_admin_color_picker($label, $name, $value, $tooltip = NULL) {
 	global $wp_version;
-	
+
 	$output = "<div class='bpanel-option-set'>\n";
 	if (! empty ( $label )) :
 		$output .= "<label>{$label}</label>";
 		$output .= "<div class='clear'></div>";
-	
-	
+
+
 	endif;
-	
+
 	if (( float ) $wp_version >= 3.5) :
 		$output .= "<input type='text' class='my-color-field medium' name='{$name}' value='{$value}' />";
 	 else :
@@ -435,8 +435,8 @@ function dttheme_admin_color_picker($label, $name, $value, $tooltip = NULL) {
 	echo $output;
 	if ($tooltip != NULL) :
 		dttheme_adminpanel_tooltip ( $tooltip );
-	
-	
+
+
 	endif;
 	echo "</div>\n";
 }
@@ -502,9 +502,9 @@ function getFolders($directory, $starting_with = "", $sorting_order = 0) {
 			}
 		}
 	}
-	
+
 	closedir ( $handle );
-	
+
 	if ($sorting_order == 1) {
 		rsort ( $dirs );
 	} else {
@@ -541,7 +541,7 @@ function dttheme_switch_page($label, $name, $value, $datafor = NULL) {
 	$out .= '<div class="clear"></div>';
 	$out .= "<div data-for='{$datafor}' class='checkbox-switch {$switchclass}'></div>";
 	$out .= "<input id='{$datafor}' class='hidden' name='{$name}' type='checkbox' value='true' {$checked} />";
-	
+
 	echo $out;
 }
 // # --- **** dttheme_switch() *** --- ###
@@ -555,7 +555,7 @@ function dttheme_bgtypes($name, $parent, $child) {
 	$args = array (
 			"bg-patterns" => __ ( "Pattern", 'dt_themes' ),
 			"bg-custom" => __ ( "Custom Background", 'dt_themes' ),
-			"bg-none" => __ ( "None", 'dt_themes' ) 
+			"bg-none" => __ ( "None", 'dt_themes' )
 	);
 	$out = '<div class="bpanel-option-set">';
 	$out .= "<label>" . __ ( "Background Type", 'dt_themes' ) . "</label>";
@@ -610,7 +610,7 @@ function dttheme_custom_widgetarea_list( $id, $selected = "", $class="mytheme_se
 
 	$name = ($class == "multidropdown") ? "mytheme{$name}[]" : "mytheme{$name}";
 
-	$widgets = dttheme_option('widgetarea',$sidebar);
+	$widgets = dttheme_wp_kses(dttheme_option('widgetarea',$sidebar));
     $widgets = is_array($widgets) ? array_unique($widgets) : array();
     $widgets = array_filter($widgets);
 
@@ -623,5 +623,5 @@ function dttheme_custom_widgetarea_list( $id, $selected = "", $class="mytheme_se
 	}
 	$output .= "</select>\n";
 	return $output;
-	
+
 }

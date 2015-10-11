@@ -18,7 +18,7 @@
 
                     <div class="column one-third"><label><?php _e('Currency Symbol','dt_themes');?></label></div>
                     <div class="column two-third last">
-                        <input name="mytheme[dt_course][currency]" type="text" class="small" value="<?php echo trim(stripslashes(dttheme_option('dt_course','currency')));?>" />
+                        <input name="mytheme[dt_course][currency]" type="text" class="small" value="<?php echo trim(stripslashes(dttheme_wp_kses(dttheme_option('dt_course','currency'))));?>" />
                         <p class="note"><?php _e('Please set default currency symbol which will be used in front end display','dt_themes');?></p>
                     </div>
                     

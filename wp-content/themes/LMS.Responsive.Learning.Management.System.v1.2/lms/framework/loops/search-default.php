@@ -1,5 +1,5 @@
 <?php
-$post_layout = dttheme_option('specialty','search-post-layout'); 
+$post_layout = dttheme_option('specialty','search-post-layout');
 $post_layout = !empty($post_layout) ? $post_layout : "one-column";
 $post_class = $columns = "";
 
@@ -40,8 +40,8 @@ if( have_posts() ):
 <?php endwhile;
 	echo '</div>';
 else:?>
-	<h2><?php _e( 'Nothing Found','dt_themes'); ?></h2>
-	<h5><?php _e( 'Apologies, but no results were found for the requested archive.', 'dt_themes'); ?></h5>
+	<h2><?php _e( 'Nada fue encontrado','dt_themes'); ?></h2>
+	<h5><?php _e( 'Disculpe, ningún resultado fue encontrado.', 'dt_themes'); ?></h5>
 	<?php get_search_form();?>
 
 <?php 	endif;?>

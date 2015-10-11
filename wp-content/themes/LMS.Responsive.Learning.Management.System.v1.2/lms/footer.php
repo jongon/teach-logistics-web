@@ -21,8 +21,8 @@
 					$height = dttheme_option('general','retina-footer-logo-height');
 					$height = !empty($height) ? $height."px;" : "99px";
 					?>
-        			<img class="normal_logo" src="<?php echo $flogo;?>" alt="<?php _e('Footer Logo','dt_themes');?>" title="<?php _e('Footer Logo','dt_themes');?>">
-                    <img class="retina_logo" src="<?php echo $retina_url;?>" alt="<?php echo dttheme_blog_title();?>" title="<?php echo dttheme_blog_title(); ?>" style="width:<?php echo $width;?>; height:<?php echo $height;?>;"/>            
+        			<img class="normal_logo" src="<?php echo esc_url($flogo);?>" alt="<?php _e('Footer Logo','dt_themes');?>" title="<?php _e('Footer Logo','dt_themes');?>">
+                    <img class="retina_logo" src="<?php echo esc_url($retina_url);?>" alt="<?php echo dttheme_blog_title();?>" title="<?php echo dttheme_blog_title(); ?>" style="width:<?php echo esc_attr($width);?>; height:<?php echo esc_attr($height);?>;"/>            
             </div>
 		<?php
         	if(!empty($dttheme_general['show-footer'])): ?>
@@ -35,7 +35,7 @@
         		<div class="container"><?php
         			if( !empty($dttheme_general['show-copyrighttext']) ):
         				echo '<div class="copyright-info">';
-        				echo stripslashes($dttheme_general['copyright-text']);
+        				echo dttheme_wp_kses(stripslashes($dttheme_general['copyright-text']));
         				echo '</div>'; 
         			endif;?>
         			<?php echo do_shortcode('[dt_sc_social /]'); ?>
@@ -49,7 +49,7 @@
 		wp_enqueue_script( 'comment-reply');
 
 	if(dttheme_option('integration', 'enable-body-code') != '') 
-		echo stripslashes(dttheme_option('integration', 'body-code'));
+		echo '<script type="text/javascript">'.dttheme_wp_kses(stripslashes(dttheme_option('integration', 'body-code'))).'</script>';
 	wp_footer(); ?>
 </body>
 </html>

@@ -76,7 +76,7 @@ if ( version_compare( get_option('woocommerce_version'), "2.1" ) >= 0 ) {
 	add_filter( 'loop_shop_per_page', 'dt_woocommerce_product_count' );
 	if (!function_exists('dt_woocommerce_product_count')) {
 		function dt_woocommerce_product_count() {
-			$shop_product_per_page = trim(stripslashes(dttheme_option('woo','shop-product-per-page')));
+			$shop_product_per_page = dttheme_wp_kses(trim(stripslashes(dttheme_option('woo','shop-product-per-page'))));
 			$shop_product_per_page = !empty( $shop_product_per_page)  ? $shop_product_per_page : 10;
 			return $shop_product_per_page;
 		}

@@ -153,13 +153,13 @@
                                             if( array_key_exists('oembed-url', $post_meta) ):
                                                 echo "<div class='dt-video-wrap'>".wp_oembed_get($post_meta['oembed-url']).'</div>';
                                             elseif( array_key_exists('self-hosted-url', $post_meta) ):
-                                                echo "<div class='dt-video-wrap'>".apply_filters( 'the_content', $post_meta['self-hosted-url'] ).'</div>';
+                                                echo "<div class='dt-video-wrap'>".wp_video_shortcode( array('src' => $post_meta['self-hosted-url']) ).'</div>';
                                             endif;
                                       elseif( $format === "audio" && (array_key_exists('oembed-url', $post_meta) || array_key_exists('self-hosted-url', $post_meta)) ):
                                             if( array_key_exists('oembed-url', $post_meta) ):
                                                 echo wp_oembed_get($post_meta['oembed-url']);
                                             elseif( array_key_exists('self-hosted-url', $post_meta) ):
-                                                echo apply_filters( 'the_content', $post_meta['self-hosted-url'] );
+                                                echo wp_audio_shortcode( array('src' => $post_meta['self-hosted-url']) );
                                             endif;
                                       else: ?>
                                         <a href="<?php the_permalink();?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>"><?php

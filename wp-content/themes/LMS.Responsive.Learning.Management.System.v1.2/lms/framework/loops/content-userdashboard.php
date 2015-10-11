@@ -4,18 +4,27 @@
     the_content(); 
     edit_post_link( __( ' Edit ','dt_themes' ) );
 	$dt_type = isset($_REQUEST['type']) ? $_REQUEST['type'] : 'home';
+	
+	$user_role = IAMD_USER_ROLE;
+	
+	if($user_role == 's2member_level2' || $user_role == 's2member_level3' || $user_role == 's2member_level4') {
+		$s2member_access_label = get_user_field ("s2member_access_label");
+		$s2member_auto_eot_time = get_user_option ("s2member_auto_eot_time");
+		$time_format = get_option( 'date_format' ); 
+		$exp_date = date('F j, Y H:i A', $s2member_auto_eot_time);
+		echo '<p class="dt-sc-info-box">'.__('You have subscribed for our ', 'dt_themes').$s2member_access_label.'. '.__('Your subcription will expire on ', 'dt_themes').$exp_date.'</p>';
+		echo '<div class="dt-sc-hr-invisible-small"></div>';
+	}
+	
     ?>
 	<div class="column dt-sc-one-fifth first">
     
     	<div class="dt-sc-user-details">
 			<?php 
+			
             $user_id = get_current_user_id();
             $user_info = get_userdata($user_id);
-            
-            foreach($user_info -> roles as $role) {
-                $user_role = $role;
-            }
-    
+				
             echo get_avatar($user_id, 180); 
             echo '<div class="dt-sc-username">'.$user_info->display_name.'</div>';
 			
@@ -23,9 +32,14 @@
         </div>
         
         <ul class="dt-sc-dashboard-menus">
-        	<?php if(strtolower($user_role) == 's2member_level1') { ?>
+        	<?php if($user_role == 's2member_level1') { ?>
                 <li><a href="<?php echo get_permalink(get_the_ID()); ?>?type=home" <?php if($dt_type == 'home') echo 'class="active"'; ?>> <span class="fa fa-home"> </span> <?php echo __('Home', 'dt_themes'); ?></a></li>
                 <li><a href="<?php echo get_permalink(get_the_ID()); ?>?type=courses" <?php if($dt_type == 'courses') echo 'class="active"'; ?>> <span class="fa fa-book"> </span><?php echo __('My Courses', 'dt_themes'); ?></a></li>
+                <li><a href="<?php echo get_permalink(get_the_ID()); ?>?type=gradings" <?php if($dt_type == 'gradings') echo 'class="active"'; ?>> <span class="fa fa-trophy"> </span><?php echo __('Gradings', 'dt_themes'); ?></a></li>
+                <li><a href="<?php echo get_permalink(get_the_ID()); ?>?type=assignments" <?php if($dt_type == 'assignments') echo 'class="active"'; ?>> <span class="fa fa-file-text-o"> </span><?php echo __('Assignments', 'dt_themes'); ?></a></li>
+                <li><a href="<?php echo get_permalink(get_the_ID()); ?>?type=profile" <?php if($dt_type == 'profile') echo 'class="active"'; ?>> <span class="fa fa-pencil"> </span><?php echo __('Edit Profile', 'dt_themes'); ?></a></li>
+        	<?php } elseif($user_role == 's2member_level2' || $user_role == 's2member_level3' || $user_role == 's2member_level4') { ?>
+                <li><a href="<?php echo get_permalink(get_the_ID()); ?>?type=home" <?php if($dt_type == 'home') echo 'class="active"'; ?>> <span class="fa fa-home"> </span> <?php echo __('Home', 'dt_themes'); ?></a></li>
                 <li><a href="<?php echo get_permalink(get_the_ID()); ?>?type=gradings" <?php if($dt_type == 'gradings') echo 'class="active"'; ?>> <span class="fa fa-trophy"> </span><?php echo __('Gradings', 'dt_themes'); ?></a></li>
                 <li><a href="<?php echo get_permalink(get_the_ID()); ?>?type=assignments" <?php if($dt_type == 'assignments') echo 'class="active"'; ?>> <span class="fa fa-file-text-o"> </span><?php echo __('Assignments', 'dt_themes'); ?></a></li>
                 <li><a href="<?php echo get_permalink(get_the_ID()); ?>?type=profile" <?php if($dt_type == 'profile') echo 'class="active"'; ?>> <span class="fa fa-pencil"> </span><?php echo __('Edit Profile', 'dt_themes'); ?></a></li>
@@ -44,11 +58,17 @@
     	
     	<?php
 		
-		if(strtolower($user_role) == 's2member_level1') {
+		if($user_role == 's2member_level1' || $user_role == 's2member_level2' || $user_role == 's2member_level3' || $user_role == 's2member_level4') {
 			
-			foreach ($user_info->allcaps as $cap => $cap_enabled) {
-				if (preg_match ("/^access_s2member_ccap_cid_/", $cap))
-					$ccaps[] = preg_replace ("/^access_s2member_ccap_cid_/", "", $cap);
+			$ccaps = array();
+			
+			if($user_role == 's2member_level1') {
+				foreach ($user_info->allcaps as $cap => $cap_enabled) {
+					if (preg_match ("/^access_s2member_ccap_cid_/", $cap))
+						$ccaps[] = preg_replace ("/^access_s2member_ccap_cid_/", "", $cap);
+				}
+			} else if($user_role == 's2member_level2' || $user_role == 's2member_level3' || $user_role == 's2member_level4') {
+				$ccaps = dt_get_all_paid_courses();
 			}
 			
 			if($dt_type == 'home') {
@@ -81,7 +101,7 @@
 							
 							if(isset($enable_certificate) && $enable_certificate != '') {
 							
-								$certificate_percentage = get_post_meta($course_id, 'certificate-percentage', true);
+								$certificate_percentage = dttheme_wp_kses(get_post_meta($course_id, 'certificate-percentage', true));
 								$course_percent = dt_get_course_percentage($course_id, '');
 								
 								if($course_percent > 0 && $course_percent >= $certificate_percentage) {
@@ -177,7 +197,7 @@
                     </ul>
                 </div>
             <?php
-			} else if($dt_type == 'courses') {
+			} else if($dt_type == 'courses' && $user_role == 's2member_level1') {
 			?>
                 <div class="dashboard-content">
                 	<h4 class="border-title"><?php echo __('My Courses', 'dt_themes'); ?><span></span></h4>
@@ -203,11 +223,11 @@
                             $course_args = array( 'post_type' => 'dt_courses', 'p' => $course_id );
                             $course = get_posts( $course_args );
                             
-                            $starting_price = get_post_meta($course_id, 'starting-price', true);
+                            $starting_price = dttheme_wp_kses(get_post_meta($course_id, 'starting-price', true));
                             if(dttheme_option('dt_course','currency-position') == 'after-price') 
-                                $price = $starting_price.dttheme_option('dt_course','currency'); 
+                                $price = $starting_price.dttheme_wp_kses(dttheme_option('dt_course','currency')); 
                             else
-                                $price = dttheme_option('dt_course','currency').$starting_price; 
+                                $price = dttheme_wp_kses(dttheme_option('dt_course','currency')).$starting_price; 
                             
                             
                             $lesson_args = array('post_type' => 'dt_lessons', 'posts_per_page' => -1, 'meta_key' => 'dt_lesson_course', 'meta_value' => $course_id );								

@@ -209,7 +209,7 @@ class DTModifyBackendMenuWalker  extends Walker_Nav_Menu {
 	                	<?php _e( 'Display Widget Area' ,  'dt_themes' ); ?><br />
 	                		<select id="edit-menu-item-dt-submenu-widget-<?php echo $item_id; ?>" class="widefat edit-menu-item-dt-submenu-widget" name="dt-submenu-widget[<?php echo $item_id; ?>]">
                         		<option value=""><?php _e('Select', 'dt_themes');?></option><?php
-                        		$widgets = dttheme_option('widgetarea','megamenu');
+                        		$widgets = dttheme_wp_kses(dttheme_option('widgetarea','megamenu'));
                         		$widgets = is_array($widgets) ? array_unique($widgets) : array();
                         		$widgets = array_filter($widgets);
                         		foreach( $widgets as $widget) {
@@ -366,7 +366,7 @@ class DTFrontEndMenuWalker extends Walker {
 		$attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
 		$attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
 		if(is_page_template('tpl-landingpage.php')):
-			$pslug = basename( get_permalink($item->object_id) );
+			$pslug = str_replace(' ', '', trim($item->title));
 			$attributes .= ! empty( $item->url )    ? ' href="#' . $pslug .'"' : '';
 		else:
 			$attributes .= ! empty( $item->url )    ? ' href="'   . esc_attr( $item->url        ) .'"' : '';

@@ -101,6 +101,7 @@ class MY_Twitter extends WP_Widget {
 
 		echo $before_widget;			
 			
+			$title = apply_filters('widget_title', $title );
 			if ( !empty( $title ) ) { echo $before_title . "<a href='http://twitter.com/$username/' title='".strip_tags($title)."'>".$title ."</a>". $after_title; };
 			
 			#$messages = mytheme_get_tweet($count, $username, $time, $exclude_replies, $display_avatar);

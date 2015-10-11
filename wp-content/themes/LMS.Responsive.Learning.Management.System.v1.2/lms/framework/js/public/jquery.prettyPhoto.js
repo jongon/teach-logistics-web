@@ -2,10 +2,10 @@
 	Class: prettyPhoto
 	Use: Lightbox clone for jQuery
 	Author: Stephane Caron (http://www.no-margin-for-errors.com)
-	Version: 3.1.5
+	Version: 3.1.6
 ------------------------------------------------------------------------- */
 (function($) {
-	$.prettyPhoto = {version: '3.1.5'};
+	$.prettyPhoto = {version: '3.1.6'};
 	
 	$.fn.prettyPhoto = function(pp_settings) {
 		pp_settings = jQuery.extend({
@@ -280,7 +280,7 @@
 						}
 
 						movie = 'http://www.youtube.com/embed/'+movie_id;
-						(getParam('data-gal',pp_images[set_position])) ? movie+="?rel="+getParam('data-gal',pp_images[set_position]) : movie+="?rel=1";
+						(getParam('rel',pp_images[set_position])) ? movie+="?rel="+getParam('rel',pp_images[set_position]) : movie+="?rel=1";
 							
 						if(settings.autoplay) movie += "&autoplay=1";
 					
@@ -885,7 +885,7 @@
 	function getHashtag(){
 		var url = location.href;
 		hashtag = (url.indexOf('#prettyPhoto') !== -1) ? decodeURI(url.substring(url.indexOf('#prettyPhoto')+1,url.length)) : false;
-
+		if(hashtag){  hashtag = hashtag.replace(/<|>/g,''); }
 		return hashtag;
 	};
 	

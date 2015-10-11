@@ -63,6 +63,7 @@ class MY_Recent_Posts extends WP_Widget {
 
 
 		echo $before_widget;
+		$title = apply_filters('widget_title', $title );
 		if ( !empty( $title ) ) echo $before_title.$title.$after_title;
 		echo "<div class='recent-posts-widget'><ul>";		
 			 query_posts($arg);

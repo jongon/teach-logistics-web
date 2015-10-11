@@ -6,7 +6,8 @@ Template Name: Landing Page Template
 <?php get_header(); ?>
 <section id="primary" class="content-full-width">
     
-    <div id="<?php echo $post->post_name; ?>" class="landing-page-home">
+    <?php $section_name_lp = str_replace(' ', '', trim($post->post_title)); ?>
+    <div id="<?php echo $section_name_lp; ?>" class="landing-page-home">
         <?php
         global $post;
         dttheme_slider_section( $post->ID);	
@@ -41,7 +42,7 @@ Template Name: Landing Page Template
         while( $sections_query->have_posts() ):
             $sections_query->the_post();
             
-            $section_name = $post->post_name;
+			$section_name = str_replace(' ', '', trim($post->post_title));
             $section_title = $post->post_title;
             
             ?>

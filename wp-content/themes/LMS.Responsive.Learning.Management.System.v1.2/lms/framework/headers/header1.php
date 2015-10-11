@@ -18,8 +18,8 @@
                             $height = dttheme_option('general','retina-logo-height');
                             $height = !empty($height) ? $height."px;" : "99px";?>
                             <a href="<?php echo home_url();?>" title="<?php echo dttheme_blog_title();?>">
-                                <img class="normal_logo" src="<?php echo $url;?>" alt="<?php echo dttheme_blog_title(); ?>" title="<?php echo dttheme_blog_title(); ?>" />
-                                <img class="retina_logo" src="<?php echo $retina_url;?>" alt="<?php echo dttheme_blog_title();?>" title="<?php echo dttheme_blog_title(); ?>" style="width:<?php echo $width;?>; height:<?php echo $height;?>;"/>
+                                <img class="normal_logo" src="<?php echo esc_url($url);?>" alt="<?php echo dttheme_blog_title(); ?>" title="<?php echo dttheme_blog_title(); ?>" />
+                                <img class="retina_logo" src="<?php echo esc_url($retina_url);?>" alt="<?php echo dttheme_blog_title();?>" title="<?php echo dttheme_blog_title(); ?>" style="width:<?php echo esc_attr($width);?>; height:<?php echo esc_attr($height);?>;"/>
                             </a><?php
                         else:?>
                             <h2><a href="<?php echo home_url();?>" title="<?php echo dttheme_blog_title();?>"><?php echo do_shortcode(get_option('blogname')); ?></a></h2><?php
@@ -74,7 +74,7 @@
 							
 							global $post;
 							$lp_title = $post->post_title;
-							$lp_name = $post->post_name;
+							$lp_name = str_replace(' ', '-', trim($post->post_title));
 							
 							if (function_exists('wp_nav_menu')) :
 								$primaryMenu = wp_nav_menu(array(

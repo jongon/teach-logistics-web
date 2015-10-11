@@ -20,9 +20,9 @@ class MY_Mailchimp extends WP_Widget {
 		$desc 		= 	empty($instance['title']) ?	'' : strip_tags($instance['desc']);
 		$list_id 	=	empty($instance['list_id']) ? '' : strip_tags($instance['list_id']);
 		
-		if( dttheme_option('general','mailchimp-key') ):
+		if( dttheme_wp_kses(dttheme_option('general','mailchimp-key')) ):
 			require_once(IAMD_FW."theme_widgets/mailchimp/MCAPI.class.php");
-			$mcapi = new MCAPI( dttheme_option('general','mailchimp-key') );
+			$mcapi = new MCAPI( dttheme_wp_kses(dttheme_option('general','mailchimp-key')) );
 			$lists = $mcapi->lists();?>
             
             <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:','dt_themes');?> 
@@ -64,7 +64,6 @@ class MY_Mailchimp extends WP_Widget {
 		$title = apply_filters( 'widget_title', $title );
 
 		$desc = empty($instance['desc']) ? '' : strip_tags($instance['desc']);
-		$desc = apply_filters( 'widget_title', $desc );
 
 		$list_id = isset($instance['list_id']) ? $instance['list_id'] : '';
 		
@@ -74,7 +73,7 @@ class MY_Mailchimp extends WP_Widget {
 		
 		if( isset( $_REQUEST['mythem_mc_emailid']) ):
 			require_once(IAMD_FW."theme_widgets/mailchimp/MCAPI.class.php");
-			$mcapi = new MCAPI( dttheme_option('general','mailchimp-key') );
+			$mcapi = new MCAPI( dttheme_wp_kses(dttheme_option('general','mailchimp-key')) );
 			
 			$merge_vars = Array( 'EMAIL' => $_REQUEST['mythem_mc_emailid']);
 			$list_id = $instance['list_id'];

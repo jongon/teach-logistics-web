@@ -28,7 +28,7 @@
     <![endif]-->
     <?php #Header Code Section
 	  if( dttheme_option('integration', 'enable-header-code') ):
-		echo stripslashes(dttheme_option('integration', 'header-code'));
+		echo '<script type="text/javascript">'.dttheme_wp_kses(stripslashes(dttheme_option('integration', 'header-code'))).'</script>';
 	  endif;
 wp_head(); ?>
 </head>

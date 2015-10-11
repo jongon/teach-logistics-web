@@ -75,6 +75,7 @@ class MY_Flickr extends WP_Widget {
 			$show = 		$instance['show'];
 			$size = 		$instance['size'];
 			
+			$title = apply_filters('widget_title', $title );
 			if ( !empty( $title ) ) echo $before_title.$title.$after_title;
 			echo "<div class='flickr-widget'>";
 			echo'<script type="text/javascript" 

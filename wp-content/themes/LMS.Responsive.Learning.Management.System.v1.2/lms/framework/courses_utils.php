@@ -27,6 +27,11 @@ if($course_page_type == 'archive' || $course_page_type == 'tax-archive') {
 
 }
 
+if(!empty($_REQUEST['lang']))
+{
+	global $sitepress;
+	$sitepress->switch_lang($_REQUEST['lang'], true);
+}
 
 $grid_view = $list_view = $layout_class = $post_class = $post_thumbnail = "";
 
@@ -194,63 +199,58 @@ if($courses_type != 'popular') {
                 
                    <h5><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h5>
                 	
-                  
-						<?php
-                        if ( current_user_can($s2_level) ){
-								echo '<div class="dt-sc-purchased-details">';
-                            echo '<span class="dt-sc-purchased"> '.__('Purchased Already','dt_themes').'</span>';
-                            $course_status = dt_get_users_course_status($post->ID, '');
-                            if($course_status)
-                                echo '<div class="dt-sc-course-completed"> <span class="fa fa-check-circle"> </span> '.__('Completed', 'dt_themes').'</div>';
-								echo '</div>';
-                        } else {
-                        ?>
-                    
-						<?php $starting_price = get_post_meta(get_the_ID(), 'starting-price', true);
+						<?php $starting_price = dttheme_wp_kses(get_post_meta(get_the_ID(), 'starting-price', true));
                         if($starting_price != ''): ?>
-                            <span class="dt-sc-course-price"> <span class="amount"> 
-                                <?php 
-                                if(dttheme_option('dt_course','currency-position') == 'after-price') 
-                                    echo $starting_price.dttheme_option('dt_course','currency'); 
-                                else
-                                    echo dttheme_option('dt_course','currency').$starting_price; 
-                                ?>
-                            </span> </span>
+							<?php
+                            if(IAMD_USER_ROLE == 's2member_level2' || IAMD_USER_ROLE == 's2member_level3' || IAMD_USER_ROLE == 's2member_level4' || current_user_can($s2_level) ){
+                                echo '<div class="dt-sc-purchased-details">';
+                                    echo '<span class="dt-sc-purchased"> '.__('Purchased Already','dt_themes').'</span>';
+                                    $course_status = dt_get_users_course_status($post->ID, '');
+                                    if($course_status)
+                                        echo '<div class="dt-sc-course-completed"> <span class="fa fa-check-circle"> </span> '.__('Completed', 'dt_themes').'</div>';
+                                echo '</div>';
+                            } else {
+                            ?>
+                                <span class="dt-sc-course-price"> <span class="amount"> 
+                                    <?php 
+                                    if(dttheme_option('dt_course','currency-position') == 'after-price') 
+                                        echo $starting_price.dttheme_wp_kses(dttheme_option('dt_course','currency')); 
+                                    else
+                                        echo dttheme_wp_kses(dttheme_option('dt_course','currency')).$starting_price; 
+                                    ?>
+                                </span> </span>
+                            <?php } ?>
                         <?php else: ?>
                             <span class="dt-sc-course-price"> <span class="amount"> <?php echo __('Free', 'dt_themes'); ?> </span> </span>
                         <?php endif; ?>
                     
-                    <?php } ?>
-                                
                 <?php } else { ?>
                 
-                	<?php
-					if ( current_user_can($s2_level) ){
-						echo '<div class="dt-sc-purchased-details">';
-						echo '<span class="dt-sc-purchased"> '.__('Purchased Already','dt_themes').'</span>';
-						$course_status = dt_get_users_course_status($post->ID, '');
-						if($course_status)
-							echo '<div class="dt-sc-course-completed"> <span class="fa fa-check-circle"> </span> '.__('Completed', 'dt_themes').'</div>';
-						echo '</div>';
-					} else {
-					?>
-                    
-						<?php $starting_price = get_post_meta(get_the_ID(), 'starting-price', true);
+						<?php $starting_price = dttheme_wp_kses(get_post_meta(get_the_ID(), 'starting-price', true));
                         if($starting_price != ''): ?>
-                            <span class="dt-sc-course-price"> <span class="amount"> 
-                                <?php 
-                                if(dttheme_option('dt_course','currency-position') == 'after-price') 
-                                    echo $starting_price.dttheme_option('dt_course','currency'); 
-                                else
-                                    echo dttheme_option('dt_course','currency').$starting_price; 
-                                ?>
-                            </span> </span>
+							<?php
+                            if(IAMD_USER_ROLE == 's2member_level2' || IAMD_USER_ROLE == 's2member_level3' || IAMD_USER_ROLE == 's2member_level4' || current_user_can($s2_level) ){
+                                echo '<div class="dt-sc-purchased-details">';
+                                echo '<span class="dt-sc-purchased"> '.__('Purchased Already','dt_themes').'</span>';
+                                $course_status = dt_get_users_course_status($post->ID, '');
+                                if($course_status)
+                                    echo '<div class="dt-sc-course-completed"> <span class="fa fa-check-circle"> </span> '.__('Completed', 'dt_themes').'</div>';
+                                echo '</div>';
+                            } else {
+                            ?>
+                                <span class="dt-sc-course-price"> <span class="amount"> 
+                                    <?php 
+                                    if(dttheme_option('dt_course','currency-position') == 'after-price') 
+                                        echo $starting_price.dttheme_wp_kses(dttheme_option('dt_course','currency')); 
+                                    else
+                                        echo dttheme_wp_kses(dttheme_option('dt_course','currency')).$starting_price; 
+                                    ?>
+                                </span> </span>
+                            <?php } ?>
                         <?php else: ?>
                             <span class="dt-sc-course-price"> <span class="amount"> <?php echo __('Free', 'dt_themes'); ?> </span> </span>
                         <?php endif; ?>
-                        
-                    <?php } ?>
-                    
+
                     <h5><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h5>
                 
                 <?php } ?>
@@ -406,62 +406,60 @@ if($courses_type != 'popular') {
                     
                         <h5><a href="<?php echo get_permalink($course_item_id); ?>" title="<?php echo $course_item->post_title; ?>"><?php echo $course_item->post_title; ?></a></h5>
 
-						<?php
-                        if ( current_user_can($s2_level) ){
-								echo '<div class="dt-sc-purchased-details">';
-                            echo '<span class="dt-sc-purchased"> '.__('Purchased Already','dt_themes').'</span>';
-                            $course_status = dt_get_users_course_status($course_item_id, '');
-                            if($course_status)
-                                echo '<div class="dt-sc-course-completed"> <span class="fa fa-check-circle"> </span> '.__('Completed', 'dt_themes').'</div>';
-								echo '</div>';
-                        } else {
-                        ?>
 
-						<?php $starting_price = get_post_meta($course_item_id, 'starting-price', true);
+						<?php $starting_price = dttheme_wp_kses(get_post_meta($course_item_id, 'starting-price', true));
                         if($starting_price != ''): ?>
-                            <span class="dt-sc-course-price"> <span class="amount"> 
-                                <?php 
-                                if(dttheme_option('dt_course','currency-position') == 'after-price') 
-                                    echo $starting_price.dttheme_option('dt_course','currency'); 
-                                else
-                                    echo dttheme_option('dt_course','currency').$starting_price; 
-                                ?>
-                            </span> </span>
+							<?php
+                            if(IAMD_USER_ROLE == 's2member_level2' || IAMD_USER_ROLE == 's2member_level3' || IAMD_USER_ROLE == 's2member_level4' || current_user_can($s2_level) ){
+                                echo '<div class="dt-sc-purchased-details">';
+									echo '<span class="dt-sc-purchased"> '.__('Purchased Already','dt_themes').'</span>';
+									$course_status = dt_get_users_course_status($course_item_id, '');
+									if($course_status)
+										echo '<div class="dt-sc-course-completed"> <span class="fa fa-check-circle"> </span> '.__('Completed', 'dt_themes').'</div>';
+                                echo '</div>';
+                            } else {
+                            ?>
+                                <span class="dt-sc-course-price"> <span class="amount"> 
+                                    <?php 
+                                    if(dttheme_option('dt_course','currency-position') == 'after-price') 
+                                        echo $starting_price.dttheme_wp_kses(dttheme_option('dt_course','currency')); 
+                                    else
+                                        echo dttheme_wp_kses(dttheme_option('dt_course','currency')).$starting_price; 
+                                    ?>
+                                </span> </span>
+                            <?php } ?>
                         <?php else: ?>
                             <span class="dt-sc-course-price"> <span class="amount"> <?php echo __('Free', 'dt_themes'); ?> </span> </span>
                         <?php endif; ?>
-                        
-                        <?php } ?>
                                         
                     <?php } else { ?>
                     
-						<?php
-                        if ( current_user_can($s2_level) ){
-								echo '<div class="dt-sc-purchased-details">';
-                            echo '<span class="dt-sc-purchased"> '.__('Purchased Already','dt_themes').'</span>';
-                            $course_status = dt_get_users_course_status($course_item_id, '');
-                            if($course_status)
-                                echo '<div class="dt-sc-course-completed"> <span class="fa fa-check-circle"> </span> '.__('Completed', 'dt_themes').'</div>';
-								echo '</div>';
-                        } else {
-                        ?>
                     
-						<?php $starting_price = get_post_meta($course_item_id, 'starting-price', true);
+						<?php $starting_price = dttheme_wp_kses(get_post_meta($course_item_id, 'starting-price', true));
                         if($starting_price != ''): ?>
-                            <span class="dt-sc-course-price"> <span class="amount"> 
-                                <?php 
-                                if(dttheme_option('dt_course','currency-position') == 'after-price') 
-                                    echo $starting_price.dttheme_option('dt_course','currency'); 
-                                else
-                                    echo dttheme_option('dt_course','currency').$starting_price; 
-                                ?>
-                            </span> </span>
+							<?php
+                            if(IAMD_USER_ROLE == 's2member_level2' || IAMD_USER_ROLE == 's2member_level3' || IAMD_USER_ROLE == 's2member_level4' || current_user_can($s2_level) ){
+                                echo '<div class="dt-sc-purchased-details">';
+									echo '<span class="dt-sc-purchased"> '.__('Purchased Already','dt_themes').'</span>';
+									$course_status = dt_get_users_course_status($course_item_id, '');
+									if($course_status)
+										echo '<div class="dt-sc-course-completed"> <span class="fa fa-check-circle"> </span> '.__('Completed', 'dt_themes').'</div>';
+                                echo '</div>';
+                            } else {
+                            ?>
+                                <span class="dt-sc-course-price"> <span class="amount"> 
+                                    <?php 
+                                    if(dttheme_option('dt_course','currency-position') == 'after-price') 
+                                        echo $starting_price.dttheme_wp_kses(dttheme_option('dt_course','currency')); 
+                                    else
+                                        echo dttheme_wp_kses(dttheme_option('dt_course','currency')).$starting_price; 
+                                    ?>
+                                </span> </span>
+                            <?php } ?>
                         <?php else: ?>
                             <span class="dt-sc-course-price"> <span class="amount"> <?php echo __('Free', 'dt_themes'); ?> </span> </span>
                         <?php endif; ?>
                         
-                        <?php } ?>
-                    
                         <h5><a href="<?php echo get_permalink($course_item_id); ?>" title="<?php echo $course_item->post_title; ?>"><?php echo $course_item->post_title; ?></a></h5>
                     
                     <?php } ?>
